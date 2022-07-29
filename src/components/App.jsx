@@ -15,6 +15,15 @@ export const App = () => {
     <>
       <Routes>
         <Route
+          path="/"
+          element={
+            <RedirectRoute>
+              <LoginPage />
+            </RedirectRoute>
+          }
+        />
+        ;
+        <Route
           path="/register"
           element={
             <RedirectRoute>
@@ -45,7 +54,7 @@ export const App = () => {
           <Route path="currency" element={<Dashboard />}></Route> */}
         {/* </Route>; */}
         {/* </Route>; */}
-        <Route path="*" element={<PageNotFound />} />;
+        <Route path="*" element={<PageNotFound path="/login" />} />;
       </Routes>
     </>
   );
