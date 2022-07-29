@@ -1,1 +1,3 @@
-export const NavMenu = () => {};
+export const NavMenu = () => {
+  return <h3>NavMenu</h3>;
+};

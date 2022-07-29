@@ -24,19 +24,14 @@ export const App = () => {
         }
       />
       ;
-      <Route
-        path="/"
-        element={
-          <PrivateRoute>
-            <Dashboard>
-              <NavMenu />
-              <Route path="home" element={<Home />}></Route>
-              <Route path="diagram" element={<Diagram />}></Route>
-              <Route path="currency" element={<Currency />}></Route>
-            </Dashboard>
-          </PrivateRoute>
-        }
-      />
+      <Route element={<PrivateRoute />}>
+        <Route path="/" element={<Dashboard />}>
+          <Route path="home" element={<Home />}></Route>
+          <Route path="diagram" element={<Diagram />}></Route>
+          <Route path="currency" element={<Currency />}></Route>
+        </Route>
+        ;
+      </Route>
       ;
       <Route path="*" element={<PageNotFound />} />;
     </Routes>
