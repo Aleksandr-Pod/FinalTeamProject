@@ -6,7 +6,7 @@ import { PrivateRoute } from './privateRoute';
 import { Dashboard } from './dashboard/dashboard';
 import { RedirectRoute } from './redirectRoute';
 import { PageNotFound } from './pageNotFound/pageNotFound';
-import { NavMenu } from './dashboard/navMenu';
+// import { NavMenu } from './dashboard/navMenu';
 import { Home } from './dashboard/home';
 import { Diagram } from './dashboard/diagram';
 import { Currency } from './dashboard/currency';
