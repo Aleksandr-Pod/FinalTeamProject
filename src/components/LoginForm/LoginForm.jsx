@@ -2,10 +2,8 @@ import React from 'react';
 import { Form, Field, Formik } from 'formik';
 import { NavLink } from 'react-router-dom';
 import styles from './LoginForm.module.css';
-import Button from '../Button/Button';
-import { ReactComponent as EmailIcon } from './images/email.svg';
-import { ReactComponent as PasswordIcon } from './images/passwordIcon.svg';
 import * as Yup from 'yup';
+import sprite from '../../images/sprite.svg';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),
@@ -42,7 +40,9 @@ export default function LoginForm() {
             {errors.email && touched.email ? (
               <div className={styles.errorWrapper}>{errors.email}</div>
             ) : null}
-            <EmailIcon className={styles.icon} />
+            <svg className={styles.icon} width="21" height="16">
+              <use href={sprite + '#icon-mail'} />
+            </svg>
           </div>
 
           <div className={styles.inputWrapper}>
@@ -57,7 +57,10 @@ export default function LoginForm() {
             {errors.password && touched.password ? (
               <div className={styles.errorWrapper}>{errors.password}</div>
             ) : null}
-            <PasswordIcon className={styles.icon} />
+
+            <svg className={styles.icon} width="17" height="21">
+              <use href={sprite + '#icon-lock'} />
+            </svg>
           </div>
           <div className={styles.wrapper}>
             <button form="loginForm" type="submit" className={styles.btn}>
