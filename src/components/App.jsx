@@ -1,14 +1,14 @@
 import { Routes, Route } from 'react-router-dom';
 // Components
-import { RegisterForm } from './authForm/registerForm';
-import { LoginForm } from './authForm/loginForm';
 import { PrivateRoute } from './privateRoute';
-import { Dashboard } from './dashboard/dashboard';
+import { Dashboard } from '../pages/dashboard';
 import { RedirectRoute } from './redirectRoute';
 import { PageNotFound } from './pageNotFound/pageNotFound';
-import { Home } from './dashboard/home';
-import { Diagram } from './dashboard/diagram';
-import { Currency } from './dashboard/currency';
+// import { Home } from './dashboard/home';
+// import { Stat } from './dashboard/stat';
+// import { Currency } from './dashboard/currency';
+import { RegisterPage } from '../pages/registerPage';
+import { LoginPage } from '../pages/loginPage';
 
 export const App = () => {
   return (
@@ -17,7 +17,7 @@ export const App = () => {
         path="/register"
         element={
           <RedirectRoute>
-            <RegisterForm />
+            <RegisterPage />
           </RedirectRoute>
         }
       />
@@ -26,18 +26,24 @@ export const App = () => {
         path="/login"
         element={
           <RedirectRoute>
-            <LoginForm />
+            <LoginPage />
           </RedirectRoute>
         }
       />
-      ;
-      <Route element={<PrivateRoute />}>
-        <Route path="/" element={<Dashboard />}>
-          <Route path="home" element={<Home />}></Route>
-          <Route path="diagram" element={<Diagram />}></Route>
-          <Route path="currency" element={<Currency />}></Route>
-        </Route>;
-      </Route>;
+      ;{/* <Route element={<PrivateRoute />}> */}
+      <Route
+        path="/:activeBtn"
+        element={
+          <PrivateRoute>
+            <Dashboard />
+          </PrivateRoute>
+        }
+      />
+      {/* <Route path="home" element={<Dashboard />}></Route>
+          <Route path="diagram" element={<Dashboard />}></Route>
+          <Route path="currency" element={<Dashboard />}></Route> */}
+      {/* </Route>; */}
+      {/* </Route>; */}
       <Route path="*" element={<PageNotFound />} />;
     </Routes>
   );
