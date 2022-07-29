@@ -2,9 +2,9 @@ import { Header } from '../components/dashboard/header';
 import { NavMenu } from '../components/dashboard//navMenu';
 import styles from './styles.module.css';
 import { useParams } from 'react-router-dom';
-import { Home } from '../components/dashboard/home';
-import { Currency } from '../components/dashboard/currency';
-import { Stat } from '../components/dashboard/stat';
+import { HomePage } from './homePage';
+import { CurrencyPage } from './currencyPage';
+import { StatPage } from './statPage';
 
 export const Dashboard = () => {
   console.log('Dashboard');
@@ -15,9 +15,9 @@ export const Dashboard = () => {
       <Header />
       <hr />
       <NavMenu />
-      {activeBtn === 'home' && <Home />}
-      {activeBtn === 'currency' && <Currency />}
-      {activeBtn === 'diagram' && <Stat />}
+      {activeBtn === 'home' && <HomePage />}
+      {activeBtn === 'currency' && <CurrencyPage />}
+      {activeBtn === 'diagram' && <StatPage />}
     </div>
   );
 };

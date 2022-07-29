@@ -12,39 +12,41 @@ import { LoginPage } from '../pages/loginPage';
 
 export const App = () => {
   return (
-    <Routes>
-      <Route
-        path="/register"
-        element={
-          <RedirectRoute>
-            <RegisterPage />
-          </RedirectRoute>
-        }
-      />
-      ;
-      <Route
-        path="/login"
-        element={
-          <RedirectRoute>
-            <LoginPage />
-          </RedirectRoute>
-        }
-      />
-      ;{/* <Route element={<PrivateRoute />}> */}
-      <Route
-        path="/:activeBtn"
-        element={
-          <PrivateRoute>
-            <Dashboard />
-          </PrivateRoute>
-        }
-      />
-      {/* <Route path="home" element={<Dashboard />}></Route>
+    <>
+      <Routes>
+        <Route
+          path="/register"
+          element={
+            <RedirectRoute>
+              <RegisterPage />
+            </RedirectRoute>
+          }
+        />
+        ;
+        <Route
+          path="/login"
+          element={
+            <RedirectRoute>
+              <LoginPage />
+            </RedirectRoute>
+          }
+        />
+        ;{/* <Route element={<PrivateRoute />}> */}
+        <Route
+          path="/:activeBtn"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        {/* <Route path="home" element={<Dashboard />}></Route>
           <Route path="diagram" element={<Dashboard />}></Route>
           <Route path="currency" element={<Dashboard />}></Route> */}
-      {/* </Route>; */}
-      {/* </Route>; */}
-      <Route path="*" element={<PageNotFound />} />;
-    </Routes>
+        {/* </Route>; */}
+        {/* </Route>; */}
+        <Route path="*" element={<PageNotFound />} />;
+      </Routes>
+    </>
   );
 };
