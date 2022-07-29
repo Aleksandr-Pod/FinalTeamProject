@@ -31,7 +31,7 @@ code {
       format('embedded-opentype'),
     url('../public/fonts/Circe-Regular.woff2') format('woff2'),
     url('../public/fonts/Circe-Regular.woff') format('woff'),
-    url('../public/fonts/Circe-Regular.ttf') format('truetype');
+    url('../public/fonts/Circe-Regular.ttf') format('truetype');   
   font-weight: normal;
   font-style: normal;
   font-display: swap;
