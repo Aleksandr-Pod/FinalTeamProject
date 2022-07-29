@@ -13,3 +13,52 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Circe';
+  src: url('../public/fonts/Circe-Bold.eot');
+  src: url('../public/fonts/Circe-Bold.eot?#iefix') format('embedded-opentype'),
+    url('../public/fonts/Circe-Bold.woff2') format('woff2'),
+    url('../public/fonts/Circe-Bold.woff') format('woff'),
+    url('../public/fonts/Circe-Bold.ttf') format('truetype');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: 'Circe';
+  src: url('../public/fonts/Circe-Regular.eot');
+  src: url('../public/fonts/Circe-Regular.eot?#iefix')
+      format('embedded-opentype'),
+    url('../public/fonts/Circe-Regular.woff2') format('woff2'),
+    url('../public/fonts/Circe-Regular.woff') format('woff'),
+    url('../public/fonts/Circe-Regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-Bold.eot");
+  src: url("../public/fonts/Poppins-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("../public/fonts/Poppins-Bold.woff2") format("woff2"),
+    url("../public/fonts/Poppins-Bold.woff") format("woff"),
+    url("../public/fonts/Poppins-Bold.ttf") format("truetype");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Poppins";
+  src: url("../public/fonts/Poppins-Regular.eot");
+  src: url("../public/fonts/Poppins-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("../public/fonts/Poppins-Regular.woff2") format("woff2"),
+    url("../public/fonts/Poppins-Regular.woff") format("woff"),
+    url("../public/fonts/Poppins-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
