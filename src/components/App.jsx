@@ -14,7 +14,15 @@ import { Currency } from './dashboard/currency';
 export const App = () => {
   return (
     <Routes>
-      <Route path="/register" element={<RegisterForm />} />;
+      <Route
+        path="/register"
+        element={
+          <RedirectRoute>
+            <RegisterForm />
+          </RedirectRoute>
+        }
+      />
+      ;
       <Route
         path="/login"
         element={
