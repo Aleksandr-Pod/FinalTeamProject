@@ -1,27 +1,28 @@
 import { Link } from 'react-router-dom';
-import sprite from '../../images/sprite.svg';
+import styles from './navMenu.module.css';
+import sprite from '../../../images/sprite.svg';
 
 export const NavMenu = () => {
   return (
     <nav>
-      <ul>
+      <ul className={styles.list}>
         <li>
           <Link to="/home">            
-            <svg>
+            <svg className={styles.icon} width="38" height="38">
               <use href={`${sprite}#icon-home`}></use>
             </svg>
           </Link>
         </li>
         <li>
           <Link to="/diagram">
-            <svg>
+            <svg className={styles.icon} width="38" height="38">
               <use href={`${sprite}#icon-statistics`}></use>
             </svg>
           </Link>
         </li>
         <li>          
           <Link to="/currency">
-            <svg>
+            <svg className={styles.icon} width="38" height="38">
               <use href={`${sprite}#icon-currency`}></use>
             </svg>
           </Link>
