@@ -17,7 +17,7 @@ export const Dashboard = () => {
     (activeBtn !== 'currency') &
     (activeBtn !== 'diagram')
   )
-    return <PageNotFound path="home" />;
+    return <PageNotFound path="/home" />;
   return (
     <div className={styles.dash}>
       <Header />
