@@ -22,7 +22,6 @@ export const App = () => {
             </RedirectRoute>
           }
         />
-        ;
         <Route
           path="/register"
           element={
@@ -31,7 +30,6 @@ export const App = () => {
             </RedirectRoute>
           }
         />
-        ;
         <Route
           path="/login"
           element={
@@ -40,7 +38,6 @@ export const App = () => {
             </RedirectRoute>
           }
         />
-        ;{/* <Route element={<PrivateRoute />}> */}
         <Route
           path="/:activeBtn"
           element={
@@ -49,11 +46,6 @@ export const App = () => {
             </PrivateRoute>
           }
         />
-        {/* <Route path="home" element={<Dashboard />}></Route>
-          <Route path="diagram" element={<Dashboard />}></Route>
-          <Route path="currency" element={<Dashboard />}></Route> */}
-        {/* </Route>; */}
-        {/* </Route>; */}
         <Route path="*" element={<PageNotFound path="/login" />} />;
       </Routes>
     </>

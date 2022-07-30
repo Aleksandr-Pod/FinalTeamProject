@@ -1,4 +1,4 @@
-import { Header } from '../components/dashboard/header';
+import Header from '../components/dashboard/header/header';
 import { NavMenu } from '../components/dashboard//navMenu';
 import styles from './styles.module.css';
 import { useParams } from 'react-router-dom';
@@ -11,13 +11,13 @@ import { Link } from 'react-router-dom';
 export const Dashboard = () => {
   console.log('Dashboard');
   const { activeBtn } = useParams();
-  console.log('activeBtn', activeBtn);
+
   if (
     (activeBtn !== 'home') &
     (activeBtn !== 'currency') &
     (activeBtn !== 'diagram')
   )
-    return <PageNotFound />;
+    return <PageNotFound path="home" />;
   return (
     <div className={styles.dash}>
       <Header />

@@ -1,3 +1,11 @@
+import { Link } from 'react-router-dom';
+
 export const NavMenu = () => {
-  return <h3>NavMenu</h3>;
+  return (
+    <>
+      <Link to="/home">Home </Link>
+      <Link to="/diagram">stat </Link>
+      <Link to="/currency">currency</Link>
+    </>
+  );
 };
