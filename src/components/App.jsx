@@ -6,7 +6,7 @@ import { RedirectRoute } from './redirectRoute';
 import { PageNotFound } from './pageNotFound/pageNotFound';
 // import { Home } from './dashboard/home';
 // import { Stat } from './dashboard/stat';
-// import { Currency } from './dashboard/currency';
+// import { CurrencyPage } from '../pages/currencyPage';
 import { RegisterPage } from '../pages/registerPage';
 import { LoginPage } from '../pages/loginPage';
 
