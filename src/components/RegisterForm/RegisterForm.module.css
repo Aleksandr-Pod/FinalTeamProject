@@ -1,0 +1,148 @@
+@import '../../variables/colors.css';
+.form {
+  width: 280px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 40px;
+
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+
+  color: var(--grey);
+}
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.inputWrapper {
+  position: relative;
+}
+
+.input {
+  padding-left: 54px;
+  padding-top: 4px;
+  padding-bottom: 8px;
+  border: none;
+  border-bottom: 1px solid var(--lightGrey);
+  outline: none;
+
+  background-color: transparent;
+
+  transition: 0.3s;
+}
+
+.input:focus,
+input:hover {
+  border-bottom: 1px solid var(--turquoise);
+}
+
+.icon {
+  fill: var(--lightGrey);
+  position: absolute;
+  top: 5px;
+  left: 10px;
+}
+
+.input:focus + .icon,
+.input:hover + .icon {
+  fill: var(--turquoise);
+}
+
+.btn {
+  width: 280px;
+  padding: 13px 0;
+
+  background-color: var(--turquoise);
+  border: none;
+  border-radius: 20px;
+
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--white);
+
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: #1ca185;
+}
+
+.btn:disabled {
+  opacity: 0.3;
+  cursor: auto;
+}
+
+.link {
+  width: 280px;
+  padding: 13px 0;
+
+  background: #ffffff;
+  border: 1px solid var(--blue);
+  border-radius: 20px;
+
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 27px;
+  text-align: center;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--blue);
+
+  text-decoration: none;
+  transition: 0.3s;
+}
+
+.link:hover,
+.link:focus {
+  background-color: #ededed;
+}
+
+.errorWrapper {
+  position: absolute;
+  left: 54px;
+
+  font-size: 14px;
+  color: #ff0000;
+}
+
+.statusBarWrapper {
+  position: absolute;
+  top: 55px;
+}
+
+@media screen and (min-width: 768px) {
+  .form {
+    width: 533px;
+    align-items: center;
+
+    background: var(--white);
+    border-radius: 20px;
+  }
+
+  .input {
+    width: 410px;
+  }
+  .btn {
+    width: 300px;
+  }
+
+  .link {
+    width: 300px;
+  }
+}
