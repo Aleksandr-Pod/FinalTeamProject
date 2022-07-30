@@ -1,12 +1,12 @@
 import Header from '../components/dashboard/header/header';
-import { NavMenu } from '../components/dashboard//navMenu';
+import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import styles from './styles.module.css';
 import { useParams } from 'react-router-dom';
 import { HomePage } from './homePage';
 import { CurrencyPage } from './currencyPage';
 import { StatPage } from './statPage';
 import { PageNotFound } from '../components/pageNotFound/pageNotFound';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 
 export const Dashboard = () => {
   console.log('Dashboard');
