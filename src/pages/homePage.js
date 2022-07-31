@@ -3,6 +3,8 @@ import Media from 'react-media';
 // components
 import { TransactionTable } from '../components/dashboard/transactionTable/transactionTable';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
+import { Currency } from '../components/dashboard/currency/currency';
+
 export const HomePage = () => {
   console.log('HomePage');
   return (
@@ -28,7 +30,7 @@ export const HomePage = () => {
                 <NavMenu />
                 <p>BALLANCE</p>
                 <TransactionTable />
-                <p>CurrencyTable</p>
+                <Currency/>
               </>
             )}
             {matches.large && (
@@ -37,7 +39,7 @@ export const HomePage = () => {
               <NavMenu />
                 <p>BALLANCE</p>
                 <TransactionTable />
-                <p>CurrencyTable</p>
+                <Currency/>
               </>)}
           </Fragment>
         )}

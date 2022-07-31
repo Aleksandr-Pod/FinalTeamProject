@@ -1,8 +1,7 @@
 import { Fragment } from 'react';
 import Media from 'react-media';
-import { TransactionTable } from '../components/dashboard/transactionTable/transactionTable';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
-
+import { Currency } from '../components/dashboard/currency/currency';
 export const CurrencyPage = () => {
   return (
     <>
@@ -17,7 +16,7 @@ export const CurrencyPage = () => {
             {matches.small && (
               <><p>Small</p>
                 <NavMenu />
-                <p>CurrencyTable</p>
+                <Currency/>
               </>
             )}
             {matches.medium && (
@@ -26,7 +25,7 @@ export const CurrencyPage = () => {
                 <NavMenu />
                 <p>BALLANCE</p>
                 <p>STAT Table</p>
-                <p>CurrencyTable</p>
+                <Currency/>
               </>
             )}
             {matches.large && (
@@ -35,7 +34,7 @@ export const CurrencyPage = () => {
                 <NavMenu />
                 <p>BALLANCE</p>
                 <p>STAT Table</p>
-                <p>CurrencyTable</p>
+                <Currency/>
               </>
             )}
           </Fragment>
