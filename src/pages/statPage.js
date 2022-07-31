@@ -2,12 +2,11 @@ import { Fragment } from 'react';
 import Media from 'react-media';
 // components
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
+import { Diagram } from '../components/diagram/diagram.js';
 import styles from './styles.module.css';
 
 export const StatPage = () => {
   return (
-    <>
-      <h3 className={styles.stat}>Statistics</h3>
       <Media queries = {{
         small: "(max-width: 768px)",
         medium: "(min-width: 769px) and (max-width: 1280px)",
@@ -19,6 +18,8 @@ export const StatPage = () => {
               <>
                 <p>Small</p>
                 <NavMenu />
+                <h3 className={styles.stat}>Statistics</h3>
+                <Diagram/>
                 <p>STAT PAGE</p>
               </>
             )}
@@ -26,6 +27,8 @@ export const StatPage = () => {
               <>
                 <p>medium</p>
                 <NavMenu />
+                <h3 className={styles.stat}>Statistics</h3>
+                <Diagram/>
                 <p>BALLANCE</p>
                 <p>CurrencyTable</p>
                 <p>STAT Table</p>
@@ -35,6 +38,8 @@ export const StatPage = () => {
               <>
                 <p>large</p>
                 <NavMenu />
+                <h3 className={styles.stat}>Statistics</h3>
+                <Diagram/>
                 <p>BALLANCE</p>
                 <p>CurrencyTable</p>
                 <p>STAT Table</p>
@@ -42,6 +47,5 @@ export const StatPage = () => {
           </Fragment>
         )}
       </Media>
-    </>
   )
 };
