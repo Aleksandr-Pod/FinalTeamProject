@@ -10,7 +10,7 @@ const data = [
   {
     id: 'uygfusdgfu62t3f',
     date: '04.01.19',
-    type: '+',
+    type: '-',
     category: 'Other',
     comment: 'Gift for your wife',
     sum: '300.00',
