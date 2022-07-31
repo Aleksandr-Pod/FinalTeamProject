@@ -2,7 +2,8 @@ import { Fragment } from 'react';
 import Media from 'react-media';
 // components
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
-import { Diagram } from '../components/diagram/diagram.js';
+import { Diagram } from '../components/diagram/diagram';
+import { Period } from '../components/period/period'
 import styles from './styles.module.css';
 
 export const StatPage = () => {
@@ -18,7 +19,8 @@ export const StatPage = () => {
               <>              
                 <NavMenu />
                 <h3 className={styles.stat}>Statistics</h3>
-                <Diagram/>                
+                <Diagram /> 
+                <Period/>
               </>
             )}
             {matches.medium && (
