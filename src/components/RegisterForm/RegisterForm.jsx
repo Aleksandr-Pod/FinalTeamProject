@@ -5,6 +5,8 @@ import styles from './RegisterForm.module.css';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
 import PasswordStrengthBar from '../passwordStrengthBar/PasswordStrengthBar';
+import { useDispatch } from 'react-redux';
+import authOperations from '../../redux/authOperations';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),
@@ -20,6 +22,7 @@ const loginSchema = Yup.object().shape({
 });
 
 export default function RegisterForm() {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
@@ -29,9 +32,8 @@ export default function RegisterForm() {
         firstName: '',
       }}
       validateOnMount
-      onSubmit={async values => {
-        await new Promise(r => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
+      onSubmit={async ({ email, password, firstName }) => {
+        dispatch(authOperations.register({ email, password, name: firstName }));
       }}
       validationSchema={loginSchema}
     >
@@ -126,7 +128,7 @@ export default function RegisterForm() {
               Register
             </button>
 
-            <NavLink to="login" className={styles.link}>
+            <NavLink to="/login" className={styles.link}>
               Log In
             </NavLink>
           </div>
