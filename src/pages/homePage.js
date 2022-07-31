@@ -1,3 +1,10 @@
+import { TransactionTable } from '../components/dashboard/transactionTable/transactionTable';
 export const HomePage = () => {
-  return <h3>HomePage</h3>;
+  console.log('HomePage');
+  return (
+    <>
+      <h3>HomePage</h3>
+      <TransactionTable />
+    </>
+  );
 };
