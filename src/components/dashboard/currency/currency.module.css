@@ -1,5 +1,18 @@
+.currencyContainer {
+    max-width: 320px;
+    margin: 0 20px;
+}
+
+.vector {
+    display: block;
+    margin-top: -95px;
+    height: 95px;
+    background-image: url('./vector-mobile.svg');
+    background-repeat: no-repeat;
+}
+
 .currency {
-    width: 100%;
+    width: 280px;
     background-color: var(--blue);
     border-collapse: collapse;
     border-radius: 30px;

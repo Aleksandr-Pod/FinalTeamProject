@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom';
 import styles from './header.module.css';
 import sprite from '../../../images/sprite.svg';
 import { useDispatch } from 'react-redux';
-import { toggleLogin } from '../../../redux/authSlice';
+// import { toggleLogin } from '../../../redux/authSlice';
+import authOperations from '../../../redux/authOperations';
 
 export default function Header() {
   const dispatch = useDispatch();
   const logOut = () => {
-    console.log('logOut');
-    dispatch(toggleLogin(false));
+    dispatch(authOperations.logOut());
   };
 
   return (
