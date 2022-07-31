@@ -8,19 +8,17 @@ import styles from './styles.module.css';
 export const StatPage = () => {
   return (
       <Media queries = {{
-        small: "(max-width: 768px)",
-        medium: "(min-width: 769px) and (max-width: 1280px)",
-        large: "(min-width: 1281px)"
+        small: "(max-width: 767px)",
+        medium: "(min-width: 768px) and (max-width: 1279px)",
+        large: "(min-width: 1280px)"
       }}>
         {matches => (
           <Fragment>
             {matches.small && (
-              <>
-                <p>Small</p>
+              <>              
                 <NavMenu />
                 <h3 className={styles.stat}>Statistics</h3>
-                <Diagram/>
-                <p>STAT PAGE</p>
+                <Diagram/>                
               </>
             )}
             {matches.medium && (
