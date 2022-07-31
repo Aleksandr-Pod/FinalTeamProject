@@ -15,7 +15,7 @@ export default function Header() {
     <>
       <header className={styles.header}>
         <div className={styles.wrapper}>
-          <NavLink exact to="./" className={styles.navLink}>
+          <NavLink to="/home" className={styles.navLink}>
             <svg className={styles.logo} width="40" height="40">
               <use href={`${sprite}#icon-Group`}></use>
             </svg>
