@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import css from './currency.module.css';
 import propTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 import { getCurrency } from '../../../api/currencyAPI';
 
 export const Currency = () => {
@@ -15,19 +14,14 @@ export const Currency = () => {
       await getCurrency().then(data => {
         const currenciesArray = [];
         data.map(({ ccy, buy, sale }) => {
-          const currenc = {
-            id: nanoid(),
-            ccy,
-            buy,
-            sale,
-          };
+          const currenc = {ccy, buy, sale};
           return currenciesArray.push(currenc);
         });
         setCurrencies(currenciesArray);
         localStorage.setItem(
           'currency',
           JSON.stringify({
-            currentTime: currentTime,
+            currentTime,
             currencies: currenciesArray,
           }),
         );
@@ -67,8 +61,8 @@ export const Currency = () => {
         </thead>
         <tbody className={css.currencyBody}>
           {currencies &&
-            currencies.map(({ ccy, buy, sale }) => (
-              <tr key={nanoid()} className={css.currencyInfo}>
+            currencies.map(({ ccy, buy, sale }, idx) => (
+              <tr key={idx} className={css.currencyInfo}>
                 <td>{ccy}</td>
                 <td>{Number(buy).toFixed(2)}</td>
                 <td>{Number(sale).toFixed(2)}</td>
