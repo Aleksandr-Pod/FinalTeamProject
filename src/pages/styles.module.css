@@ -1,21 +1,28 @@
+
+
 .dash {
-  width: 320px;
-  padding: 0 20px;
+  width: 1280px;
+  padding: 0 16px;
   margin: 0 auto;
 }
+
+@media screen and (max-width: 767px) {
+  .dash {
+    width: 320px;
+    padding: 0 20px;
+    margin: 0 auto;
+  }
+}
+
 @media screen and (min-width: 768px) and (max-width: 1279px) {
   .dash {
     width: 768px;
     padding: 0 32px;
+    margin: 0 auto;
   }
-};
-@media screen and (min-width: 1280px) {
-  .dash {
-    width: 1280px;
-    padding: 0 16px;
-  }
-};
+}
 
+;
 .stat {
   margin-top: 40px;
   font-family: var(--accent-font-family);
