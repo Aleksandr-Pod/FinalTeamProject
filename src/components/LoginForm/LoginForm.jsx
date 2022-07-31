@@ -1,9 +1,11 @@
 import React from 'react';
 import { Form, Field, Formik } from 'formik';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
+import authOperations from '../../redux/authOperations';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),
@@ -14,6 +16,7 @@ const loginSchema = Yup.object().shape({
 });
 
 export default function LoginForm() {
+  const dispatch = useDispatch();
   return (
     <Formik
       initialValues={{
@@ -22,8 +25,7 @@ export default function LoginForm() {
       }}
       validateOnMount
       onSubmit={async values => {
-        await new Promise(r => setTimeout(r, 500));
-        alert(JSON.stringify(values, null, 2));
+        dispatch(authOperations.login(values));
       }}
       validationSchema={loginSchema}
     >
@@ -72,7 +74,7 @@ export default function LoginForm() {
             >
               LOG IN
             </button>
-            <NavLink to="register" className={styles.link}>
+            <NavLink to="/register" className={styles.link}>
               REGISTRATION
             </NavLink>
           </div>
