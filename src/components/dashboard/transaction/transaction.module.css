@@ -1,6 +1,15 @@
 
-.container {
-    margin-top: 2rem;
-    margin-bottom: 0.125rem;
-    max-width: 320px;
+ .container {
+     margin-top: 2rem;
+     margin-bottom: 0.125rem;
+     max-width: 320px;
+ }
+
+@media screen and (min-width: 426px) {
+    .container {
+        margin: 1.25rem auto 0 auto;
+           
+            max-width: 44rem;
+            
+        }
 }
