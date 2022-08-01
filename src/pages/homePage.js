@@ -5,17 +5,6 @@ import { Transaction } from '../components/dashboard/transaction/transaction';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
 
-const data = [
-  {
-    id: 'hfjhagsdhjfg',
-    date: '04.01.19',
-    type: '-',
-    category: 'Other',
-    comment: 'Gift for your wife',
-    sum: '300.00',
-    balance: '6900.00',
-  },
-];
 export const HomePage = () => {
   console.log('HomePage');
   return (
@@ -35,7 +24,7 @@ export const HomePage = () => {
                 <p>Small</p>
                 <NavMenu />
                 <p>BALLANCE</p>
-                <Transaction data={data} />
+                <Transaction />
               </>
             )}
             {matches.medium && (
