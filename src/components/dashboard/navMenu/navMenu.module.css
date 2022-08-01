@@ -5,7 +5,9 @@
     padding: 0px;
     margin: 15px 55px 0 55px;    
 }
-
+.ulColumn {
+    list-style: none;
+}
 .icon {
     fill: var(--lightBlue);
 }
@@ -14,4 +16,7 @@
 .icon:focus {
     fill: var(--blue);
     box-shadow: rgb(74 86 226 / 50%) 0px 3px 10px;
+}
+.icon.small {
+    margin-right: 20px;
 }
