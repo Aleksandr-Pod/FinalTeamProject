@@ -1,4 +1,4 @@
-@import '../../../variables/colors.css';
+@import '../../../../variables/colors.css';
 
 
 .transactionTable {
@@ -6,6 +6,7 @@
   align-content: stretch;
 
   border-collapse: collapse;
+  margin-bottom: 0.5rem;
 }
 
 .transactionTable thead,
@@ -14,12 +15,10 @@
   display: flex;
   align-content: stretch;
 }
-
 .transactionTable tr {
 
   flex-grow: 1;
 }
-
 .transactionTable th {
   text-transform: capitalize;
   font-weight: 700;
@@ -29,24 +28,22 @@
   align-items: stretch;
 
 }
-
-.transactionTable.expens th:not(:last-child):not(:first-child)::before {
+.transactionTable.expens th:not(:last-child):not(:first-child)::before{
   position: absolute;
   content: ' ';
   top: 0;
   left: 0;
   background-color: var(--pink);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
 }
-
 .transactionTable.income th:not(:last-child):not(:first-child)::before {
   position: absolute;
   content: ' ';
   top: 0;
   left: 0;
   background-color: var(--turquoise);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
 }
 
@@ -54,7 +51,6 @@
   text-align: right;
   font-weight: 400;
 }
-
 .transactionTable th,
 .transactionTable td {
   font-family: var(--primary-font-family);
@@ -62,7 +58,7 @@
   font-size: 1.125rem;
   line-height: 1.5rem;
 
-  padding: 12px 20px;
+  padding: 0.75rem 1.25rem;
   display: block;
   background-color: var(--white);
 }
@@ -74,22 +70,21 @@
 
 .transactionTable.expens th:first-child::before {
   position: absolute;
-  content: ' ';
-  top: 0;
-  left: 0;
-  background-color: var(--pink);
-  width: 5px;
-  height: 100%;
-  border-top-left-radius: 10px
+    content: ' ';
+    top: 0;
+    left: 0;
+    background-color: var(--pink);
+    width: 0.3125rem;
+    height: 100%;
+    border-top-left-radius: 10px
 }
-
 .transactionTable.expens th:last-child::before {
-  position: absolute;
+position: absolute;
   content: ' ';
   top: 0;
   left: 0;
   background-color: var(--pink);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
   border-bottom-left-radius: 10px;
 }
@@ -100,7 +95,7 @@
   top: 0;
   left: 0;
   background-color: var(--turquoise);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
   border-top-left-radius: 10px;
 }
@@ -111,7 +106,7 @@
   top: 0;
   left: 0;
   background-color: var(--turquoise);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
   border-bottom-left-radius: 10px;
 }
@@ -119,22 +114,21 @@
 .transactionTable td:first-child {
   border-top-right-radius: 10px;
 }
-
 .transactionTable td:last-child {
   border-bottom-right-radius: 10px;
 }
 
-.expensSum {
+.transactionTable .expensSum {
   color: var(--pink);
+  font-size: 1rem;
   font-weight: 700;
-  font-size: 16px;
   line-height: 24px;
 
 }
 
-.incomeSum {
+.transactionTable .incomeSum {
   color: var(--turquoise);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
 }

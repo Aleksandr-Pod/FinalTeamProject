@@ -2,12 +2,12 @@ import EllipsisText from 'react-ellipsis-text';
 
 import styles from './TransactionTable.module.css';
 export const TransactionTable = ({
-  date = "02-05-2014",
-  type = "+",
-  category = "fun",
-  comment = "No any comment",
-  sum = "350",
-  balance = "500",
+  date,
+  type,
+  category,
+  comment,
+  sum,
+  balance,
 }) => {
   return (
     <>

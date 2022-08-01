@@ -1,0 +1,17 @@
+.list {
+    margin-top: 32px;
+    list-style: none;
+    padding: 0;
+}
+
+.item {
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.arrow {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    fill: none;
+}
