@@ -6,6 +6,7 @@
   align-content: stretch;
 
   border-collapse: collapse;
+  margin-bottom: 0.5rem;
 }
 
 .transactionTable thead,
@@ -33,7 +34,7 @@
   top: 0;
   left: 0;
   background-color: var(--pink);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
 }
 .transactionTable.income th:not(:last-child):not(:first-child)::before {
@@ -42,7 +43,7 @@
   top: 0;
   left: 0;
   background-color: var(--turquoise);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
 }
 
@@ -57,7 +58,7 @@
   font-size: 1.125rem;
   line-height: 1.5rem;
 
-  padding: 12px 20px;
+  padding: 0.75rem 1.25rem;
   display: block;
   background-color: var(--white);
 }
@@ -73,7 +74,7 @@
     top: 0;
     left: 0;
     background-color: var(--pink);
-    width: 5px;
+    width: 0.3125rem;
     height: 100%;
     border-top-left-radius: 10px
 }
@@ -83,7 +84,7 @@ position: absolute;
   top: 0;
   left: 0;
   background-color: var(--pink);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
   border-bottom-left-radius: 10px;
 }
@@ -94,7 +95,7 @@ position: absolute;
   top: 0;
   left: 0;
   background-color: var(--turquoise);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
   border-top-left-radius: 10px;
 }
@@ -105,7 +106,7 @@ position: absolute;
   top: 0;
   left: 0;
   background-color: var(--turquoise);
-  width: 5px;
+  width: 0.3125rem;
   height: 100%;
   border-bottom-left-radius: 10px;
 }
@@ -119,7 +120,7 @@ position: absolute;
 
 .transactionTable .expensSum {
   color: var(--pink);
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 700;
   line-height: 24px;
 
@@ -128,6 +129,6 @@ position: absolute;
 .transactionTable .incomeSum {
   color: var(--turquoise);
   font-weight: 700;
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 24px;
 }
