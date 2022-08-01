@@ -119,6 +119,9 @@ input:hover {
   font-size: 14px;
   color: #ff0000;
 }
+.logo {
+  margin-bottom: 64px;
+}
 
 @media screen and (min-width: 768px) {
   .form {
@@ -138,6 +141,10 @@ input:hover {
 
   .link {
     width: 300px;
+  }
+  .logo {
+    width: 181px;
+    height: 40px;
   }
 }
 
