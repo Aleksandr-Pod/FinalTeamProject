@@ -82,11 +82,11 @@ export const StatTable = () => {
                     </tr>
                 ))}
                 <tr className={styles.data}>
-                    <th className={styles.title}>Expenses:</th>
+                    <td className={styles.title}>Expenses:</td>
                     <td className={styles.expenses}>1250</td>
                 </tr>
                 <tr className={styles.data}>
-                    <th className={styles.title}>Income:</th>
+                    <td className={styles.title}>Income:</td>
                     <td className={styles.income}>2500</td>
                 </tr>
             </tbody>
