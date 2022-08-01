@@ -2,20 +2,20 @@ import { NavLink } from 'react-router-dom';
 import styles from './header.module.css';
 import sprite from '../../../images/sprite.svg';
 import { useDispatch } from 'react-redux';
-import { toggleLogin } from '../../../redux/authSlice';
+// import { toggleLogin } from '../../../redux/authSlice';
+import authOperations from '../../../redux/authOperations';
 
 export default function Header() {
   const dispatch = useDispatch();
   const logOut = () => {
-    console.log('logOut');
-    dispatch(toggleLogin(false));
+    dispatch(authOperations.logOut());
   };
 
   return (
     <>
       <header className={styles.header}>
         <div className={styles.wrapper}>
-          <NavLink exact to="./" className={styles.navLink}>
+          <NavLink to="/home" className={styles.navLink}>
             <svg className={styles.logo} width="40" height="40">
               <use href={`${sprite}#icon-Group`}></use>
             </svg>

@@ -1,0 +1,52 @@
+.currencyContainer {
+    max-width: 320px;
+    margin: 0 20px;
+}
+
+.vector {
+    display: block;
+    margin-top: -95px;
+    height: 95px;
+    background-image: url('./vector-mobile.svg');
+    background-repeat: no-repeat;
+}
+
+.currency {
+    width: 280px;
+    background-color: var(--blue);
+    border-collapse: collapse;
+    border-radius: 30px;
+}
+
+.currencyHead th {
+    padding: 12px 0 12px 0px;
+    color: var(--white);
+
+    font-family: 'Circe';
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 1.5em;
+
+    background: linear-gradient(180deg,
+            rgba(255, 255, 255, 0.2) -8.67%,
+            rgba(255, 255, 255, 0) 116.22%);
+}
+
+.currencyBody {
+    margin: 20px;
+}
+
+.currencyInfo td {
+    padding-bottom: 12px;
+    font-family: 'Circe';
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.5em;
+    text-align: center;
+    color: var(--white);
+}
+
+.currencyInfo tr {
+    display: block;
+    padding-top: 12px;
+}

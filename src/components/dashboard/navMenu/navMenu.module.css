@@ -1,0 +1,17 @@
+.list {
+    list-style: none;
+    display: flex;
+    justify-content: space-between;
+    padding: 0px;
+    margin: 0 55px;
+}
+
+.icon {
+    fill: var(--lightBlue);
+}
+
+.icon:hover,
+.icon:focus {
+    fill: var(--blue);
+    box-shadow: rgb(74 86 226 / 50%) 0px 3px 10px;
+}
