@@ -17,3 +17,12 @@
 
     }
 }
+
+@media screen and (min-width: 1080px) {
+
+    .containerTable {
+    
+            max-width: 44.6875rem;
+    
+        }
+}
