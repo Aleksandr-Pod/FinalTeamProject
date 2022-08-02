@@ -10,48 +10,46 @@ import { PageNotFound } from './pageNotFound/pageNotFound';
 import { RegisterPage } from '../pages/registerPage';
 import { LoginPage } from '../pages/loginPage';
 import Modal from './modal/modal';
-import { Currency } from './dashboard/currency/currency';
 
 export const App = () => {
   return (
-    <Currency />
-    // <>
-    //   <Modal/>
-    //   <Routes>
-    //     <Route
-    //       path="/"
-    //       element={
-    //         <RedirectRoute>
-    //           <LoginPage />
-    //         </RedirectRoute>
-    //       }
-    //     />
-    //     <Route
-    //       path="/register"
-    //       element={
-    //         <RedirectRoute>
-    //           <RegisterPage />
-    //         </RedirectRoute>
-    //       }
-    //     />
-    //     <Route
-    //       path="/login"
-    //       element={
-    //         <RedirectRoute>
-    //           <LoginPage />
-    //         </RedirectRoute>
-    //       }
-    //     />
-    //     <Route
-    //       path="/:activeBtn"
-    //       element={
-    //         <PrivateRoute>
-    //           <Dashboard />
-    //         </PrivateRoute>
-    //       }
-    //     />
-    //     <Route path="*" element={<PageNotFound path="/login" />} />;
-    //   </Routes>
-    // </>
+    <>
+      <Modal />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <RedirectRoute>
+              <LoginPage />
+            </RedirectRoute>
+          }
+        />
+        <Route
+          path="/register"
+          element={
+            <RedirectRoute>
+              <RegisterPage />
+            </RedirectRoute>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <RedirectRoute>
+              <LoginPage />
+            </RedirectRoute>
+          }
+        />
+        <Route
+          path="/:activeBtn"
+          element={
+            <PrivateRoute>
+              <Dashboard />
+            </PrivateRoute>
+          }
+        />
+        <Route path="*" element={<PageNotFound path="/login" />} />;
+      </Routes>
+    </>
   );
 };
