@@ -5,7 +5,7 @@ import { Transaction } from '../components/dashboard/transaction/transaction';
 import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
-
+import { Ballance } from '../components/dashboard/ballance/ballance';
 import styles from './homePage.module.css';
 
 export const HomePage = () => {
@@ -27,7 +27,7 @@ export const HomePage = () => {
               <>
                 <p>Small</p>
                 <NavMenuMobile />
-                <p>BALLANCE</p>
+                <Ballance />
                 <Transaction />
               </>
             )}
@@ -37,7 +37,7 @@ export const HomePage = () => {
                 <div className={styles.currency}>
                   <div className={styles.nav_ballance}>
                     <NavMenu />
-                    <p>BALLANCE</p>
+                    <Ballance />
                   </div>
                   <Currency />
                 </div>
@@ -49,7 +49,7 @@ export const HomePage = () => {
               <>
                 <p>large</p>
                 <NavMenu />
-                <p>BALLANCE</p>
+                <Ballance />
                 <Transaction />
                 <Currency />
               </>

@@ -4,9 +4,11 @@ import { NavLink } from 'react-router-dom';
 import styles from './RegisterForm.module.css';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
+import logo from '../../images/logo.svg';
 import PasswordStrengthBar from '../passwordStrengthBar/PasswordStrengthBar';
 import { useDispatch } from 'react-redux';
-import authOperations from '../../redux/authOperations';
+import authOperations from '../../redux/auth/authOperations';
+import { ToastContainer } from 'react-toastify';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),
@@ -24,116 +26,122 @@ const loginSchema = Yup.object().shape({
 export default function RegisterForm() {
   const dispatch = useDispatch();
   return (
-    <Formik
-      initialValues={{
-        email: '',
-        password: '',
-        passwordConfirmation: '',
-        firstName: '',
-      }}
-      validateOnMount
-      onSubmit={async ({ email, password, firstName }) => {
-        dispatch(authOperations.register({ email, password, name: firstName }));
-      }}
-      validationSchema={loginSchema}
-    >
-      {({ errors, touched, isValid, values }) => (
-        <Form id="registerForm" className={styles.form}>
-          <div className={styles.inputWrapper}>
-            <Field
-              className={styles.input}
-              id="email"
-              name="email"
-              placeholder="E-mail"
-              type="email"
-              autoComplete="off"
-            />
-            {errors.email && touched.email ? (
-              <div className={styles.errorWrapper}>{errors.email}</div>
-            ) : null}
+    <>
+      <img src={logo} className={styles.logo} />
+      <Formik
+        initialValues={{
+          email: '',
+          password: '',
+          passwordConfirmation: '',
+          firstName: '',
+        }}
+        validateOnMount
+        onSubmit={async ({ email, password, firstName }) => {
+          dispatch(
+            authOperations.register({ email, password, name: firstName }),
+          );
+        }}
+        validationSchema={loginSchema}
+      >
+        {({ errors, touched, isValid, values }) => (
+          <Form id="registerForm" className={styles.form}>
+            <div className={styles.inputWrapper}>
+              <Field
+                className={styles.input}
+                id="email"
+                name="email"
+                placeholder="E-mail"
+                type="email"
+                autoComplete="off"
+              />
+              {errors.email && touched.email ? (
+                <div className={styles.errorWrapper}>{errors.email}</div>
+              ) : null}
 
-            <svg className={styles.icon} width="21" height="16">
-              <use href={sprite + '#icon-mail'} />
-            </svg>
-          </div>
+              <svg className={styles.icon} width="21" height="16">
+                <use href={sprite + '#icon-mail'} />
+              </svg>
+            </div>
 
-          <div className={styles.inputWrapper}>
-            <Field
-              className={styles.input}
-              id="password"
-              name="password"
-              placeholder="Password"
-              type="password"
-              autoComplete="off"
-            />
-            {errors.password && touched.password ? (
-              <div className={styles.errorWrapper}>{errors.password}</div>
-            ) : null}
+            <div className={styles.inputWrapper}>
+              <Field
+                className={styles.input}
+                id="password"
+                name="password"
+                placeholder="Password"
+                type="password"
+                autoComplete="off"
+              />
+              {errors.password && touched.password ? (
+                <div className={styles.errorWrapper}>{errors.password}</div>
+              ) : null}
 
-            <svg className={styles.icon} width="17" height="21">
-              <use href={sprite + '#icon-lock'} />
-            </svg>
-          </div>
+              <svg className={styles.icon} width="17" height="21">
+                <use href={sprite + '#icon-lock'} />
+              </svg>
+            </div>
 
-          <div className={styles.inputWrapper}>
-            <Field
-              className={styles.input}
-              id="passwordConfirmation"
-              name="passwordConfirmation"
-              placeholder="Confirm password"
-              type="password"
-              autoComplete="off"
-            />
-            {errors.passwordConfirmation && touched.passwordConfirmation ? (
-              <div className={styles.errorWrapper}>
-                {errors.passwordConfirmation}
-              </div>
-            ) : null}
-            {values.passwordConfirmation.length > 0 ? (
-              <div className={styles.statusBarWrapper}>
-                <PasswordStrengthBar password={values.passwordConfirmation} />
-              </div>
-            ) : null}
+            <div className={styles.inputWrapper}>
+              <Field
+                className={styles.input}
+                id="passwordConfirmation"
+                name="passwordConfirmation"
+                placeholder="Confirm password"
+                type="password"
+                autoComplete="off"
+              />
+              {errors.passwordConfirmation && touched.passwordConfirmation ? (
+                <div className={styles.errorWrapper}>
+                  {errors.passwordConfirmation}
+                </div>
+              ) : null}
+              {values.passwordConfirmation.length > 0 ? (
+                <div className={styles.statusBarWrapper}>
+                  <PasswordStrengthBar password={values.passwordConfirmation} />
+                </div>
+              ) : null}
 
-            <svg className={styles.icon} width="17" height="21">
-              <use href={sprite + '#icon-lock'} />
-            </svg>
-          </div>
+              <svg className={styles.icon} width="17" height="21">
+                <use href={sprite + '#icon-lock'} />
+              </svg>
+            </div>
 
-          <div className={styles.inputWrapper}>
-            <Field
-              className={styles.input}
-              id="firstName"
-              name="firstName"
-              placeholder="First name"
-              type="text"
-              autoComplete="off"
-            />
-            {errors.firstName && touched.firstName ? (
-              <div className={styles.errorWrapper}>{errors.firstName}</div>
-            ) : null}
+            <div className={styles.inputWrapper}>
+              <Field
+                className={styles.input}
+                id="firstName"
+                name="firstName"
+                placeholder="First name"
+                type="text"
+                autoComplete="off"
+              />
+              {errors.firstName && touched.firstName ? (
+                <div className={styles.errorWrapper}>{errors.firstName}</div>
+              ) : null}
 
-            <svg className={styles.icon} width="19" height="18">
-              <use href={sprite + '#icon-user'} />
-            </svg>
-          </div>
+              <svg className={styles.icon} width="19" height="18">
+                <use href={sprite + '#icon-user'} />
+              </svg>
+            </div>
 
-          <div className={styles.wrapper}>
-            <button
-              form="registerForm"
-              type="submit"
-              className={styles.btn}
-              disabled={isValid ? false : true}
-            >
-              Register
-            </button>
+            <div className={styles.wrapper}>
+              <button
+                form="registerForm"
+                type="submit"
+                className={styles.btn}
+                disabled={isValid ? false : true}
+              >
+                Register
+              </button>
 
-            <NavLink to="/login" className={styles.link}>
-              Log In
-            </NavLink>
-          </div>
-        </Form>
-      )}
-    </Formik>
+              <NavLink to="/login" className={styles.link}>
+                Log In
+              </NavLink>
+            </div>
+          </Form>
+        )}
+      </Formik>
+      <ToastContainer />
+    </>
   );
 }

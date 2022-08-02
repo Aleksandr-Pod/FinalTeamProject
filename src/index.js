@@ -7,10 +7,11 @@ import { store, persistor } from './redux/store';
 import { PersistGate } from 'redux-persist/es/integration/react';
 import 'modern-normalize/modern-normalize.css';
 import './index.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter basename="/final_team_project/">
+    <BrowserRouter>
       <PersistGate loading={null} persistor={persistor}>
         <Provider store={store}>
           <App />
