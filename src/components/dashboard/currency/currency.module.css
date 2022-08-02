@@ -1,52 +1,71 @@
-.currencyContainer {
-    max-width: 320px;
-    margin: 0 20px;
-}
-
-.vector {
-    display: block;
-    margin-top: -95px;
-    height: 95px;
-    background-image: url('./vector-mobile.svg');
-    background-repeat: no-repeat;
-}
-
-.currency {
+.currency{
     width: 280px;
-    background-color: var(--blue);
-    border-collapse: collapse;
     border-radius: 30px;
-}
+    border-spacing: 0px;
+    border-radius: 30px;
+    overflow: hidden;
 
-.currencyHead th {
-    padding: 12px 0 12px 0px;
-    color: var(--white);
-
-    font-family: 'Circe';
-    font-weight: 700;
+    font-family: var(--primary-font-family);
+    font-weight: 400;
     font-size: 18px;
     line-height: 1.5em;
-
-    background: linear-gradient(180deg,
-            rgba(255, 255, 255, 0.2) -8.67%,
-            rgba(255, 255, 255, 0) 116.22%);
+    text-align: left;
+    
+    color: white;
+    background-color: var(--blue);
+    background-image: url('./vector-mobile.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: bottom;
+}
+.currency thead {
+    background-color: var(--lightBlue);
 }
 
-.currencyBody {
-    margin: 20px;
+.currency thead th {
+    font-weight: 700;
+    padding: 17px 30px 20px;
 }
 
-.currencyInfo td {
-    padding-bottom: 12px;
-    font-family: 'Circe';
-    font-weight: 400;
+.currency tbody td {
     font-size: 16px;
     line-height: 1.5em;
-    text-align: center;
-    color: var(--white);
+    padding: 20px 30px 7px;
 }
 
-.currencyInfo tr {
-    display: block;
-    padding-top: 12px;
+.currency tbody tr:last-child td{
+    padding-bottom: 135px;
+}
+
+@media screen and (max-width:1024px) {
+    .currency{
+        width: 336px;        
+    }
+    .currency thead th{
+        padding: 11px 20px 16px;
+    }
+    .currency tbody td{
+        padding: 10px 20px 4px;
+    }
+    .currency tbody tr:last-child td {
+        padding-bottom: 22px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .currency{
+        margin: 0 auto;
+    }
+}
+
+@media screen and (max-width: 320px) {
+    .currency {
+        width: 280px;;
+    }
+    .currency th {
+        padding: 11px 10px 16px;
+    }
+    .currency td {
+        padding: 10px 10px 4px;
+    }
 }

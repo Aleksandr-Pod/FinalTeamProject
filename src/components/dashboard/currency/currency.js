@@ -1,59 +1,33 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import css from './currency.module.css';
 import propTypes from 'prop-types';
 import { nanoid } from 'nanoid';
 import { getCurrency } from '../../../api/currencyAPI';
+import { addCurrencies, addQueryDate } from '../../../redux/currecnySlice';
 
 export const Currency = () => {
-  const [currencies, setCurrencies] = useState([]);
-
+  const dispatch = useDispatch();
+  const { currencies, queryDate } = useSelector(state => state.currencies);
   const time = 60 * 60 * 3000;
   const currentTime = new Date().getTime();
 
   useEffect(() => {
+    if ((currencies.length !== 0) & (currentTime - queryDate < time)) return;
+    // console.log('Currency request');
     const getApi = async () => {
       await getCurrency().then(data => {
-        const currenciesArray = [];
-        data.map(({ ccy, buy, sale }) => {
-          const currenc = {
-            id: nanoid(),
-            ccy,
-            buy,
-            sale,
-          };
-          return currenciesArray.push(currenc);
-        });
-        setCurrencies(currenciesArray);
-        localStorage.setItem(
-          'currency',
-          JSON.stringify({
-            currentTime: currentTime,
-            currencies: currenciesArray,
-          }),
+        const currencyArray = [];
+        data.map(({ ccy, buy, sale }) =>
+          currencyArray.push({ ccy, buy, sale }),
         );
+
+        dispatch(addCurrencies(currencyArray));
+        dispatch(addQueryDate(currentTime));
       });
     };
     getApi();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem('currency') !== null) {
-      const deadline =
-        JSON.parse(localStorage.getItem('currency')).currentTime + time;
-      const endOfDeadline = deadline - time;
-      if (endOfDeadline < 0) {
-        getCurrency();
-      } else {
-        const oldData = JSON.parse(localStorage.getItem('currency')).currencies;
-        setCurrencies(oldData);
-      }
-    } else {
-      getCurrency();
-      localStorage.setItem('currency', JSON.stringify(currencies));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [currencies.length, currentTime, dispatch, queryDate, time]);
 
   return (
     <div className={css.currencyContainer}>
