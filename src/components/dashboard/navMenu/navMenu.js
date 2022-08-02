@@ -5,29 +5,22 @@ import sprite from '../../../images/sprite.svg';
 export const NavMenu = () => {
   return (
     <nav>
-      <ul className={styles.list}>
+      <ul className={styles.ulColumn}>
         <li>
-          <Link to="/home">            
-            <svg className={styles.icon} width="38" height="38">
+          <Link to="/home" style={{ textDecoration: "none" }}>
+          <svg className={`${styles.icon} ${styles.small}`} width="18" height="18">
               <use href={`${sprite}#icon-home`}></use>
-            </svg>
-          </Link>
+          </svg>
+          Home</Link>
         </li>
         <li>
-          <Link to="/diagram">
-            <svg className={styles.icon} width="38" height="38">
+          <Link to="/diagram" style={{ textDecoration: "none" }}>
+            <svg className={`${styles.icon} ${styles.small}`} width="18" height="18">
               <use href={`${sprite}#icon-statistics`}></use>
             </svg>
-          </Link>
+            Statistics</Link>
         </li>
-        <li>          
-          <Link to="/currency">
-            <svg className={styles.icon} width="38" height="38">
-              <use href={`${sprite}#icon-currency`}></use>
-            </svg>
-          </Link>
-        </li>
-      </ul>  
+      </ul>
     </nav>
-  );
-};
+  )
+}

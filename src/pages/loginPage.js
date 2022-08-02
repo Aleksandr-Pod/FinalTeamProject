@@ -5,7 +5,6 @@ import s from './loginPage.module.css';
 import LoginForm from '../components/LoginForm/LoginForm';
 
 export const LoginPage = () => {
-
   return (
     <div className={s.allPage}>
       <div className={s.leftSide}>
