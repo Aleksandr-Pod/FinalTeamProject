@@ -13,6 +13,8 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
 import currencyReducer from './curerncySlice';
 import dataReducer from './dataSlice';
+
+import categoriesReducer from './categoriesSlice';
 import { transactionsSlice } from './transactions/transactionSlice';
 
 const persistConfig = {
@@ -26,19 +28,27 @@ const persistedCurrencyReducer = persistReducer(
   { key: 'currencies', storage },
   currencyReducer,
 );
+
+const persistCategories = persistReducer(
+  { key: 'categories', storage },
+  categoriesReducer,
+);
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     currency: persistedCurrencyReducer,
     data: dataReducer,
+    categories: persistCategories,
     transactions: transactionsSlice.reducer,
   },
-  middleware: getDefaultMiddleware =>
-    getDefaultMiddleware({
+  middleware: getDefaultMiddleware => [
+    ...getDefaultMiddleware({
       serializableCheck: {
         ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
+  ],
+  devToolsls: process.env.NODE_ENV !== 'production',
 });
 
 const persistor = persistStore(store);
