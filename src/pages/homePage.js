@@ -2,11 +2,15 @@ import { Fragment } from 'react';
 import Media from 'react-media';
 // components
 import { Transaction } from '../components/dashboard/transaction/transaction';
+import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
+import { Ballance } from '../components/dashboard/ballance/ballance';
+import styles from './homePage.module.css';
 
 export const HomePage = () => {
   console.log('HomePage');
+
   return (
     <>
       <h3>HomePage</h3>
@@ -22,25 +26,30 @@ export const HomePage = () => {
             {matches.small && (
               <>
                 <p>Small</p>
-                <NavMenu />
-                <p>BALLANCE</p>
+                <NavMenuMobile />
+                <Ballance />
                 <Transaction />
               </>
             )}
             {matches.medium && (
               <>
                 <p>medium</p>
-                <NavMenu />
-                <p>BALLANCE</p>
+                <div className={styles.currency}>
+                  <div className={styles.nav_ballance}>
+                    <NavMenu />
+                    <Ballance />
+                  </div>
+                  <Currency />
+                </div>
                 <Transaction />
-                <Currency />
+                
               </>
             )}
             {matches.large && (
               <>
                 <p>large</p>
                 <NavMenu />
-                <p>BALLANCE</p>
+                <Ballance />
                 <Transaction />
                 <Currency />
               </>

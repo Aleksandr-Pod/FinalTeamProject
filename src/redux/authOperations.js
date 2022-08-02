@@ -1,5 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+// import { useDispatch } from 'react-redux';
+// import { addData } from './dataSlice';
 
 axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
 
@@ -31,6 +33,10 @@ const login = createAsyncThunk(
     try {
       const response = await axios.post('/api/users/login', credentials);
       token.set(response.data.data.token);
+
+      // const dispatch = useDispatch();
+      // dispatch(addData(response.data.data.lastTransactions));
+
       return response.data.data;
     } catch (err) {
       return rejectWithValue(err.message);

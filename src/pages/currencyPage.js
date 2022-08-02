@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import Media from 'react-media';
+import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
 export const CurrencyPage = () => {
@@ -15,7 +16,7 @@ export const CurrencyPage = () => {
           <Fragment>
             {matches.small && (
               <><p>Small</p>
-                <NavMenu />
+                <NavMenuMobile />
                 <Currency/>
               </>
             )}
