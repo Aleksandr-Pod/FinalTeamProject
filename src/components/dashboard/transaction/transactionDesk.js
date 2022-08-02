@@ -2,45 +2,20 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import styles from './TransactionDesk.module.css';
 import { TransactionTableDesk } from './transactionTableDesk';
-// const data = [
-//   {
-//     id: 'hfjhagsdhjfg',
-//     date: '04.01.19',
-//     type: '-',
-//     category: 'Other',
-//     comment: 'Gift for your wife',
-//     sum: '300.00',
-//     balance: '6900.00',
-//   },
-//   {
-//     id: 'asdfasdfewef',
-//     date: '04.01.19',
-//     type: '+',
-//     category: 'Other',
-//     comment: 'Gift for your wife',
-//     sum: '300.00',
-//     balance: '6900.00',
-//   },
-// ];
+
 const initialState = [];
 export const TransactionDesk = () => {
   const [transaction, setTransaction] = useState(initialState);
 
-  const { transactions } = useSelector(state => state.transactions);
+  const { data } = useSelector(state => state.auth);
 
   useEffect(() => {
-    if (transactions.length === 0) {
+    if (data.length === 0) {
       return;
     }
+    setTransaction(data);
+  }, [data]);
 
-    setTransaction(transactions);
-  }, [transactions, transactions.length]);
-
-  const numberWithSpaces = number => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  };
-
-  console.log(numberWithSpaces('100000000'));
   return (
     <>
       {transaction.length === 0 && (
@@ -63,14 +38,22 @@ export const TransactionDesk = () => {
             </thead>
             <tbody>
               {transaction.map(
-                ({ id, date, type, category, comment, sum, balance }) => (
+                ({
+                  id,
+                  date,
+                  isIncome,
+                  category,
+                  comment,
+                  amount,
+                  balance,
+                }) => (
                   <TransactionTableDesk
                     key={id}
                     date={date}
-                    type={type}
+                    isIncome={isIncome}
                     category={category}
                     comment={comment}
-                    sum={sum}
+                    amount={amount}
                     balance={balance}
                   />
                 ),

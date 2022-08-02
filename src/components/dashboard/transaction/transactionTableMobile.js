@@ -2,42 +2,19 @@ import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
 import styles from './TransactionMobile.module.css';
-// const data = [
-//   {
-//     id: 'hfjhagsdhjfg',
-//     date: '04.01.19',
-//     type: '-',
-//     category: 'Other',
-//     comment: 'Gift for your wife',
-//     sum: '300.00',
-//     balance: '6900.00',
-//   },
-//   {
-//     id: 'asdfasdfewef',
-//     date: '04.01.19',
-//     type: '+',
-//     category: 'Other',
-//     comment: 'Gift for your wife',
-//     sum: '300.00',
-//     balance: '6900.00',
-//   },
-// ];
+
 const initialState = [];
 export const TransactionTableMobile = () => {
   const [transaction, setTransaction] = useState(initialState);
-  const { transactions } = useSelector(state => state.transactions);
+
+  const { data } = useSelector(state => state.auth);
 
   useEffect(() => {
-    if (transactions.length === 0) {
+    if (data.length === 0) {
       return;
     }
-
-    setTransaction(transactions);
-  }, [transactions, transactions.length]);
-
-  const numberWithSpaces = number => {
-    return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
-  };
+    setTransaction(data);
+  }, [data]);
 
   return (
     <>
@@ -48,11 +25,11 @@ export const TransactionTableMobile = () => {
       )}
       {transaction.length > 0 &&
         transaction.map(
-          ({ id, date, type, category, comment, sum, balance }) => (
+          ({ id, date, isIncome, category, comment, amount, balance }) => (
             <table
               key={id}
               className={`${styles.transactionTable} ${
-                type === '-' ? styles.expens : styles.income
+                isIncome ? styles.income : styles.expens
               }`}
             >
               <thead className={styles.tableHead}>
@@ -68,19 +45,21 @@ export const TransactionTableMobile = () => {
               <tbody>
                 <tr>
                   <td> {date} </td>
-                  <td>{type}</td>
+                  <td>{isIncome ? '+' : '-'}</td>
                   <td>{category}</td>
                   <td>
                     <EllipsisText text={comment} length={16} />
                   </td>
                   <td
                     className={`${
-                      type === '-' ? styles.expensSum : styles.incomeSum
+                      isIncome ? styles.incomeSum : styles.expensSum
                     }`}
                   >
-                    {sum}{' '}
+                    {amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
                   </td>
-                  <td>{balance} </td>
+                  <td>
+                    {balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
+                  </td>
                 </tr>
               </tbody>
             </table>

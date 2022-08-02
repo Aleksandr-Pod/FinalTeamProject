@@ -2,25 +2,27 @@ import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
 import styles from './TransactionDesk.module.css';
 export const TransactionTableDesk = ({
   date,
-  type,
+  isIncome,
   category,
   comment,
-  sum,
+  amount,
   balance,
 }) => {
   return (
     <>
       <tr className={styles.bodyString}>
         <td className={styles.date}> {date} </td>
-        <td>{type}</td>
+        <td>{isIncome ? '+' : '-'}</td>
         <td className={styles.category}>{category}</td>
         <td className={styles.comment}>
           <EllipsisText text={comment} length={20} />
         </td>
-        <td className={`${type === '-' ? styles.expensSum : styles.incomeSum}`}>
-          {sum}{' '}
+        <td className={`${isIncome ? styles.incomeSum : styles.expensSum}`}>
+          {amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
         </td>
-        <td className={styles.balance}>{balance} </td>
+        <td className={styles.balance}>
+          {balance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
+        </td>
       </tr>
     </>
   );
