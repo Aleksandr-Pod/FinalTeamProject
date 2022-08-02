@@ -7,7 +7,8 @@ import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
 import PasswordStrengthBar from '../passwordStrengthBar/PasswordStrengthBar';
 import { useDispatch } from 'react-redux';
-import authOperations from '../../redux/authOperations';
+import authOperations from '../../redux/auth/authOperations';
+import { ToastContainer } from 'react-toastify';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),
@@ -140,6 +141,7 @@ export default function RegisterForm() {
           </Form>
         )}
       </Formik>
+      <ToastContainer />
     </>
   );
 }

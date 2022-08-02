@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-// import { useDispatch } from 'react-redux';
-// import { addData } from './dataSlice';
+import { toast } from 'react-toastify';
 
 axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
 
@@ -18,9 +17,10 @@ const register = createAsyncThunk(
   'auth/register',
   async (credentials, { rejectWithValue }) => {
     try {
-      const { data } = await axios.post('/api/users/register', credentials);
-      // token.set(data.token);
-      return data.data;
+      const response = await axios.post('/api/users/register', credentials);
+      token.set(response.data.data.token);
+      toast(response.data.message);
+      return response.data;
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
