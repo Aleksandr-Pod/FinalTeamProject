@@ -1,5 +1,5 @@
 import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
-import styles from './TransactionTable.module.css';
+import styles from './TransactionDesk.module.css';
 export const TransactionTableDesk = ({
   date,
   type,
@@ -11,16 +11,16 @@ export const TransactionTableDesk = ({
   return (
     <>
       <tr className={styles.bodyString}>
-        <td> {date} </td>
+        <td className={styles.date}> {date} </td>
         <td>{type}</td>
-        <td>{category}</td>
-        <td>
-          <EllipsisText text={comment} length={'20'} />
+        <td className={styles.category}>{category}</td>
+        <td className={styles.comment}>
+          <EllipsisText text={comment} length={20} />
         </td>
         <td className={`${type === '-' ? styles.expensSum : styles.incomeSum}`}>
           {sum}{' '}
         </td>
-        <td>{balance} </td>
+        <td className={styles.balance}>{balance} </td>
       </tr>
     </>
   );
