@@ -12,6 +12,7 @@ import {
 import storage from 'redux-persist/lib/storage';
 import authReducer from './authSlice';
 import currencyReducer from './curerncySlice';
+import dataReducer from './dataSlice';
 
 const persistConfig = {
   key: 'auth',
@@ -24,7 +25,8 @@ const persistedCurrencyReducer = persistReducer({ key: 'currencies', storage }, 
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    currency: persistedCurrencyReducer
+    currency: persistedCurrencyReducer,
+    data: dataReducer
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
