@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { useDispatch } from 'react-redux';
-import { addData } from './dataSlice';
+// import { useDispatch } from 'react-redux';
+// import { addData } from './dataSlice';
 
 axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
 
