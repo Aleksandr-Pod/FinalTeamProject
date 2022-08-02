@@ -30,28 +30,25 @@ export const Currency = () => {
   }, [currencies.length, currentTime, dispatch, queryDate, time]);
 
   return (
-    <div className={css.currencyContainer}>
-      <table className={css.currency}>
-        <thead>
-          <tr className={css.currencyHead}>
-            <th>Currency</th>
-            <th>Purchase</th>
-            <th>Sale</th>
-          </tr>
-        </thead>
-        <tbody className={css.currencyBody}>
-          {currencies &&
-            currencies.map(({ ccy, buy, sale }) => (
-              <tr key={nanoid()} className={css.currencyInfo}>
-                <td>{ccy}</td>
-                <td>{Number(buy).toFixed(2)}</td>
-                <td>{Number(sale).toFixed(2)}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-      <div className={css.vector}></div>
-    </div>
+    <table className={css.currency}>
+      <thead>
+        <tr>
+          <th>Currency</th>
+          <th>Purchase</th>
+          <th>Sale</th>
+        </tr>
+      </thead>
+      <tbody>
+        {currencies &&
+          currencies.map(({ ccy, buy, sale }) => (
+            <tr key={nanoid()}>
+              <td>{ccy}</td>
+              <td>{Number(buy).toFixed(2)}</td>
+              <td>{Number(sale).toFixed(2)}</td>
+            </tr>
+          ))}
+      </tbody>
+    </table>
   );
 };
 
