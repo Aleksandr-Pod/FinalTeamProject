@@ -2,7 +2,6 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import css from './currency.module.css';
 import propTypes from 'prop-types';
-import { nanoid } from 'nanoid';
 import { getCurrency } from '../../../api/currencyAPI';
 import { addCurrencies, addQueryDate } from '../../../redux/currecnySlice';
 
@@ -21,7 +20,6 @@ export const Currency = () => {
         data.map(({ ccy, buy, sale }) =>
           currencyArray.push({ ccy, buy, sale }),
         );
-
         dispatch(addCurrencies(currencyArray));
         dispatch(addQueryDate(currentTime));
       });
@@ -41,8 +39,8 @@ export const Currency = () => {
         </thead>
         <tbody className={css.currencyBody}>
           {currencies &&
-            currencies.map(({ ccy, buy, sale }) => (
-              <tr key={nanoid()} className={css.currencyInfo}>
+            currencies.map(({ ccy, buy, sale }, idx) => (
+              <tr key={idx} className={css.currencyInfo}>
                 <td>{ccy}</td>
                 <td>{Number(buy).toFixed(2)}</td>
                 <td>{Number(sale).toFixed(2)}</td>

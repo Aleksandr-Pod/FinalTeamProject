@@ -1,3 +1,0 @@
-# FinalTeamProject
-
-React+Node

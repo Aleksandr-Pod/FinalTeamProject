@@ -13,6 +13,7 @@ import storage from 'redux-persist/lib/storage';
 import authReducer from './authSlice';
 import currecnySlice from './currecnySlice';
 
+
 const persistConfig = {
   key: 'auth',
   storage,
