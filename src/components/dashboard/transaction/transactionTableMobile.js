@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+// import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
 import styles from './TransactionMobile.module.css';
@@ -22,18 +22,18 @@ import styles from './TransactionMobile.module.css';
 //     balance: '6900.00',
 //   },
 // ];
-const initialState = [];
+// const initialState = [];
 export const TransactionTableMobile = () => {
-  const [transaction, setTransaction] = useState(initialState);
-  const { transactions } = useSelector(state => state.transactions);
+  // const [transaction, setTransaction] = useState(initialState);
+  const { data: transactions } = useSelector(state => state.auth);
 
-  useEffect(() => {
-    if (transactions.length === 0) {
-      return;
-    }
+  // useEffect(() => {
+  //   if (transactions.length === 0) {
+  //     return;
+  //   }
 
-    setTransaction(transactions);
-  }, [transactions, transactions.length]);
+  //   setTransaction(transactions);
+  // }, [transactions, transactions.length]);
 
   const numberWithSpaces = number => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
@@ -41,13 +41,13 @@ export const TransactionTableMobile = () => {
 
   return (
     <>
-      {transaction.length === 0 && (
+      {transactions.length === 0 && (
         <>
           <h3 className={styles.noTransactions}>no transactions</h3>
         </>
       )}
-      {transaction.length > 0 &&
-        transaction.map(
+      {transactions.length > 0 &&
+        transactions.map(
           ({ id, date, type, category, comment, sum, balance }) => (
             <table
               key={id}

@@ -10,7 +10,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   const dispatch = useDispatch();
   const [type, setType] = useState(true);
   const [category, setCategory] = useState('Select a category');
-  // const [categoryId, setCategoryId] = useState('');
+  const [categoryId, setCategoryId] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
   const [comment, setComment] = useState('');
@@ -56,7 +56,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
         break;
       case 'category':
         setCategory(value);
-        // setCategoryId(id);
+        setCategoryId(1);
         break;
       case 'date':
         setDate(value);
@@ -71,9 +71,10 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
 
   const handleSubmit = () => {
     const newDate = calcDate();
-    const data = { amount, isIncome: type, date: newDate, comment };
+    const data = { amount, isIncome: type, date: newDate, category, categoryId: "1", comment };
     console.log("submitted data", data);
-     dispatch(transactionOperations.addTransaction(data));
+    dispatch(transactionOperations.addTransaction(data));
+    setShowModal(false);
   }
   function calcDate () {
     const today = new Date();
