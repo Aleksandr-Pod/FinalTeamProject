@@ -1,7 +1,8 @@
 import styles from './modalAddTransaction.module.css';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import sprite from '../../../images/sprite.svg';
-import { addCategories, fetchCategories } from '../../../redux/categoriesSlice';
+import { addCategories } from '../../../redux/categories/categoriesSlice';
+import { fetchCategories } from '../../../redux/categories/categoriesOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionOperations from '../../../redux/transactions/transactionOperations';
 
