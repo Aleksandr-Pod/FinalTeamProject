@@ -8,16 +8,17 @@ export const TransactionTableDesk = ({
   sum,
   balance,
 }) => {
+
   return (
     <>
       <tr className={styles.bodyString}>
         <td className={styles.date}> {date} </td>
-        <td>{type}</td>
+        <td>{type ? '+' : '-'}</td>
         <td className={styles.category}>{category}</td>
         <td className={styles.comment}>
           <EllipsisText text={comment} length={20} />
         </td>
-        <td className={`${type === '-' ? styles.expensSum : styles.incomeSum}`}>
+        <td className={`${type ? styles.incomeSum : styles.expensSum}`}>
           {sum}{' '}
         </td>
         <td className={styles.balance}>{balance} </td>

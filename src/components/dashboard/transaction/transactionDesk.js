@@ -63,14 +63,14 @@ export const TransactionDesk = () => {
             </thead>
             <tbody>
               {transactions.map(
-                ({ id, date, type, category, comment, sum, balance }) => (
+                ({ _id, date, type, category, comment, amount, balance }) => (
                   <TransactionTableDesk
-                    key={id}
+                    key={_id}
                     date={date}
                     type={type}
                     category={category}
                     comment={comment}
-                    sum={sum}
+                    sum={amount}
                     balance={balance}
                   />
                 ),
