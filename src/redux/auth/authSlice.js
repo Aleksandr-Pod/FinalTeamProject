@@ -6,7 +6,6 @@ const initialState = {
   isLogged: false,
   isLoading: false,
   error: null,
-  data: [],
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -24,7 +23,6 @@ const authSlice = createSlice({
       state.error = null;
     },
     [authOperation.register.fulfilled]: (state, action) => {
-      console.log(action.payload);
       state.error = null;
       state.isLoading = false;
     },
@@ -40,7 +38,6 @@ const authSlice = createSlice({
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLogged = true;
-      state.data = action.payload.lastTransactions;
     },
     [authOperation.login.rejected]: (state, action) => {
       state.error = !action.payload.message
