@@ -10,7 +10,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   const { categories } = useSelector(state => state.categories);
   const dispatch = useDispatch();
   const [type, setType] = useState(true);
-  const [category, setCategory] = useState('Select a category');
+  const [category, setCategory] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
@@ -50,14 +50,14 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
 
   const handleInputChange = e => {
     const { name, value } = e.target;
-    // const id = e.target.options[e.target.selectedIndex].id;
+    const ind = e.target.selectedIndex;
     switch (name) {
       case 'amount':
         setAmount(value);
         break;
       case 'category':
         setCategory(value);
-        setCategoryId(1);
+        setCategoryId(e.target.options[ind].id);
         break;
       case 'date':
         setDate(value);
@@ -72,20 +72,28 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
 
   const handleSubmit = () => {
     const newDate = calcDate();
-    const data = { amount, isIncome: type, date: newDate, category, categoryId: "1", comment };
-    console.log("submitted data", data);
+    const amountNum = Number(amount).toFixed(2);
+    const data = {
+      amount: amountNum,
+      isIncome: type,
+      date: newDate,
+      category,
+      categoryId,
+      comment,
+    };
+    console.log('submitted data', data);
     dispatch(transactionOperations.addTransaction(data));
     setShowModal(false);
-  }
-  function calcDate () {
+  };
+  function calcDate() {
     const today = new Date();
     let day = today.getDate();
     if (day < 10) day = `0${day}`;
-    let month = today.getMonth()+1;
+    let month = today.getMonth() + 1;
     if (month < 10) month = `0${month}`;
-    return `${day}-${month}-${today.getFullYear()}`
+    return `${day}-${month}-${today.getFullYear()}`;
   }
-
+  const todayDate = new Date().toISOString().slice(0, 10);
   return (
     <>
       {showModal ? (
@@ -122,32 +130,32 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
 
                 <span className={styles.outcome}>Expense</span>
               </div>
-              {!type && (
-                <select
-                  name="category"
-                  className={styles.select}
-                  value={category}
-                  onChange={handleInputChange}
-                  // id={categoryId}
-                >
-                  <option>Select a category</option>
-                  {type
-                    ? categories.income.map(el => {
-                        return (
-                          <option key={el.id} value={el.name} id={el.id}>
-                            {el.name}
-                          </option>
-                        );
-                      })
-                    : categories.expense.map(el => {
-                        return (
-                          <option key={el.id} value={el.name} id={el.id}>
-                            {el.name}
-                          </option>
-                        );
-                      })}
-                </select>
-              )}
+
+              <select
+                name="category"
+                className={styles.select}
+                value={category}
+                onChange={handleInputChange}
+                id={categoryId}
+              >
+                <option>Select a category</option>
+                {type
+                  ? categories.income.map(el => {
+                      return (
+                        <option key={el.id} value={el.name} id={el.id}>
+                          {el.name}
+                        </option>
+                      );
+                    })
+                  : categories.expense.map(el => {
+                      return (
+                        <option key={el.id} value={el.name} id={el.id}>
+                          {el.name}
+                        </option>
+                      );
+                    })}
+              </select>
+
               <div className={styles.amount}>
                 <input
                   className={styles.inputAmount}
@@ -162,7 +170,9 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                   className={styles.inputDate}
                   type="date"
                   name="date"
-                  value={date}
+                  value={todayDate}
+                  min={todayDate}
+                  max={todayDate}
                   required
                   onChange={handleInputChange}
                 />
@@ -177,7 +187,11 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                 onChange={handleInputChange}
               />
               <div className={styles.buttons}>
-                <button className={styles.addBtn} type="submit" onClick={handleSubmit}>
+                <button
+                  className={styles.addBtn}
+                  type="submit"
+                  onClick={handleSubmit}
+                >
                   Add
                 </button>
                 <button
