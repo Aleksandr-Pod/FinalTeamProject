@@ -12,12 +12,35 @@
     background-color: #E7EAF2;    
     padding: 12px 55px;
 }
-
+.text {
+    height: 27px;
+    display: flex;
+    align-items: center;
+    
+    color: black;
+    padding: 2px;
+    font-family: 'Poppins';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 18px;
+        line-height: 27px;
+   
+    
+}
+.text:hover {
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 27px;
+}
 .ulColumn {
+    
     list-style: none;
+    padding: 0;
+    margin-top: 40px;
 }
 .icon {
     fill: var(--lightBlue);
+    line-height: 100%;
 }
 
 .icon:hover,
@@ -27,4 +50,19 @@
 }
 .icon.small {
     margin-right: 20px;
+}
+
+@media screen and (min-width: 768px) {
+    .ulColumn { 
+       
+        margin-top: 0px;
+    }
+    
+}
+@media screen and (min-width: 1280px) {
+    .ulColumn {
+
+        margin-top: 40px;
+    }
+
 }

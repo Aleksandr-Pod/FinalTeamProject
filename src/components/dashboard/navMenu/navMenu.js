@@ -7,20 +7,38 @@ export const NavMenu = () => {
     <nav>
       <ul className={styles.ulColumn}>
         <li>
-          <Link to="/home" style={{ textDecoration: "none" }}>
-          <svg className={`${styles.icon} ${styles.small}`} width="18" height="18">
+          <Link
+            to="/home"
+            className={styles.text}
+            style={{ textDecoration: 'none' }}
+          >
+            <svg
+              className={`${styles.icon} ${styles.small}`}
+              width="18"
+              height="18"
+            >
               <use href={`${sprite}#icon-home`}></use>
-          </svg>
-          Home</Link>
+            </svg>
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/diagram" style={{ textDecoration: "none" }}>
-            <svg className={`${styles.icon} ${styles.small}`} width="18" height="18">
+          <Link
+            to="/diagram"
+            className={styles.text}
+            style={{ textDecoration: 'none' }}
+          >
+            <svg
+              className={`${styles.icon} ${styles.small}`}
+              width="18"
+              height="18"
+            >
               <use href={`${sprite}#icon-statistics`}></use>
             </svg>
-            Statistics</Link>
+            Statistics
+          </Link>
         </li>
       </ul>
     </nav>
-  )
-}
+  );
+};
