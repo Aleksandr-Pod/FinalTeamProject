@@ -10,7 +10,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   const { categories } = useSelector(state => state.categories);
   const dispatch = useDispatch();
   const [type, setType] = useState(true);
-  const [category, setCategory] = useState('Select a category');
+  const [category, setCategory] = useState('');
   const [categoryId, setCategoryId] = useState('');
   const [amount, setAmount] = useState('');
   const [date, setDate] = useState('');
@@ -91,9 +91,9 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     if (day < 10) day = `0${day}`;
     let month = today.getMonth() + 1;
     if (month < 10) month = `0${month}`;
-    return `${month}-${day}-${today.getFullYear()}`;
+    return `${day}-${month}-${today.getFullYear()}`;
   }
-
+  const todayDate = new Date().toISOString().slice(0, 10);
   return (
     <>
       {showModal ? (
@@ -137,9 +137,8 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                 value={category}
                 onChange={handleInputChange}
                 id={categoryId}
-                placeholder={'Select a category'}
               >
-                {/* <option>Select a category</option> */}
+                <option>Select a category</option>
                 {type
                   ? categories.income.map(el => {
                       return (
@@ -171,7 +170,9 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                   className={styles.inputDate}
                   type="date"
                   name="date"
-                  value={date}
+                  value={todayDate}
+                  min={todayDate}
+                  max={todayDate}
                   required
                   onChange={handleInputChange}
                 />
