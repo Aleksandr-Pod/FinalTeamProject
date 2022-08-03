@@ -4,8 +4,9 @@ const dataSlice = createSlice({
     name: "data",
     initialState: [],
     reducers: {
-        addData(state, { payload }){state.push(payload)}
+        addData(state, { payload }) { state.push(payload) },
+        removeLastData(state){state.shift()}
     }
 })
-export const { addData } = dataSlice.actions;
+export const { addData, removeLastData } = dataSlice.actions;
 export default dataSlice.reducer;
