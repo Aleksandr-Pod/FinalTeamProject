@@ -38,7 +38,7 @@ export const TransactionTableMobile = () => {
   const numberWithSpaces = number => {
     return number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ');
   };
-
+  console.log(transactions[0].id)
   return (
     <>
       {transactions.length === 0 && (
@@ -48,37 +48,29 @@ export const TransactionTableMobile = () => {
       )}
       {transactions.length > 0 &&
         transactions.map(
-          ({ id, date, type, category, comment, sum, balance }) => (
-            <table
-              key={id}
-              className={`${styles.transactionTable} ${
+          ({ id, date, type, category, comment, amount, balance }) => (
+            <table key={id} className={`${styles.transactionTable} ${
                 type === '-' ? styles.expens : styles.income
               }`}
             >
               <thead className={styles.tableHead}>
                 <tr>
                   <th>Date</th>
-                  <th>Type</th>
+                  <th>isIncome</th>
                   <th>Category</th>
                   <th>Comment</th>
-                  <th>Sum</th>
+                  <th>Amount</th>
                   <th>Balance</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td> {date} </td>
-                  <td>{type}</td>
+                  <td>{type ? '+' : '-'}</td>
                   <td>{category}</td>
-                  <td>
-                    <EllipsisText text={comment} length={16} />
-                  </td>
-                  <td
-                    className={`${
-                      type === '-' ? styles.expensSum : styles.incomeSum
-                    }`}
-                  >
-                    {sum}{' '}
+                  <td><EllipsisText text={comment} length={16} /></td>
+                  <td className={`${type ? styles.incomeSum : styles.expensSum}`}>
+                    {amount.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}{' '}
                   </td>
                   <td>{balance} </td>
                 </tr>

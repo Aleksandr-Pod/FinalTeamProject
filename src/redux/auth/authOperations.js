@@ -34,9 +34,7 @@ const login = createAsyncThunk(
     try {
       const response = await axios.post('/api/users/login', credentials);
       token.set(response.data.data.token);
-
       dispatch(setTransactions(response.data.data.lastTransactions));
-
       return response.data.data;
     } catch (err) {
       return rejectWithValue(err.message);

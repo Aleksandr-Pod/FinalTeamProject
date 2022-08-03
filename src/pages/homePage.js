@@ -16,7 +16,6 @@ export const HomePage = () => {
 
   return (
     <>
-      <h3>HomePage</h3>
       <Media
         queries={{
           small: '(max-width: 767px)',
