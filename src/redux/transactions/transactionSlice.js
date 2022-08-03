@@ -37,7 +37,7 @@ export const transactionsSlice = createSlice({
     },
 
     [transactionsOperations.addTransaction.fulfilled]: (state, action) => {
-      state.transactions.push(action.payload);
+      // state.transactions.push(action.payload);
     },
 
     [transactionsOperations.addTransaction.rejected]: (state, action) => {
