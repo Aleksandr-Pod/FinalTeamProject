@@ -14,6 +14,9 @@ export const transactionsSlice = createSlice({
     resetTransactions(state) {
       state.transactions = [];
     },
+    setTransactions(state, action) {
+      state.transactions = action.payload;
+    },
   },
   extraReducers: {
     [transactionsOperations.getTransactions.pending]: state => {
@@ -43,4 +46,4 @@ export const transactionsSlice = createSlice({
   },
 });
 
-export const { resetTransactions } = transactionsSlice.actions;
+export const { resetTransactions, setTransactions } = transactionsSlice.actions;

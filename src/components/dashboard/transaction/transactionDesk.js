@@ -26,7 +26,7 @@ import { TransactionTableDesk } from './transactionTableDesk';
 export const TransactionDesk = () => {
   // const [transaction, setTransaction] = useState(initialState);
 
-  const { data: transactions } = useSelector(state => state.auth);
+  const { transactions } = useSelector(state => state.transactions);
 
   // useEffect(() => {
   //   if (transactions.length === 0) {
