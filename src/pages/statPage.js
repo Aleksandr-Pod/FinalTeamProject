@@ -3,6 +3,8 @@ import Media from 'react-media';
 // components
 import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
+import { Ballance } from '../components/dashboard/ballance/ballance';
+import { Currency } from '../components/dashboard/currency/currency';
 import { Diagram } from '../components/diagram/diagram';
 import { Period } from '../components/period/period';
 import { StatTable } from '../components/statTable/statTable';
@@ -18,7 +20,7 @@ export const StatPage = () => {
         {matches => (
           <Fragment>
             {matches.small && (
-              <>              
+              <>
                 <NavMenuMobile />
                 <h3 className={styles.stat}>Statistics</h3>
                 <Diagram /> 
@@ -27,15 +29,19 @@ export const StatPage = () => {
               </>
             )}
             {matches.medium && (
-              <>
-                <p>medium</p>
-                <NavMenu />
-                <h3 className={styles.stat}>Statistics</h3>
-                <Diagram/>
-                <p>BALLANCE</p>
-                <p>CurrencyTable</p>
-                <p>STAT Table</p>
-              </>
+              <div className={styles.wrap}>
+                <div>
+                  <NavMenu />
+                  <Ballance/>
+                  <h3 className={styles.stat}>Statistics</h3>
+                  <Diagram />
+                </div>
+                <div className={styles.right}>
+                  <Currency />
+                  <Period/>
+                  <StatTable />
+                </div>
+              </div>
             )}
             {matches.large && (
               <>

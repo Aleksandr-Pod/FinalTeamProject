@@ -1,3 +1,7 @@
+.nav {
+    margin-top: 120px;
+}
+
 .list {
     position: fixed;
     z-index: 10;
@@ -15,7 +19,28 @@
 
 .ulColumn {
     list-style: none;
+    margin-top: 120px;
+    padding: 0;
 }
+
+.item {
+    margin-bottom: 12px;
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 27px;    
+}
+
+.home {
+    color: #000000;
+}
+
+.stat {
+    color: #000000;
+    font-weight: 700;
+}
+
 .icon {
     fill: var(--lightBlue);
 }
