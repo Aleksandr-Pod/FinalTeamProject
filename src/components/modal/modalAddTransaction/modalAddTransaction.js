@@ -21,6 +21,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     if (modalRef.current === e.target) {
       setShowModal(false);
     }
+    // setShowModal(false);
   };
   useEffect(() => {
     dispatch(fetchCategories()).then(data => {
@@ -70,11 +71,16 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     }
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = (e) => {
+    e.preventDefault();
     const newDate = calcDate();
     const data = { amount, isIncome: type, date: newDate, category, categoryId: "1", comment };
     console.log("submitted data", data);
-    dispatch(transactionOperations.addTransaction(data));
+    dispatch(transactionOperations.addTransaction(data))
+      .then(() => {
+        console.log('Trying to get data...');
+        dispatch(transactionOperations.getTransaction());
+      })
     setShowModal(false);
   }
   function calcDate () {
@@ -91,7 +97,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
       {showModal ? (
         <div
           className={styles.modalWrapper}
-          ref={modalRef}
+          // ref={modalRef}
           onClick={closeModal}
         >
           <div className={styles.content}>
