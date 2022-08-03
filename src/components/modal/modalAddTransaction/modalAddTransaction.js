@@ -4,6 +4,7 @@ import sprite from '../../../images/sprite.svg';
 import { addCategories } from '../../../redux/categories/categoriesSlice';
 import { fetchCategories } from '../../../redux/categories/categoriesOperations';
 import { useDispatch, useSelector } from 'react-redux';
+import transactionOperations from '../../../redux/transactions/transactionOperations';
 
 export default function ModalAddTransaction({ showModal, setShowModal }) {
   const { categories } = useSelector(state => state.categories);
@@ -23,11 +24,11 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   };
   useEffect(() => {
     dispatch(fetchCategories()).then(data => {
-      const { payload } = data;
-      const { categories } = payload;
-      dispatch(addCategories(categories));
+      // const { payload } = data;
+      // const { categories } = payload;
+      dispatch(addCategories(data.payload.categories));
     });
-  }, []);
+  }, [dispatch]);
 
   const keyPress = useCallback(
     e => {
@@ -49,25 +50,41 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
 
   const handleInputChange = e => {
     const { name, value } = e.target;
-    const id = e.target.options[e.target.selectedIndex].id;
+    // const id = e.target.options[e.target.selectedIndex].id;
     switch (name) {
       case 'amount':
         setAmount(value);
         break;
       case 'category':
         setCategory(value);
-        setCategoryId(id);
+        setCategoryId(1);
         break;
       case 'date':
         setDate(value);
         break;
-      case 'comment':
+      case 'comments':
         setComment(value);
         break;
       default:
         return;
     }
   };
+
+  const handleSubmit = () => {
+    const newDate = calcDate();
+    const data = { amount, isIncome: type, date: newDate, category, categoryId: "1", comment };
+    console.log("submitted data", data);
+    dispatch(transactionOperations.addTransaction(data));
+    setShowModal(false);
+  }
+  function calcDate () {
+    const today = new Date();
+    let day = today.getDate();
+    if (day < 10) day = `0${day}`;
+    let month = today.getMonth()+1;
+    if (month < 10) month = `0${month}`;
+    return `${day}-${month}-${today.getFullYear()}`
+  }
 
   return (
     <>
@@ -111,7 +128,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                   className={styles.select}
                   value={category}
                   onChange={handleInputChange}
-                  id={categoryId}
+                  // id={categoryId}
                 >
                   <option>Select a category</option>
                   {type
@@ -156,11 +173,11 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                 name="comments"
                 placeholder="Comment"
                 autoComplete="off"
-                // value={comment}
-                // onChange={handleInputChange}
+                value={comment}
+                onChange={handleInputChange}
               />
               <div className={styles.buttons}>
-                <button className={styles.addBtn} type="submit">
+                <button className={styles.addBtn} type="submit" onClick={handleSubmit}>
                   Add
                 </button>
                 <button

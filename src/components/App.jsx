@@ -14,7 +14,7 @@ import Modal from './modal/modal';
 export const App = () => {
   return (
     <>
-      <Modal/>
+      <Modal />
       <Routes>
         <Route
           path="/"

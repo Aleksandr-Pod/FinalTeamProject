@@ -1,16 +1,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 const currencySlice = createSlice({
-    name: 'auth',
-    initialState: {
-        currencies: [],
-        queryDate: null
+  name: 'currency',
+  initialState: {
+    currencies: [],
+    queryDate: null,
+  },
+  reducers: {
+    addCurrencies(state, { payload }) {
+      state.currencies = payload;
     },
-    reducers: {
-        addCurrencies(state, { payload }) { state.currencies = payload },
-        addQueryDate(state, {payload}) {state.queryDate = payload}
-    }
-})
+    addQueryDate(state, { payload }) {
+      state.queryDate = payload;
+    },
+  },
+});
 
 export const { addCurrencies, addQueryDate } = currencySlice.actions;
 export default currencySlice.reducer;
