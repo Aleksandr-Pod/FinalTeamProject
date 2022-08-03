@@ -79,10 +79,10 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     dispatch(transactionOperations.addTransaction(data))
       .then(() => {
         console.log('Trying to get data...');
-        dispatch(transactionOperations.getTransaction())
-        .then(() => setShowModal(false))
+        dispatch(transactionOperations.getTransaction()); // тут код не срабатывает
       })
-    
+      .catch(error => console.log(error.message))
+      .finally(setShowModal(false))
   };
   function calcDate() {
     const today = new Date();
