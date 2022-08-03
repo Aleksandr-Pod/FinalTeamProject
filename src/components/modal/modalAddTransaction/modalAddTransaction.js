@@ -1,13 +1,13 @@
 import styles from './modalAddTransaction.module.css';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import sprite from '../../../images/sprite.svg';
-import { addCategories } from '../../../redux/categories/categoriesSlice';
+
 import { fetchCategories } from '../../../redux/categories/categoriesOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionOperations from '../../../redux/transactions/transactionOperations';
 
 export default function ModalAddTransaction({ showModal, setShowModal }) {
-  const { categories } = useSelector(state => state.categories);
+  const { income, expense } = useSelector(state => state.categories);
   const dispatch = useDispatch();
   const [type, setType] = useState(true);
   const [category, setCategory] = useState('');
@@ -22,12 +22,9 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
       setShowModal(false);
     }
   };
+
   useEffect(() => {
-    dispatch(fetchCategories()).then(data => {
-      // const { payload } = data;
-      // const { categories } = payload;
-      dispatch(addCategories(data.payload.categories));
-    });
+    dispatch(fetchCategories());
   }, [dispatch]);
 
   const keyPress = useCallback(
@@ -70,19 +67,19 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = e => {
     e.preventDefault();
     const newDate = calcDate();
     const amountNum = Number(amount).toFixed(2);
-    const data = { amount: amountNum, isIncome: type, date: newDate, category, categoryId, comment };
-    console.log("submitted data", data);
-    dispatch(transactionOperations.addTransaction(data))
-      .then(() => {
-        console.log('Trying to get data...');
-        dispatch(transactionOperations.getTransaction()); // тут код не срабатывает
-      })
-      .catch(error => console.log(error.message))
-      .finally(setShowModal(false))
+    const data = {
+      amount: amountNum,
+      isIncome: type,
+      date: newDate,
+      category,
+      categoryId,
+      comment,
+    };
+    dispatch(transactionOperations.addTransaction(data));
   };
   function calcDate() {
     const today = new Date();
@@ -111,7 +108,9 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                 <use href={`${sprite}#icon-Group-56`}></use>
               </svg>
             </button>
+
             <p className={styles.title}>Add transaction</p>
+
             <div className={styles.formModal}>
               <div className={styles.checkbox}>
                 <span className={styles.income}>Income</span>
@@ -138,15 +137,16 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                 id={categoryId}
               >
                 <option>Select a category</option>
+
                 {type
-                  ? categories.income.map(el => {
+                  ? income.map(el => {
                       return (
                         <option key={el.id} value={el.name} id={el.id}>
                           {el.name}
                         </option>
                       );
                     })
-                  : categories.expense.map(el => {
+                  : expense.map(el => {
                       return (
                         <option key={el.id} value={el.name} id={el.id}>
                           {el.name}
