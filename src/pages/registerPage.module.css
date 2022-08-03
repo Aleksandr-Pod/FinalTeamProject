@@ -104,7 +104,7 @@
 
    .rightSide {
       background-color: #ffffff66;
-      padding: 136px 91px 116px 107px;
+      padding: 52px 91px 52px 107px;
       z-index: 2;
       backdrop-filter: blur(50px);
       margin: 0;
@@ -115,6 +115,7 @@
       height: 616px;
       background-color: white;
       border-radius: 20px;
+      
    }
 
    .leftSide {
