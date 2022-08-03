@@ -1,3 +1,3 @@
 export * from './transactionTableDesk';
 export * from './transactionTableMobile';
-export * from './tableTheadDesk';
+export * from './transactionDesk';

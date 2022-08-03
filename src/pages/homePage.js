@@ -1,7 +1,10 @@
 import { Fragment } from 'react';
 import Media from 'react-media';
 // components
-import { Transaction } from '../components/dashboard/transaction/transaction';
+import {
+  TransactionTableMobile,
+  TransactionDesk,
+} from '../components/dashboard/transaction/';
 import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
@@ -15,8 +18,8 @@ export const HomePage = () => {
     <>
       <Media
         queries={{
-          small: '(max-width: 768px)',
-          medium: '(min-width: 769px) and (max-width: 1280px)',
+          small: '(max-width: 767px)',
+          medium: '(min-width: 768px) and (max-width: 1280px)',
           large: '(min-width: 1281px)',
         }}
       >
@@ -27,7 +30,9 @@ export const HomePage = () => {
                 <p>Small</p>
                 <NavMenuMobile />
                 <Ballance />
-                <Transaction />
+                <div className={styles.containerTable}>
+                  <TransactionTableMobile />
+                </div>
               </>
             )}
             {matches.medium && (
@@ -40,8 +45,9 @@ export const HomePage = () => {
                   </div>
                   <Currency />
                 </div>
-                <Transaction />
-                
+                <div className={styles.containerTable}>
+                  <TransactionDesk />
+                </div>
               </>
             )}
             {matches.large && (
@@ -49,7 +55,9 @@ export const HomePage = () => {
                 <p>large</p>
                 <NavMenu />
                 <Ballance />
-                <Transaction />
+                <div className={styles.containerTable}>
+                  <TransactionDesk />
+                </div>
                 <Currency />
               </>
             )}
