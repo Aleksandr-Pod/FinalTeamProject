@@ -12,15 +12,15 @@ import {
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
 import currencyReducer from './curerncySlice';
-import dataReducer from './dataSlice';
+import categoriesReducer from './categories/categoriesSlice';
+import statisticsReducer from './statistics/statisticsSlice';
 
-import categoriesReducer from './categoriesSlice';
 import { transactionsSlice } from './transactions/transactionSlice';
 
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user', 'token'],
+  whitelist: ['user', 'token', 'isLogged'],
 };
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
@@ -29,16 +29,12 @@ const persistedCurrencyReducer = persistReducer(
   currencyReducer,
 );
 
-const persistCategories = persistReducer(
-  { key: 'categories', storage },
-  categoriesReducer,
-);
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     currency: persistedCurrencyReducer,
-    data: dataReducer,
-    categories: persistCategories,
+    categories: categoriesReducer,
+    statistics: statisticsReducer,
     transactions: transactionsSlice.reducer,
   },
   middleware: getDefaultMiddleware => [
