@@ -15,9 +15,9 @@ export const TransactionTableMobile = () => {
       )}
       {transactions.length > 0 &&
         transactions.map(
-          ({ id, date, isIncome, category, comment, amount, balance }) => (
+          ({ _id, date, isIncome, category, comment, amount, balance }) => (
             <table
-              key={id}
+              key={_id}
               className={`${styles.transactionTable} ${
                 isIncome ? styles.income : styles.expens
               }`}
