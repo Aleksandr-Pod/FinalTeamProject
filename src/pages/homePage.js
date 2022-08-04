@@ -37,7 +37,7 @@ export const HomePage = () => {
             )}
             {matches.medium && (
               <>
-                <p>medium</p>
+                {/* <p>medium</p> */}
                 <div className={styles.currency}>
                   <div className={styles.nav_ballance}>
                     <NavMenu />
@@ -52,13 +52,17 @@ export const HomePage = () => {
             )}
             {matches.large && (
               <>
-                <p>large</p>
-                <NavMenu />
-                <Ballance />
-                <div className={styles.containerTable}>
-                  <TransactionDesk />
+                <div className={styles.largeSize}>
+                  {/* <p>large</p> */}
+                  <div className={styles.leftSize}>
+                    <NavMenu />
+                    <Ballance />
+                    <Currency />
+                  </div>
+                  <div className={styles.containerTable}>
+                    <TransactionDesk />
+                  </div>
                 </div>
-                <Currency />
               </>
             )}
           </Fragment>
