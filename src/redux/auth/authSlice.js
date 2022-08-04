@@ -11,13 +11,6 @@ const authSlice = createSlice({
   name: 'auth',
   initialState,
   reducers: {
-    toggleLogin(state, { payload }) {
-      state.isLogged = payload;
-    },
-    addUser(state, { payload }) {
-      state.user = payload.user;
-      state.token = payload.token;
-    },
     changeLoading(state, { payload }) {
       state.isLoading = payload;
     },
@@ -30,9 +23,8 @@ const authSlice = createSlice({
       state.error = null;
     },
     [authOperation.register.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
-      //   state.isLogged = true;
+      state.error = null;
+      state.isLoading = false;
     },
     [authOperation.register.rejected]: (state, action) => {
       state.error = !action.payload.message
@@ -70,6 +62,5 @@ const authSlice = createSlice({
     },
   },
 });
-export const { toggleLogin, addUser, changeLoading, changeError } =
-  authSlice.actions;
+export const { changeLoading, changeError } = authSlice.actions;
 export default authSlice.reducer;

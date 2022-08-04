@@ -1,6 +1,7 @@
 import { Fragment } from 'react';
 import Media from 'react-media';
 // components
+import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Diagram } from '../components/diagram/diagram';
 import { Period } from '../components/period/period';
@@ -18,7 +19,7 @@ export const StatPage = () => {
           <Fragment>
             {matches.small && (
               <>              
-                <NavMenu />
+                <NavMenuMobile />
                 <h3 className={styles.stat}>Statistics</h3>
                 <Diagram /> 
                 <Period />

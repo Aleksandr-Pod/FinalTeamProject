@@ -9,10 +9,12 @@ import { PageNotFound } from './pageNotFound/pageNotFound';
 // import { Currency } from './dashboard/currency';
 import { RegisterPage } from '../pages/registerPage';
 import { LoginPage } from '../pages/loginPage';
+import Modal from './modal/modal';
 
 export const App = () => {
   return (
     <>
+      <Modal />
       <Routes>
         <Route
           path="/"

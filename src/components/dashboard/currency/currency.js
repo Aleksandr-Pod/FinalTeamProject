@@ -1,77 +1,51 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import css from './currency.module.css';
 import propTypes from 'prop-types';
 import { getCurrency } from '../../../api/currencyAPI';
+import { useSelector, useDispatch } from 'react-redux';
+import { addCurrencies, addQueryDate } from '../../../redux/curerncySlice';
 
 export const Currency = () => {
-  const [currencies, setCurrencies] = useState([]);
-
-  const time = 60 * 60 * 3000;
+  const { currencies, queryDate } = useSelector(state => state.currency);
+  const dispatch = useDispatch();
   const currentTime = new Date().getTime();
 
   useEffect(() => {
-    const getApi = async () => {
+    if ((currencies.length !== 0) & (currentTime - queryDate < 60 * 60 * 3000))
+      return;
+    console.log('Currency request ...');
+    (async () => {
       await getCurrency().then(data => {
         const currenciesArray = [];
-        data.map(({ ccy, buy, sale }) => {
-          const currenc = {ccy, buy, sale};
-          return currenciesArray.push(currenc);
-        });
-        setCurrencies(currenciesArray);
-        localStorage.setItem(
-          'currency',
-          JSON.stringify({
-            currentTime,
-            currencies: currenciesArray,
-          }),
+        data.map(({ ccy, buy, sale }) =>
+          currenciesArray.push({ ccy, buy, sale }),
         );
+        dispatch(addCurrencies(currenciesArray));
+        dispatch(addQueryDate(currentTime));
       });
-    };
-    getApi();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  useEffect(() => {
-    if (localStorage.getItem('currency') !== null) {
-      const deadline =
-        JSON.parse(localStorage.getItem('currency')).currentTime + time;
-      const endOfDeadline = deadline - time;
-      if (endOfDeadline < 0) {
-        getCurrency();
-      } else {
-        const oldData = JSON.parse(localStorage.getItem('currency')).currencies;
-        setCurrencies(oldData);
-      }
-    } else {
-      getCurrency();
-      localStorage.setItem('currency', JSON.stringify(currencies));
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+    })();
+  }, [currencies.length, currentTime, dispatch, queryDate]);
 
   return (
-    <div className={css.currencyContainer}>
-      <table className={css.currency}>
-        <thead>
-          <tr className={css.currencyHead}>
-            <th>Currency</th>
-            <th>Purchase</th>
-            <th>Sale</th>
-          </tr>
-        </thead>
-        <tbody className={css.currencyBody}>
-          {currencies &&
-            currencies.map(({ ccy, buy, sale }, idx) => (
-              <tr key={idx} className={css.currencyInfo}>
-                <td>{ccy}</td>
-                <td>{Number(buy).toFixed(2)}</td>
-                <td>{Number(sale).toFixed(2)}</td>
-              </tr>
-            ))}
-        </tbody>
-      </table>
-      <div className={css.vector}></div>
-    </div>
+    <table className={css.currency}>
+      <thead>
+        <tr>
+          <th>Currency</th>
+          <th>Purchase</th>
+          <th>Sale</th>
+        </tr>
+      </thead>
+      <tbody>
+        {currencies &&
+          currencies.map(({ ccy, buy, sale }, idx) => (
+            <tr key={idx}>
+              <td>{ccy}</td>
+              <td>{Number(buy).toFixed(2)}</td>
+              <td>{Number(sale).toFixed(2)}</td>
+            </tr>
+          ))}
+      </tbody>
+    </table>
   );
 };
 

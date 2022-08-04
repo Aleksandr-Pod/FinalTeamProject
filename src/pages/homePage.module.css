@@ -1,0 +1,19 @@
+.currency {
+    display: flex;
+    justify-content: space-between;
+}
+
+.containerTable {
+    margin-top: 2rem;
+    margin-bottom: 0.125rem;
+    max-width: 320px;
+}
+
+@media screen and (min-width: 768px) {
+    .containerTable {
+        margin: 1.25rem auto 0 auto;
+
+        max-width: 44rem;
+
+    }
+}

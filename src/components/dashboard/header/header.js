@@ -1,11 +1,12 @@
 import { NavLink } from 'react-router-dom';
 import styles from './header.module.css';
 import sprite from '../../../images/sprite.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 // import { toggleLogin } from '../../../redux/authSlice';
-import authOperations from '../../../redux/authOperations';
+import authOperations from '../../../redux/auth/authOperations';
 
 export default function Header() {
+  const { user } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   const logOut = () => {
     dispatch(authOperations.logOut());
@@ -23,7 +24,7 @@ export default function Header() {
           </NavLink>
         </div>
         <div className={styles.secondWrapper}>
-          <p className={styles.user}>Name</p>
+          <p className={styles.user}>{user.name}</p>
           <div className={styles.vl}></div>
           <div onClick={logOut}>
             <button className={styles.exitButton}>
@@ -31,7 +32,11 @@ export default function Header() {
                 <use href={`${sprite}#icon-exit`}></use>
               </svg>
             </button>
-            <button type="button" className={styles.button}>
+            <button
+              onClick={() => dispatch(authOperations.logout())}
+              type="button"
+              className={styles.button}
+            >
               Exit
             </button>
           </div>

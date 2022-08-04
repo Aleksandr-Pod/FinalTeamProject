@@ -1,12 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Form, Field, Formik } from 'formik';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styles from './LoginForm.module.css';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
-import authOperations from '../../redux/authOperations';
+import authOperations from '../../redux/auth/authOperations';
+import { ToastContainer, toast } from 'react-toastify';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),
@@ -18,9 +19,17 @@ const loginSchema = Yup.object().shape({
 
 export default function LoginForm() {
   const dispatch = useDispatch();
+  const { error, isLoading } = useSelector(state => state.auth);
+
+  useEffect(() => {
+    if (!isLoading) {
+      toast(error);
+    }
+  }, [error, isLoading]);
+
   return (
     <>
-      <img src={logo} className={styles.logo} />
+      <img src={logo} className={styles.logo} alt="logo" />
       <Formik
         initialValues={{
           email: '',
@@ -84,6 +93,7 @@ export default function LoginForm() {
           </Form>
         )}
       </Formik>
+      <ToastContainer />
     </>
   );
 }

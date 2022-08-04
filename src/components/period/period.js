@@ -29,41 +29,113 @@ const years = [
 const customStyles = {
   option: (base, state) => ({
     ...base,
-    backgroundColor: state.isSelected ? '#d9bcff' : '#ebebeb',
+    color: state.isSelected || state.isFocused ? '#FF6596' : '#000000',
+    backgroundColor: state.isSelected || state.isFocused ? '#FFFFFF' : 'inherit',
+    paddingLeft: 20,
+    paddingTop: 13,
+    height: 44,
+    border: 'none',
+    cursor: 'pointer',
   }),
-
   control: () => ({
     '@media screen and (min-width: 320px)': {
-      width: 278,
+      width: 280,
     },
-    // '@media screen and (min-width: 768px)': {
-    //   width: 158,
-    // },
-      height: 48,
+    '@media screen and (min-width: 768px)': {
+      width: 160,
+    },
+    height: 50,
   }),
 
-  valueContainer: () => ({
+  valueContainer: base => ({
+    ...base,
     paddingLeft: 20,
     paddingTop: 12,
     paddingBottom: 12,
   }),
-  menu: () => ({
+  indicatorsContainer: () => ({
+    display: 'none',
+  }),
+  menu: base => ({
+    ...base,
     backgroundColor: 'inherit',
     borderRadius: 20,
     boxShadow: 'none',
   }),
-  container: () => ({
+  placeholder: base => ({
+    ...base,
+    margin: 0,
+    fontFamily: 'Circe, sans-serif',
+    color: '#000000',
+    fontSize: 18,
+    lineHeight: 1.44,
+    fontWeight: 400,
+  }),
+  menuList: base => ({
+    ...base,
+    '@media screen and (min-width: 320px)': {
+      maxHeight: 352,
+    },
+    '@media screen and (min-width: 768px)': {
+      maxHeight: 411,
+    },
+    padding: 0,
+    backdropFilter: 'blur(50px)',
+    background: 'rgba(255, 255, 255, 0.6)',
+
+    borderRadius: 20,
+    boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',
+
+    '::-webkit-scrollbar': {
+      height: '100%',
+      width: 5,
+      backgroundColor: 'transparent',
+    },
+
+    '::-webkit-scrollbar-track-piece:corner-present': {
+      marginTop: 12,
+    },
+    '::-webkit-scrollbar-track-piece:start': {
+      background: 'transparent',
+      marginTop: 10,
+      overflow: 'hidden',
+    },
+
+    '::-webkit-scrollbar-track-piece:end': {
+      backgroundColor: 'transparent',
+      marginBottom: 10,
+    },
+    '::-webkit-scrollbar-thumb': {
+      borderRadius: 10,
+      backgroundColor: '#24CCA7',
+    },
+    '::-webkit-scrollbar-track': {
+      borderRadius: 20,
+      backgroundColor: 'transparent',
+    },
+  }),
+  container: base => ({
+    ...base,
     border: '1px solid #000000',
     borderRadius: 30,
+
     cursor: 'pointer',
   }),
-  placeholder: () => ({
-    fontFamily: 'Circe, sans-serif',
-    fontWeight: 400,
-    fontSize: 16,
+  singleValue: base => ({
+    ...base,
+    margin: 0,
+    color: '#000000',
+    fontSize: 18,
     lineHeight: 1.5,
-    color: '#000000'  
-  })
+  }),
+  input: base => ({
+    ...base,
+    margin: 0,
+    padding: 0,
+    fontSize: 18,
+    lineHeight: 1.5,
+    caretColor: 'transparent',
+  }),
 };
 
 export const Period = () => {

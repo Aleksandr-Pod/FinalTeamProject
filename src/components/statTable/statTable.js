@@ -69,12 +69,12 @@ export const StatTable = () => {
             <tbody>
                 {data.map(({id, sum, backgroundColor, category}) => (
                     <tr key={id} className={styles.row}>
-                        <td>
+                        <td className={styles.category}>
                             <div
                                 className={styles.square}
                                 style={{background: backgroundColor}}
                             ></div>
-                            <span className={styles.text}>{category}</span>
+                            <p className={styles.text}>{category}</p>
                         </td>
                         <td className={styles.sum}>
                             {sum}
@@ -82,11 +82,11 @@ export const StatTable = () => {
                     </tr>
                 ))}
                 <tr className={styles.data}>
-                    <th className={styles.title}>Expenses:</th>
+                    <td className={styles.title}>Expenses:</td>
                     <td className={styles.expenses}>1250</td>
                 </tr>
                 <tr className={styles.data}>
-                    <th className={styles.title}>Income:</th>
+                    <td className={styles.title}>Income:</td>
                     <td className={styles.income}>2500</td>
                 </tr>
             </tbody>
