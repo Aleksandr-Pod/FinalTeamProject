@@ -20,14 +20,9 @@ import { transactionsSlice } from './transactions/transactionSlice';
 const persistConfig = {
   key: 'auth',
   storage,
-  whitelist: ['user', 'token', 'isLogged'],
+  whitelist: ['token', 'isLogged'],
 };
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
-
-// const persistedCurrencyReducer = persistReducer(
-//   { key: 'currencies', storage },
-//   currencyReducer,
-// );
 
 const store = configureStore({
   reducer: {
