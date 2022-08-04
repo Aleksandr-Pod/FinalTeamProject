@@ -18,7 +18,6 @@ const addTransaction = createAsyncThunk(
     try {
       const response = await axios.post('/api/transactions', credential);
       dispatch(getTransactions());
-      console.log('--------', response.data.data.result);
       return response.data.data.result;
     } catch (error) {
       return rejectWithValue(error);

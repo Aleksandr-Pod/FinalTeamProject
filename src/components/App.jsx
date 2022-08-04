@@ -13,36 +13,52 @@ import Modal from './modal/modal';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../redux/auth/authOperations';
+import { useSelector } from 'react-redux';
+import transactionsOperations from '../redux/transactions/transactionOperations';
 
 export const App = () => {
+  const { isLogged } = useSelector(state => state.auth);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
 
+  useEffect(() => {
+    if (isLogged) {
+      dispatch(transactionsOperations.getTransactions());
+    }
+  });
   return (
     <>
       <Modal />
       <Routes>
-        <Route path="/" element={
+        <Route
+          path="/"
+          element={
             <RedirectRoute>
               <LoginPage />
             </RedirectRoute>
           }
         />
-        <Route path="/register" element={
+        <Route
+          path="/register"
+          element={
             <RedirectRoute>
               <RegisterPage />
             </RedirectRoute>
           }
         />
-        <Route path="/login" element={
+        <Route
+          path="/login"
+          element={
             <RedirectRoute>
               <LoginPage />
             </RedirectRoute>
           }
         />
-        <Route path="/:activeBtn" element={
+        <Route
+          path="/:activeBtn"
+          element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>

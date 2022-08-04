@@ -62,7 +62,12 @@ const getCurrentUser = createAsyncThunk(
     const { auth } = getState();
     if (!auth.token) return rejectWithValue();
     token.set(auth.token);
-    dispatch(transactionsOperations.getTransactions());
+    try {
+      const { data } = await axios.get('/api/users/current');
+      return data;
+    } catch (err) {
+      return rejectWithValue(err.response.data);
+    }
   },
 );
 
