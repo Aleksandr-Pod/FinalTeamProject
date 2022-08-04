@@ -1,36 +1,34 @@
 import styles from './period.module.css';
 import Select from 'react-select';
 import sprite from '../../images/sprite.svg';
+import { useDispatch, useSelector } from 'react-redux';
+import { useEffect, useState } from 'react';
+import { fetchStatistics } from '../../redux/statistics/statisticsOperations';
+import { addStatistics } from '../../redux/statistics/statisticsSlice';
 
 const months = [
-    { value: 'All months', label: 'All months' },
-    { value: 'January', label: 'January' },
-    { value: 'February', label: 'February' },
-    { value: 'March', label: 'March' },
-    { value: 'April', label: 'April' },
-    { value: 'May', label: 'May' },
-    { value: 'June', label: 'June' },
-    { value: 'July', label: 'July' },
-    { value: 'February', label: 'February' },
-    { value: 'August', label: 'August' },
-    { value: 'September', label: 'September' },
-    { value: 'October', label: 'October' },
-    { value: 'November', label: 'November' },
-    { value: 'December', label: 'December' }
-]
+  { value: '1', label: 'January' },
+  { value: '2', label: 'February' },
+  { value: '3', label: 'March' },
+  { value: '4', label: 'April' },
+  { value: '5', label: 'May' },
+  { value: '6', label: 'June' },
+  { value: '7', label: 'July' },
+  { value: '8', label: 'August' },
+  { value: '9', label: 'September' },
+  { value: '10', label: 'October' },
+  { value: '11', label: 'November' },
+  { value: '12', label: 'December' },
+];
 
-const years = [
-    { value: 'All years', label: 'All years' },
-    { value: '2022', label: '2022' },
-    { value: '2021', label: '2021' },
-    { value: '2020', label: '2020' },
-]
+const years = [{ value: '2022', label: '2022' }];
 
 const customStyles = {
   option: (base, state) => ({
     ...base,
     color: state.isSelected || state.isFocused ? '#FF6596' : '#000000',
-    backgroundColor: state.isSelected || state.isFocused ? '#FFFFFF' : 'inherit',
+    backgroundColor:
+      state.isSelected || state.isFocused ? '#FFFFFF' : 'inherit',
     paddingLeft: 20,
     paddingTop: 13,
     height: 44,
@@ -139,13 +137,33 @@ const customStyles = {
 };
 
 export const Period = () => {
+  const { transactions } = useSelector(state => state.transactions);
+  const currentMonth = new Date().toISOString().slice(5, 7);
+  const [selectedMonth, setSelectedMonth] = useState(null);
+  const [selectedYear, setSelectedYear] = useState(null);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(
+      fetchStatistics({
+        month: selectedMonth?.value ? selectedMonth.value : currentMonth,
+        year: selectedYear?.value ? selectedYear.value : '2022',
+      }),
+    ).then(response => {
+      const resp = response.payload;
+      dispatch(addStatistics(resp));
+    });
+  }, [selectedMonth, selectedYear, currentMonth, transactions, dispatch]);
+
   return (
     <ul className={styles.list}>
       <li className={styles.item}>
         <Select
+          onChange={setSelectedMonth}
           placeholder={'Month'}
           options={months}
           styles={customStyles}
+          defaultValue={months[currentMonth - 1]}
         />
         <svg className={styles.arrow} width="18" height="9">
           <use href={`${sprite}#icon-arrow`}></use>
@@ -153,14 +171,16 @@ export const Period = () => {
       </li>
       <li className={styles.item}>
         <Select
+          onChange={setSelectedYear}
           placeholder={'Year'}
           options={years}
           styles={customStyles}
+          defaultValue={years[0]}
         />
         <svg className={styles.arrow} width="18" height="9">
           <use href={`${sprite}#icon-arrow`}></use>
         </svg>
-      </li>      
-    </ul>        
+      </li>
+    </ul>
   );
-}
+};

@@ -1,10 +1,7 @@
 import { Chart, Tooltip, Title, ArcElement } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
 import styles from './diagram.module.css';
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect, useState } from 'react';
-import { fetchStatistics } from '../../redux/statistics/statisticsOperations';
-import { addStatistics } from '../../redux/statistics/statisticsSlice';
+import { useSelector } from 'react-redux';
 Chart.register(Tooltip, Title, ArcElement);
 
 export const Diagram = () => {
@@ -22,14 +19,6 @@ export const Diagram = () => {
 
   const { statistics } = useSelector(state => state.statistics);
   const { balance } = useSelector(state => state.auth.user);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchStatistics({ month: '8', year: '2022' })).then(response => {
-      const resp = response.payload;
-      dispatch(addStatistics(resp));
-    });
-  }, []);
 
   statistics?.result?.map(el => {
     data.labels.push(el._id.category);
@@ -41,7 +30,11 @@ export const Diagram = () => {
   return (
     <div className={styles.wrapper}>
       <p className={styles.balance}>₴ {balance}</p>
-      <Doughnut data={data} />
+      {statistics?.result?.length > 0 ? (
+        <Doughnut data={data} />
+      ) : (
+        <p className={styles.text}>There are no expence transactions for this period</p>
+      )}
     </div>
   );
 };

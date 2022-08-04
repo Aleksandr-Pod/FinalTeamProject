@@ -32,6 +32,10 @@
 }
 
 @media screen and (max-width: 767px) {
+    .list {
+        flex-direction: column;
+    }
+    
     .item {
         width: 280px;
     }

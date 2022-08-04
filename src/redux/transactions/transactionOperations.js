@@ -1,12 +1,11 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
-
 const getTransactions = createAsyncThunk(
   'transactions/getTransactions',
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('/api/transactions');
-      return response.data.data.result;
+      return response.data.data.lastTransactions;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -19,7 +18,8 @@ const addTransaction = createAsyncThunk(
     try {
       const response = await axios.post('/api/transactions', credential);
       dispatch(getTransactions());
-      return response.data.result;
+      console.log('--------', response.data.data.result);
+      return response.data.data.result;
     } catch (error) {
       return rejectWithValue(error);
     }
