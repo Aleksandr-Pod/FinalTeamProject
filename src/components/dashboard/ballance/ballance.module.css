@@ -6,8 +6,7 @@ p {
         width: 280px;
         height: 80px;
         padding-left: 40px;
-        margin-top: 32px;
-        margin-bottom: 32px;
+        margin: 47px auto 32px;
         display: flex;
         flex-direction: column;
         justify-content: space-around;
@@ -49,7 +48,7 @@ p {
 @media screen and (min-width: 1280px) {
     .box {
         width: 395px;
-        margin-bottom: 32px;
+        margin: 0 0 32px 0;
     };
     .title {
         margin: 0;
