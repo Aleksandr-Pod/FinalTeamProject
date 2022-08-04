@@ -33,7 +33,7 @@ export default function Header() {
               </svg>
             </button>
             <button
-              onClick={() => dispatch(authOperations.logout())}
+              onClick={() => logOut()}
               type="button"
               className={styles.button}
             >
