@@ -29,9 +29,11 @@ export const Diagram = () => {
 
   return (
     <div className={styles.wrapper}>
-      <p className={styles.balance}>₴ {balance}</p>
       {statistics?.result?.length > 0 ? (
-        <Doughnut data={data} />
+        <div>
+          <p className={styles.balance}>₴ {balance}</p>
+          <Doughnut data={data} />
+        </div>
       ) : (
         <p className={styles.text}>There are no expence transactions for this period</p>
       )}
