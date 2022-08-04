@@ -4,21 +4,21 @@ import sprite from '../../../images/sprite.svg';
 
 export const NavMenu = () => {
   return (
-    <nav>
+    <nav className={styles.nav}>
       <ul className={styles.ulColumn}>
-        <li>
+        <li className={styles.item}>
           <Link to="/home" style={{ textDecoration: "none" }}>
           <svg className={`${styles.icon} ${styles.small}`} width="18" height="18">
               <use href={`${sprite}#icon-home`}></use>
           </svg>
-          Home</Link>
+          <span className={styles.home}>Home</span></Link>
         </li>
-        <li>
+        <li className={styles.item}>
           <Link to="/diagram" style={{ textDecoration: "none" }}>
             <svg className={`${styles.icon} ${styles.small}`} width="18" height="18">
               <use href={`${sprite}#icon-statistics`}></use>
             </svg>
-            Statistics</Link>
+            <span className={styles.stat}>Statistics</span></Link>
         </li>
       </ul>
     </nav>
