@@ -1,7 +1,7 @@
 import styles from './period.module.css';
 import Select from 'react-select';
 import sprite from '../../images/sprite.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchStatistics } from '../../redux/statistics/statisticsOperations';
 import { addStatistics } from '../../redux/statistics/statisticsSlice';
@@ -137,6 +137,7 @@ const customStyles = {
 };
 
 export const Period = () => {
+  const { transactions } = useSelector(state => state.transactions);
   const currentMonth = new Date().toISOString().slice(5, 7);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
@@ -152,7 +153,7 @@ export const Period = () => {
       const resp = response.payload;
       dispatch(addStatistics(resp));
     });
-  }, [selectedMonth, selectedYear, currentMonth, dispatch]);
+  }, [selectedMonth, selectedYear, currentMonth, transactions, dispatch]);
 
   return (
     <ul className={styles.list}>
