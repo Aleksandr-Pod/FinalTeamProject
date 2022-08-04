@@ -1,4 +1,6 @@
 .list {
+    display: flex;
+    justify-content: space-between;
     margin-top: 32px;
     list-style: none;
     padding: 0;
@@ -7,6 +9,8 @@
 .item {
     position: relative;
     margin-bottom: 20px;
+    width: 182px;
+    height: 50px;
 }
 
 .arrow {
@@ -20,5 +24,15 @@
     .list {
         display: flex;
         justify-content: space-between;
+    }
+
+    .item {
+        width: 160px;
+    }
+}
+
+@media screen and (max-width: 767px) {
+    .item {
+        width: 280px;
     }
 }

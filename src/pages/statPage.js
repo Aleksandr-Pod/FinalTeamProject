@@ -45,15 +45,23 @@ export const StatPage = () => {
               </div>
             )}
             {matches.large && (
-              <>
-                <p>large</p>
-                <NavMenu />
-                <h3 className={styles.stat}>Statistics</h3>
-                <Diagram/>
-                <p>BALLANCE</p>
-                <p>CurrencyTable</p>
-                <p>STAT Table</p>
-              </>)}
+              <div className={styles.wrap}>
+                <div className={styles.left}>
+                  <NavMenu />
+                  <Ballance />
+                  <Currency/>
+                </div>
+                <div className={styles.right}>
+                  <h3 className={styles.stat}>Statistics</h3>
+                  <div className={styles.chart}>
+                    <Diagram/>
+                    <div className={styles.table}>
+                      <Period/>
+                      <StatTable/>
+                    </div>
+                  </div>
+                </div>
+              </div>)}
           </Fragment>
         )}
       </Media>

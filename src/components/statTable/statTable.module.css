@@ -96,3 +96,14 @@
         margin-left: 16px;
     }
 }
+
+@media screen and (min-width: 1280px) {
+    .table {
+        min-width: 395px;
+    }
+
+    .text {
+        width: 150px;
+        margin-left: 16px;
+    }
+}
