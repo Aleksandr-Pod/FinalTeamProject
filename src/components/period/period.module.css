@@ -15,3 +15,10 @@
     right: 20px;
     fill: none;
 }
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+    .list {
+        display: flex;
+        justify-content: space-between;
+    }
+}
