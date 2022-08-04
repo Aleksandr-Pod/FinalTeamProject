@@ -33,7 +33,7 @@ export const Diagram = () => {
       {statistics?.result?.length > 0 ? (
         <Doughnut data={data} />
       ) : (
-        <p>There are no transactions for this period</p>
+        <p className={styles.text}>There are no expence transactions for this period</p>
       )}
     </div>
   );
