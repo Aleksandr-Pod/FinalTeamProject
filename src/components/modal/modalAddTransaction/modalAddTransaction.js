@@ -67,7 +67,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     }
   };
 
-  const handleSubmit = e => {
+  const handleSubmit = async e => {
     e.preventDefault();
     const newDate = calcDate();
     const amountNum = Number(amount).toFixed(2);
@@ -79,7 +79,8 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
       categoryId,
       comment,
     };
-    dispatch(transactionOperations.addTransaction(data));
+    await dispatch(transactionOperations.addTransaction(data));
+    setShowModal(false);
   };
   function calcDate() {
     const today = new Date();

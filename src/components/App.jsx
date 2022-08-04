@@ -24,33 +24,25 @@ export const App = () => {
     <>
       <Modal />
       <Routes>
-        <Route
-          path="/"
-          element={
+        <Route path="/" element={
             <RedirectRoute>
               <LoginPage />
             </RedirectRoute>
           }
         />
-        <Route
-          path="/register"
-          element={
+        <Route path="/register" element={
             <RedirectRoute>
               <RegisterPage />
             </RedirectRoute>
           }
         />
-        <Route
-          path="/login"
-          element={
+        <Route path="/login" element={
             <RedirectRoute>
               <LoginPage />
             </RedirectRoute>
           }
         />
-        <Route
-          path="/:activeBtn"
-          element={
+        <Route path="/:activeBtn" element={
             <PrivateRoute>
               <Dashboard />
             </PrivateRoute>
