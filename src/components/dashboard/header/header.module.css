@@ -78,6 +78,11 @@
   cursor: pointer;
 }
 
+.logOut{
+  display:flex;
+  align-items: center;
+}
+
 .vl {
   color: var(--grey);
   width: 0px;
