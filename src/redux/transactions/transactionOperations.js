@@ -6,7 +6,7 @@ const getTransactions = createAsyncThunk(
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('/api/transactions');
-      return response.data;
+      return response.data.data.result;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -15,9 +15,10 @@ const getTransactions = createAsyncThunk(
 
 const addTransaction = createAsyncThunk(
   'transactions/addTransaction',
-  async (credential, { rejectWithValue }) => {
+  async (credential, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.post('/api/transactions', credential);
+      dispatch(getTransactions());
       return response.data.result;
     } catch (error) {
       return rejectWithValue(error);

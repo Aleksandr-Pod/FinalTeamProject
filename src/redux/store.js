@@ -24,15 +24,15 @@ const persistConfig = {
 };
 const persistedAuthReducer = persistReducer(persistConfig, authReducer);
 
-const persistedCurrencyReducer = persistReducer(
-  { key: 'currencies', storage },
-  currencyReducer,
-);
+// const persistedCurrencyReducer = persistReducer(
+//   { key: 'currencies', storage },
+//   currencyReducer,
+// );
 
 const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
-    currency: persistedCurrencyReducer,
+    currency: currencyReducer,
     categories: categoriesReducer,
     statistics: statisticsReducer,
     transactions: transactionsSlice.reducer,
