@@ -27,7 +27,7 @@ export const HomePage = () => {
           <Fragment>
             {matches.small && (
               <>
-                <p>Small</p>
+                {/* <p>Small</p> */}
                 <NavMenuMobile />
                 <Ballance />
                 <div className={styles.containerTable}>
@@ -59,8 +59,10 @@ export const HomePage = () => {
                     <Ballance />
                     <Currency />
                   </div>
-                  <div className={styles.containerTable}>
-                    <TransactionDesk />
+                  <div className={styles.rightSize}>
+                    <div className={styles.containerTable}>
+                      <TransactionDesk />
+                    </div>
                   </div>
                 </div>
               </>

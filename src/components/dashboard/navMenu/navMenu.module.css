@@ -11,8 +11,9 @@
     list-style: none;
     height: 64px;
     width: 100%;
-    background-color: #E7EAF2;    
+    /* background-color: #E7EAF2;     */
     padding: 12px 55px;
+    margin-bottom: 15px;
 }
 .text {
     height: 27px;

@@ -20,7 +20,7 @@ export const Dashboard = () => {
     return <PageNotFound path="/home" />;
   return (
     <>
-      <div className={styles.vector}></div>
+      {/* <div className={styles.vector}></div> */}
       <img className={styles.purple} src={PurpleEllipse} alt="logo" />
       <img className={styles.peach} src={PeachEllipse} alt="logo" />
       <div className={styles.dash}>
