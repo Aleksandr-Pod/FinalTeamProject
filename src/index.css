@@ -42,7 +42,7 @@ code {
   src: url('../public/fonts/Poppins-Bold.eot');
   src: url('../public/fonts/Poppins-Bold.eot?#iefix')
       format('embedded-opentype'),
-    url('../public/fonts/Poppins-Bold.woff2') format('woff'),
+    url('../public/fonts/Poppins-Bold.woff2') format('font-woff2'),
     url('../public/fonts/Poppins-Bold.woff') format('woff'),
     url('../public/fonts/Poppins-Bold.ttf') format('truetype');
   font-weight: bold;
@@ -55,7 +55,7 @@ code {
   src: url('../public/fonts/Poppins-Regular.eot');
   src: url('../public/fonts/Poppins-Regular.eot?#iefix')
       format('embedded-opentype'),
-    url('../public/fonts/Poppins-Regular.woff2') format('woff'),
+    url('../public/fonts/Poppins-Regular.woff2') format('font-woff2'),
     url('../public/fonts/Poppins-Regular.woff') format('woff'),
     url('../public/fonts/Poppins-Regular.ttf') format('truetype');
   font-weight: normal;
