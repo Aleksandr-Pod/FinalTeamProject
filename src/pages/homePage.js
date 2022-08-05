@@ -19,15 +19,15 @@ export const HomePage = () => {
       <Media
         queries={{
           small: '(max-width: 767px)',
-          medium: '(min-width: 768px) and (max-width: 1280px)',
-          large: '(min-width: 1281px)',
+          medium: '(min-width: 768px) and (max-width: 1279px)',
+          large: '(min-width: 1280px)',
         }}
       >
         {matches => (
           <Fragment>
             {matches.small && (
               <>
-                <p>Small</p>
+                {/* <p>Small</p> */}
                 <NavMenuMobile />
                 <Ballance />
                 <div className={styles.containerTable}>
@@ -37,7 +37,7 @@ export const HomePage = () => {
             )}
             {matches.medium && (
               <>
-                <p>medium</p>
+                {/* <p>medium</p> */}
                 <div className={styles.currency}>
                   <div className={styles.nav_ballance}>
                     <NavMenu />
@@ -52,13 +52,19 @@ export const HomePage = () => {
             )}
             {matches.large && (
               <>
-                <p>large</p>
-                <NavMenu />
-                <Ballance />
-                <div className={styles.containerTable}>
-                  <TransactionDesk />
+                <div className={styles.largeSize}>
+                  {/* <p>large</p> */}
+                  <div className={styles.leftSize}>
+                    <NavMenu />
+                    <Ballance />
+                    <Currency />
+                  </div>
+                  <div className={styles.rightSize}>
+                    <div className={styles.containerTable}>
+                      <TransactionDesk />
+                    </div>
+                  </div>
                 </div>
-                <Currency />
               </>
             )}
           </Fragment>

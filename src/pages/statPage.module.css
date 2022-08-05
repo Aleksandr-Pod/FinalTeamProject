@@ -1,0 +1,49 @@
+.wrap {
+    display: flex;
+}
+
+.left {
+    width: 480px;
+}
+
+.rigth {
+    padding-left: 69px;
+    width: 100%;
+}
+
+.stat {
+    padding-left: 15px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    font-family: var(--accent-font-family);
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 1.5;
+}
+
+.chart {
+    display: flex;
+}
+
+.table {
+    margin-left: 32px;
+    width: 100%;
+}
+
+@media screen and (max-width: 767px) {
+    .stat {
+        margin-top: 156px;
+        margin-bottom: 8px;
+    }
+}
+
+@media screen and (min-width: 768px) and (max-width: 1279px) {
+    .wrap {
+        display: flex;
+    }
+    
+    .right {
+        padding-left: 20px;
+        margin-top: 112px;
+    }
+}

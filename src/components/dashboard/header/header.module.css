@@ -78,6 +78,11 @@
   cursor: pointer;
 }
 
+.logOut{
+  display:flex;
+  align-items: center;
+}
+
 .vl {
   color: var(--grey);
   width: 0px;
@@ -91,7 +96,7 @@
   color: var(--black);
 }
 
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 767px) {
   .header{
     height:60px;
     position: fixed;

@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { fetchStatistics } from './statisticsOperations';
 
 const statisticsSlice = createSlice({
   name: 'statistics',
@@ -6,6 +7,11 @@ const statisticsSlice = createSlice({
   reducers: {
     addStatistics(state, { payload }) {
       state.statistics = payload;
+    },
+  },
+  extraReducers: {
+    [fetchStatistics.fulfilled]: (state, action) => {
+      state.statistics = action.payload;
     },
   },
 });

@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { setTransactions } from '../transactions/transactionSlice';
+import { setTransactions, setBalance } from '../transactions/transactionSlice';
+import transactionsOperations from '../transactions/transactionOperations';
 
 axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
 
@@ -34,7 +35,8 @@ const login = createAsyncThunk(
     try {
       const response = await axios.post('/api/users/login', credentials);
       token.set(response.data.data.token);
-      dispatch(setTransactions(response.data.data.lastTransactions));
+      dispatch(setTransactions(response.data.data));
+      dispatch(setBalance(response.data.data.user.balance));
       return response.data.data;
     } catch (err) {
       return rejectWithValue(err.message);
@@ -56,12 +58,12 @@ const logOut = createAsyncThunk(
 
 const getCurrentUser = createAsyncThunk(
   'auth/refreshUser',
-  async (_, { getState, rejectWithValue }) => {
+  async (_, { getState, rejectWithValue, dispatch }) => {
     const { auth } = getState();
     if (!auth.token) return rejectWithValue();
     token.set(auth.token);
     try {
-      const { data } = await axios.get('/users/current');
+      const { data } = await axios.get('/api/users/current');
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);

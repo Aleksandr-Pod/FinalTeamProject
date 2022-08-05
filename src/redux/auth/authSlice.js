@@ -53,12 +53,14 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperation.getCurrentUser.fulfilled]: (state, action) => {
-      state.user = action.payload;
+      state.user = action.payload.user;
       state.isLogged = true;
       state.isLoading = false;
     },
     [authOperation.getCurrentUser.rejected]: state => {
       state.isLoading = false;
+      state.isLogged = false;
+      state.token = '';
     },
   },
 });
