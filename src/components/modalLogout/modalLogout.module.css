@@ -85,3 +85,32 @@
     text-transform: uppercase;
     cursor: pointer;
 }
+
+@media screen and (max-width: 768px){
+    .logoutContent {
+        width: 330px;
+        height: 220px;
+    }
+    .logoutTitle {
+        font-size: 25px;
+        margin:20px;
+    }
+    .logoutText{
+        font-size:20px;
+        margin-bottom: 25px;
+    }
+    .logoutButtons{
+        display: flex;
+        align-items: baseline;
+        justify-content: space-evenly;
+    }
+    .logoutBtn,
+    .logoutCancelBtn{
+        width: 125px;
+        height: 30px;
+        font-size: 15px;
+    }
+    .logoutCancelBtn{
+        margin-top:10px;
+    }
+}

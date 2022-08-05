@@ -32,6 +32,7 @@ export const Dashboard = () => {
         {activeBtn === 'currency' && <CurrencyPage />}
         {activeBtn === 'diagram' && <StatPage />}
       </div>
+      <Modal/>
     </>
   );
 };
