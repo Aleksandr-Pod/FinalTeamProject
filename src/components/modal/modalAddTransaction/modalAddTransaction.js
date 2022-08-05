@@ -1,7 +1,7 @@
 import styles from './modalAddTransaction.module.css';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import sprite from '../../../images/sprite.svg';
-import { Form, Formik } from 'formik';
+import { Form, Formik, Field } from 'formik';
 import { fetchCategories } from '../../../redux/categories/categoriesOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionOperations from '../../../redux/transactions/transactionOperations';
@@ -10,16 +10,18 @@ import { fetchStatistics } from '../../../redux/statistics/statisticsOperations'
 import { Spinner } from '../../spinner/spinner';
 
 export default function ModalAddTransaction({ showModal, setShowModal }) {
-  const { income, expense } = useSelector(state => state.categories);
+
+  // const [type, setType] = useState(true);
+  // const [category, setCategory] = useState('');
+  // const [categoryId, setCategoryId] = useState('');
+  // const [amount, setAmount] = useState('');
+  // const [date, setDate] = useState('');
+  // const [comment, setComment] = useState('');
+
   const dispatch = useDispatch();
-  const [type, setType] = useState(true);
-  const [category, setCategory] = useState('');
-  const [categoryId, setCategoryId] = useState('');
-  const [amount, setAmount] = useState('');
-  const [date, setDate] = useState('');
-  const [comment, setComment] = useState('');
   const modalRef = useRef();
   const { isLoading } = useSelector(state => state.transactions);
+  const { income, expense } = useSelector(state => state.categories);
 
   const closeModal = e => {
     if (modalRef.current === e.target) {
@@ -46,47 +48,64 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     return () => document.removeEventListener('keydown', keyPress);
   }, [keyPress]);
 
-  const handleCheckbox = () => {
-    setType(!type);
-  };
+  // const handleCheckbox = () => {
+  //   setType(!type);
+  // };
 
-  const handleInputChange = e => {
-    const { name, value } = e.target;
-    const ind = e.target.selectedIndex;
-    switch (name) {
-      case 'amount':
-        setAmount(value);
-        break;
-      case 'category':
-        setCategory(value);
-        setCategoryId(e.target.options[ind].id);
-        break;
-      case 'date':
-        setDate(value);
-        break;
-      case 'comments':
-        setComment(value);
-        break;
-      default:
-        return;
-    }
-  };
+  // const handleInputChange = e => {
+  //   const { name, value } = e.target;
+  //   const ind = e.target.selectedIndex;
+  //   switch (name) {
+  //     case 'amount':
+  //       setAmount(value);
+  //       break;
+  //     case 'category':
+  //       setCategory(value);
+  //       setCategoryId(e.target.options[ind].id);
+  //       break;
+  //     case 'date':
+  //       setDate(value);
+  //       break;
+  //     case 'comments':
+  //       setComment(value);
+  //       break;
+  //     default:
+  //       return;
+  //   }
+  // };
 
-  const handleSubmit = async e => {
-    e.preventDefault();
+// const handleSubmit = async e => {
+//   e.preventDefault();
+//   const newDate = calcDate();
+//   const amountNum = Number(amount).toFixed(2);
+//   const data = {
+//     amount: amountNum,
+//     isIncome: type,
+//     date: newDate,
+//     category,
+//     categoryId,
+//     comment,
+//   await dispatch(transactionOperations.addTransaction(data));
+//   setShowModal(false);
+// };
+
+  const handleSubmit = (values, action) => {
+    console.log("values:", values);
+
     const newDate = calcDate();
-    const amountNum = Number(amount).toFixed(2);
+    const amountNum = Number(values.amount).toFixed(2);
     const data = {
       amount: amountNum,
-      isIncome: type,
+      isIncome: values.income,
       date: newDate,
-      category,
-      categoryId,
-      comment,
+      category: values.category,
+      // categoryId,
+      comments: values.comments,
     };
-    await dispatch(transactionOperations.addTransaction(data));
-    await dispatch(fetchStatistics({}));
-    setShowModal(false);
+    console.log("Handle submit data:", data);
+    // await dispatch(transactionOperations.addTransaction(data));
+    // await dispatch(fetchStatistics({}));
+    // setShowModal(false);
   };
   function calcDate() {
     const today = new Date();
@@ -97,6 +116,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     return `${day}-${month}-${today.getFullYear()}`;
   }
   const todayDate = new Date().toISOString().slice(0, 10);
+
   return (
     <>
       {showModal ? (
@@ -118,98 +138,84 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
 
             <p className={styles.title}>Add transaction</p>
 
-            <div className={styles.formModal}>
-              <div className={styles.checkbox}>
-                <span className={styles.income}>Income</span>
-                <span className={styles.toggleSpan}>
-                  <input
-                    name="income"
-                    type="checkbox"
-                    className={styles.checkboxInput}
-                    id="checkbox"
-                    checked={type}
-                    onChange={handleCheckbox}
-                  />
-                  <label htmlFor="checkbox"></label>
-                </span>
+            <Formik initialValues={{
+                income: true, 
+                category: '',
+                amount: '',
+                date: new Date(),
+                comments: ''
+              }} onSubmit={handleSubmit}>
+              <Form>
+              <div className={styles.formModal}>
+                <div className={styles.checkbox}>
+                  <span className={styles.income}>Income</span>
+                  <span className={styles.toggleSpan}>
+                    <Field
+                      name="income"
+                      type="checkbox"
+                      className={styles.checkboxInput}
+                      id="checkbox"
+                    />
+                    <label htmlFor="checkbox"></label>
+                  </span>
+                  <span className={styles.outcome}>Expense</span>
+                </div>
 
-                <span className={styles.outcome}>Expense</span>
-              </div>
+                <Field as="select"
+                  name="category"
+                  className={styles.select}
+                >
+                <option>Select a category </option>
 
-              <select
-                name="category"
-                className={styles.select}
-                value={category}
-                onChange={handleInputChange}
-                id={categoryId}
-              >
-                <option>Select a category</option>
-
-                {type
-                  ? income.map(el => {
-                      return (
-                        <option key={el.id} value={el.name} id={el.id}>
-                          {el.name}
-                        </option>
-                      );
+                {income
+                  ? income.map((el, idx) => {
+                      return <option key={idx} value={el.name}>{el.name}</option>
                     })
-                  : expense.map(el => {
-                      return (
-                        <option key={el.id} value={el.name} id={el.id}>
-                          {el.name}
-                        </option>
-                      );
+                  : expense.map((el, idx) => {
+                      return <option key={idx} value={el.name}>{el.name}</option>
                     })}
-              </select>
+                </Field>
 
-              <div className={styles.amount}>
-                {isLoading && <Spinner />}
-                <input
-                  className={styles.inputAmount}
-                  type="number"
-                  name="amount"
-                  placeholder="0.00"
-                  value={amount}
-                  required
-                  onChange={handleInputChange}
+                <div className={styles.amount}>
+                  {isLoading && <Spinner />}
+                  <Field
+                    className={styles.inputAmount}
+                    type="number"
+                    name="amount"
+                    placeholder="0.00"
+                    required
+                  />
+                  <Field
+                    className={styles.inputDate}
+                    type="date"
+                    name="date"
+                    min={todayDate}
+                    max={todayDate}
+                    required
+                  />
+                </div>
+                <Field
+                  className={styles.inputText}
+                  type="text"
+                  name="comments"
+                  placeholder="Comment"
+                  autoComplete="off"
                 />
-                <input
-                  className={styles.inputDate}
-                  type="date"
-                  name="date"
-                  value={todayDate}
-                  min={todayDate}
-                  max={todayDate}
-                  required
-                  onChange={handleInputChange}
-                />
+                <div className={styles.buttons}>
+                  <button
+                    className={styles.addBtn}
+                    type="submit"
+                    onClick={handleSubmit}
+                  >Add</button>
+                  <button
+                    className={styles.cancelBtn}
+                    type="button"
+                    onClick={() => setShowModal(prev => !prev)}
+                  >Cancel</button>
+                </div>
               </div>
-              <input
-                className={styles.inputText}
-                type="text"
-                name="comments"
-                placeholder="Comment"
-                autoComplete="off"
-                value={comment}
-                onChange={handleInputChange}
-              />
-              <div className={styles.buttons}>
-                <button
-                  className={styles.addBtn}
-                  type="submit"
-                  onClick={handleSubmit}
-                >
-                  Add
-                </button>
-                <button
-                  className={styles.cancelBtn}
-                  type="button"
-                  onClick={() => setShowModal(prev => !prev)}
-                >
-                  Cancel
-                </button>
-              </div>
-            </div>
+              </Form>
+            </Formik>  
           </div>
         </div>
       ) : null}
