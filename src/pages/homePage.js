@@ -11,20 +11,20 @@ import { Currency } from '../components/dashboard/currency/currency';
 import { Ballance } from '../components/dashboard/ballance/ballance';
 import styles from './homePage.module.css';
 
-import { useDispatch } from 'react-redux';
-import { useEffect } from 'react';
-import { fetchStatistics } from '../redux/statistics/statisticsOperations';
-import { addStatistics } from '../redux/statistics/statisticsSlice';
+// import { useDispatch } from 'react-redux';
+// import { useEffect } from 'react';
+// import { fetchStatistics } from '../redux/statistics/statisticsOperations';
+// import { addStatistics } from '../redux/statistics/statisticsSlice';
 
 export const HomePage = () => {
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    dispatch(fetchStatistics({})).then(response => {
-      const resp = response.payload;
-      dispatch(addStatistics(resp));
-    });
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchStatistics({})).then(response => {
+  //     const resp = response.payload;
+  //     dispatch(addStatistics(resp));
+  //   });
+  // }, [dispatch]);
 
   console.log('HomePage');
 

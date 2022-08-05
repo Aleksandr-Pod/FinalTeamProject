@@ -12,7 +12,6 @@ import Modal from '../components/modal/modal';
 export const Dashboard = () => {
   console.log('Dashboard');
 
-
   const { activeBtn } = useParams();
 
   if (
