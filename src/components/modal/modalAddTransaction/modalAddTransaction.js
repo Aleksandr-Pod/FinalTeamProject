@@ -5,6 +5,7 @@ import sprite from '../../../images/sprite.svg';
 import { fetchCategories } from '../../../redux/categories/categoriesOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionOperations from '../../../redux/transactions/transactionOperations';
+import { Spinner } from '../../spinner/spinner';
 
 export default function ModalAddTransaction({ showModal, setShowModal }) {
   const { income, expense } = useSelector(state => state.categories);
@@ -16,6 +17,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   const [date, setDate] = useState('');
   const [comment, setComment] = useState('');
   const modalRef = useRef();
+  const { isLoading } = useSelector(state => state.transactions);
 
   const closeModal = e => {
     if (modalRef.current === e.target) {
@@ -157,6 +159,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
               </select>
 
               <div className={styles.amount}>
+                {isLoading && <Spinner />}
                 <input
                   className={styles.inputAmount}
                   type="number"
