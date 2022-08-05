@@ -10,7 +10,7 @@ export const NavMenu = () => {
           <NavLink
             to="/home"
             style={{ textDecoration: 'none' }}
-            className={styles.text}
+            // className={styles.text}
             children={({ isActive }) => {
               return (
                 <>
@@ -25,7 +25,13 @@ export const NavMenu = () => {
                   >
                     <use href={`${sprite}#icon-home`}></use>
                   </svg>
-                  {'Home'}
+                  <span
+                    className={
+                      isActive ? `${styles.textActive}` : `${styles.text}`
+                    }
+                  >
+                    Home
+                  </span>
                 </>
               );
             }}
@@ -35,7 +41,7 @@ export const NavMenu = () => {
           <NavLink
             to="/diagram"
             style={{ textDecoration: 'none' }}
-            className={styles.text}
+            // className={styles.text}
             children={({ isActive }) => {
               return (
                 <>
@@ -50,7 +56,13 @@ export const NavMenu = () => {
                   >
                     <use href={`${sprite}#icon-statistics`}></use>
                   </svg>
-                  {'Statistics'}
+                  <span
+                    className={
+                      isActive ? `${styles.textActive}` : `${styles.text}`
+                    }
+                  >
+                    Statistics
+                  </span>
                 </>
               );
             }}
