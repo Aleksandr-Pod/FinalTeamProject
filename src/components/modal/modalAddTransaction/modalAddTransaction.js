@@ -5,6 +5,8 @@ import { Form, Formik, Field } from 'formik';
 import { fetchCategories } from '../../../redux/categories/categoriesOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionOperations from '../../../redux/transactions/transactionOperations';
+import { fetchStatistics } from '../../../redux/statistics/statisticsOperations';
+
 import { Spinner } from '../../spinner/spinner';
 
 export default function ModalAddTransaction({ showModal, setShowModal }) {
@@ -101,7 +103,8 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
       comments: values.comments,
     };
     console.log("Handle submit data:", data);
-    // dispatch(transactionOperations.addTransaction(data));
+    // await dispatch(transactionOperations.addTransaction(data));
+    // await dispatch(fetchStatistics({}));
     // setShowModal(false);
   };
   function calcDate() {

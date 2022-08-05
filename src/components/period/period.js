@@ -138,6 +138,8 @@ const customStyles = {
 
 export const Period = () => {
   const { transactions } = useSelector(state => state.transactions);
+  const { statistics } = useSelector(state => state.statistics);
+
   const currentMonth = new Date().toISOString().slice(5, 7);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
@@ -152,7 +154,7 @@ export const Period = () => {
         }),
       );
     }
-  }, [selectedMonth, transactions, dispatch]);
+  }, [selectedMonth, dispatch]);
 
   return (
     <ul className={styles.list}>
@@ -162,7 +164,9 @@ export const Period = () => {
           placeholder={'Month'}
           options={months}
           styles={customStyles}
-          defaultValue={months[currentMonth - 1]}
+          defaultValue={
+            statistics ? months[statistics.month - 1] : months[currentMonth - 1]
+          }
         />
         <svg className={styles.arrow} width="18" height="9">
           <use href={`${sprite}#icon-arrow`}></use>
