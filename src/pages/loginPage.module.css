@@ -1,151 +1,148 @@
 @import '../variables/colors.css';
 
 .allPage {
-    min-width: 320px;
-    height: 568px;
+  min-width: 320px;
+  height: 568px;
 }
 
 .leftSide {
-    display: none;
+  display: none;
 }
 .rightSide {
-   
-   align-items: center;
-   text-align: center;
-   padding: 107px 0px;
-
+  align-items: center;
+  text-align: center;
+  padding: 107px 0px;
 }
 .modal {
-   margin: 0 auto;
-   max-width: 280px;
-
+  margin: 0 auto;
+  max-width: 280px;
 }
 .purple {
-   display: none;
+  display: none;
 }
 
 .peach {
-    display: none;
+  display: none;
 }
 
 @media screen and (min-width: 768px) {
-    .allPage {
-        display: flex;
-        flex-direction: column;
-        min-width: 768px;
-        height: 1024px;
-        background-color: var(--background);
+  .allPage {
+    display: flex;
+    flex-direction: column;
+    min-width: 768px;
+    height: 100vh;
+    background-color: var(--background);
 
-        position: relative;
-    }
-    
-    .leftSide {
-        margin: 0 auto;
-        height: 320px;
-        z-index: 2;
-        display: flex;
-        align-items: center;
-    }
+    position: relative;
+  }
 
-    .rightSide {
-        margin: 0 auto;
-        z-index: 2;
-        padding: 0;
-    }
+  .leftSide {
+    margin: 0 auto;
+    height: 320px;
+    z-index: 2;
+    display: flex;
+    align-items: center;
+  }
 
-    .modal {
-        max-width: 533px;
-        height: 468px;
-        background-color: white;
-        border-radius: 20px;
-        padding-top: 40px;
-    }
+  .rightSide {
+    margin: 0 auto;
+    z-index: 2;
+    padding: 0;
+  }
 
-    .logo {
-        width: 260px;
-        height: 250px;
-        margin: 60px 60px 50px 0px;
-    }
+  .modal {
+    max-width: 533px;
+    height: 468px;
+    background-color: white;
+    border-radius: 20px;
+    padding-top: 40px;
+  }
 
-    .text {
-        font-family: 'Poppins';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 30px;
-        line-height: 45px;
-    }
+  .logo {
+    width: 260px;
+    height: 250px;
+    margin: 60px 60px 50px 0px;
+  }
 
-    .purple {
-        display: inline;
-        position: absolute;
-        bottom: 0%;
-        left: 0%;
-    }
+  .text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+  }
 
-    .peach {
-        display: inline;
-        position: absolute;
-        top: 0%;
-        right: 0%;
-    }
+  .purple {
+    display: inline;
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+  }
+
+  .peach {
+    display: inline;
+    position: absolute;
+    top: 0%;
+    right: 0%;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-    .allPage {
-        display: flex;
-        flex-direction: row;
-        height: 720px;
-        background-color: var(--background);
-        position: relative;
-    }
+  .allPage {
+    display: flex;
+    flex-direction: row;
+    min-height: 720px;
+    background-color: var(--background);
+    position: relative;
+  }
 
-    .rightSide {
-        background-color: #ffffff66;
-        padding: 136px 91px 116px 107px;
-        z-index: 2;
-        backdrop-filter: blur(50px);
-        margin: 0;
-    }
+  .rightSide {
+    background-color: #ffffff66;
+    padding: 136px 91px 116px 107px;
+    z-index: 2;
+    backdrop-filter: blur(50px);
+    margin: 0;
+  }
 
-    .modal {
-        width: 533px;
-        height: 468px;
-        background-color: white;
-        border-radius: 20px;
-    }
+  .modal {
+    width: 533px;
+    height: 468px;
+    background-color: white;
+    border-radius: 20px;
+  }
 
-    .leftSide {
-        display: flex;
-        flex-direction: column;
-        background-color: var(--background);
-        background-size: auto;
-        z-index: 2;
-    }
+  .leftSide {
+    display: flex;
+    flex-direction: column;
+    background-color: var(--background);
+    background-size: auto;
+    z-index: 2;
+  }
 
-    .logo {
-        width: 435.2px;
-        height: 419.5px;
-        margin-top: 150px;
-    }
+  .logo {
+    width: 435.2px;
+    height: 419.5px;
+    margin-top: 150px;
+  }
 
-    .text {
-        font-family: 'Poppins';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 30px;
-        line-height: 45px;
-        margin: 0;
-    }
+  .text {
+    font-family: 'Poppins';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 45px;
+    margin: 0;
+  }
 
-    .purple {
-        position: absolute;
-        bottom: 0%;
-        left: 0%;
-    }
+  .purple {
+    position: absolute;
+    bottom: 0%;
+    left: 0%;
+  }
 
-    .peach {
-        position: absolute;
-        top: 0%;
-        right: 0%;
-    }
+  .peach {
+    position: absolute;
+    top: 0%;
+    right: 0%;
+  }
 }

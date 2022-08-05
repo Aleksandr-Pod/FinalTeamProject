@@ -8,6 +8,7 @@ import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
 import authOperations from '../../redux/auth/authOperations';
 import { ToastContainer, toast } from 'react-toastify';
+import { Spinner } from '../spinner/spinner';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),
@@ -30,6 +31,7 @@ export default function LoginForm() {
   return (
     <>
       <img src={logo} className={styles.logo} alt="logo" />
+      {isLoading && <Spinner />}
       <Formik
         initialValues={{
           email: '',

@@ -21,13 +21,13 @@ export const StatPage = () => {
         {matches => (
           <Fragment>
             {matches.small && (
-              <>              
+              <div className={styles.wrap}>              
                 <NavMenuMobile />
                 <h3 className={styles.stat}>Statistics</h3>
                 <Diagram /> 
                 <Period />
                 <StatTable/>
-              </>
+              </div>
             )}
             {matches.medium && (
               <div className={styles.wrap}>

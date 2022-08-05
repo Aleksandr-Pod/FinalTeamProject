@@ -18,20 +18,21 @@ export const Diagram = () => {
   };
 
   const { statistics } = useSelector(state => state.statistics);
-  const { balance } = useSelector(state => state.auth.user);
-
-  statistics?.result?.map(el => {
-    data.labels.push(el._id.category);
-    data.datasets[0].data.push(el.totalSum);
-    data.datasets[0].borderColor.push(el._id.colorCategory);
-    data.datasets[0].backgroundColor.push(el._id.colorCategory);
-  });
+  const { totalBalance } = useSelector(state => state.transactions);
+  console.log("transactions", totalBalance)
+    statistics.result.forEach(el => {
+      data.labels.push(el._id.category);
+      data.datasets[0].data.push(el.totalSum);
+      data.datasets[0].borderColor.push(el._id.colorCategory);
+      data.datasets[0].backgroundColor.push(el._id.colorCategory);
+    }
+    )
 
   return (
     <div className={styles.wrapper}>
       {statistics?.result?.length > 0 ? (
         <div>
-          <p className={styles.balance}>₴ {balance}</p>
+          <p className={styles.balance}>₴ {totalBalance}</p>
           <Doughnut data={data} />
         </div>
       ) : (

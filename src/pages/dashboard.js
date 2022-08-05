@@ -11,6 +11,7 @@ import Modal from '../components/modal/modal';
 
 export const Dashboard = () => {
   console.log('Dashboard');
+
   const { activeBtn } = useParams();
 
   if (
@@ -26,6 +27,7 @@ export const Dashboard = () => {
       <img className={styles.peach} src={PeachEllipse} alt="logo" />
       <div className={styles.dash}>
         <Header />
+        <Modal/>
         {activeBtn === 'home' && <HomePage />}
         {activeBtn === 'currency' && <CurrencyPage />}
         {activeBtn === 'diagram' && <StatPage />}
