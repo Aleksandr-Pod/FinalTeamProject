@@ -7,6 +7,7 @@ import { PageNotFound } from '../components/pageNotFound/pageNotFound';
 import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
 import styles from './styles.module.css';
+import Modal from '../components/modal/modal';
 
 export const Dashboard = () => {
   console.log('Dashboard');
@@ -29,6 +30,7 @@ export const Dashboard = () => {
         {activeBtn === 'currency' && <CurrencyPage />}
         {activeBtn === 'diagram' && <StatPage />}
       </div>
+      <Modal/>
     </>
   );
 };

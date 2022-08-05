@@ -9,7 +9,6 @@ import { PageNotFound } from './pageNotFound/pageNotFound';
 // import { Currency } from './dashboard/currency';
 import { RegisterPage } from '../pages/registerPage';
 import { LoginPage } from '../pages/loginPage';
-import Modal from './modal/modal';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../redux/auth/authOperations';
@@ -30,7 +29,6 @@ export const App = () => {
   });
   return (
     <>
-      <Modal />
       <Routes>
         <Route
           path="/"
