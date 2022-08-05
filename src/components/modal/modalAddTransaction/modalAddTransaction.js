@@ -1,13 +1,15 @@
 import styles from './modalAddTransaction.module.css';
 import { useState, useRef, useEffect, useCallback } from 'react';
 import sprite from '../../../images/sprite.svg';
-
+import { Form, Formik } from 'formik';
 import { fetchCategories } from '../../../redux/categories/categoriesOperations';
 import { useDispatch, useSelector } from 'react-redux';
 import transactionOperations from '../../../redux/transactions/transactionOperations';
 import { Spinner } from '../../spinner/spinner';
 
+
 export default function ModalAddTransaction({ showModal, setShowModal }) {
+
   const { income, expense } = useSelector(state => state.categories);
   const dispatch = useDispatch();
   const [type, setType] = useState(true);
@@ -18,6 +20,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   const [comment, setComment] = useState('');
   const modalRef = useRef();
   const { isLoading } = useSelector(state => state.transactions);
+  console.log("ModalAdTransaction"); // это надо будет убрать
 
   const closeModal = e => {
     if (modalRef.current === e.target) {
@@ -26,8 +29,10 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   };
 
   useEffect(() => {
+    if (income.length === 0 || expense.length === 0) 
     dispatch(fetchCategories());
-  }, [dispatch]);
+  }, [dispatch, expense.length, income.length]);
+  
 
   const keyPress = useCallback(
     e => {

@@ -2,7 +2,6 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { setTransactions, setBalance } from '../transactions/transactionSlice';
-import transactionsOperations from '../transactions/transactionOperations';
 
 axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
 

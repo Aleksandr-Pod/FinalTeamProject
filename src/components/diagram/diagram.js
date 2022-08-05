@@ -5,27 +5,35 @@ import { useSelector } from 'react-redux';
 Chart.register(Tooltip, Title, ArcElement);
 
 export const Diagram = () => {
-  const data = {
-    datasets: [
-      {
-        data: [],
-        backgroundColor: [],
-        borderColor: [],
-        cutout: 100,
-      },
-    ],
-    labels: [],
-  };
+  // const data = {
+  //   datasets: [
+  //     {
+  //       data: [],
+  //       backgroundColor: [],
+  //       borderColor: [],
+  //       cutout: 100,
+  //     },
+  //   ],
+  //   labels: [],
+  // };
 
   const { statistics } = useSelector(state => state.statistics);
   const { balance } = useSelector(state => state.auth.user);
 
-  statistics?.result?.map(el => {
-    data.labels.push(el._id.category);
-    data.datasets[0].data.push(el.totalSum);
-    data.datasets[0].borderColor.push(el._id.colorCategory);
-    data.datasets[0].backgroundColor.push(el._id.colorCategory);
-  });
+  const data = statistics?.result?.map(el => ({
+    labels: el._id.category,
+    datasets: {
+      data: el.totalSum,
+      borderColor: el._id.colorCategory,
+      backgroundColor: el._id.colorCategory
+    },
+  }))
+  // {
+  //   data.labels.push(el._id.category);
+  //   data.datasets[0].data.push(el.totalSum);
+  //   data.datasets[0].borderColor.push(el._id.colorCategory);
+  //   data.datasets[0].backgroundColor.push(el._id.colorCategory);
+  // });
 
   return (
     <div className={styles.wrapper}>

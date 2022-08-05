@@ -1,18 +1,15 @@
 import styles from './statTable.module.css';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
 export const StatTable = () => {
-  const data = [];
+  // const data = [];
   const { statistics } = useSelector(state => state.statistics);
-  statistics?.result?.map(el => {
-    data.push({
-      id: el._id.category,
-      sum: el.totalSum,
-      backgroundColor: el._id.colorCategory,
-      category: el._id.category,
-    });
-  });
+  const data = statistics?.result?.map(el => ({
+    ...el, id: el._id.category,
+    sum: el.totalSum,
+    backgroundColor: el._id.colorCategory,
+    category: el._id.category,
+  }));
 
   return (
     <table className={styles.table}>
