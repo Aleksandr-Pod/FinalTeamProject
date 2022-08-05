@@ -49,10 +49,17 @@ const authSlice = createSlice({
         : action.payload.message;
       state.isLoading = false;
     },
+    [authOperation.logOut.pending]: state => {
+      state.isLoading = true;
+    },
     [authOperation.logOut.fulfilled]: state => {
       state.user = initialState.user;
       state.token = initialState.token;
       state.isLogged = false;
+      state.isLoading = false;
+    },
+    [authOperation.logOut.rejected]: state => {
+      state.isLoading = false;
     },
     [authOperation.getCurrentUser.pending]: state => {
       state.isLoading = true;
