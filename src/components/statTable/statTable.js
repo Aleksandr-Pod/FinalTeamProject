@@ -4,12 +4,15 @@ import { useSelector } from 'react-redux';
 export const StatTable = () => {
   // const data = [];
   const { statistics } = useSelector(state => state.statistics);
-  const data = statistics?.result?.map(el => ({
+  console.log("statistics", statistics);
+  
+  const data = statistics.result.map(el => ({
     ...el, id: el._id.category,
     sum: el.totalSum,
     backgroundColor: el._id.colorCategory,
     category: el._id.category,
   }));
+  console.log("data", data);
 
   return (
     <table className={styles.table}>

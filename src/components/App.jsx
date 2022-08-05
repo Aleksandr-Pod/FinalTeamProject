@@ -8,13 +8,13 @@ import { RedirectRoute } from './redirectRoute';
 import { PageNotFound } from './pageNotFound/pageNotFound';
 import { RegisterPage } from '../pages/registerPage';
 import { LoginPage } from '../pages/loginPage';
-// import Modal from './modal/modal';
 import authOperations from '../redux/auth/authOperations';
 import transactionsOperations from '../redux/transactions/transactionOperations';
 
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
@@ -24,9 +24,9 @@ export const App = () => {
       dispatch(transactionsOperations.getTransactions());
     }
   });
+
   return (
     <>
-      {/* <Modal /> */}
       <Routes>
         <Route
           path="/"
