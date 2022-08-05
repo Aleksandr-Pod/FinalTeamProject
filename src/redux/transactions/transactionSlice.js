@@ -49,7 +49,7 @@ export const transactionsSlice = createSlice({
     },
 
     [transactionsOperations.addTransaction.rejected]: (state, action) => {
-      state.error = action.payload.message;
+      state.error = action.payload.response.data.message;
       state.isLoading = false;
     },
   },
