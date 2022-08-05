@@ -10,6 +10,8 @@ import { RegisterPage } from '../pages/registerPage';
 import { LoginPage } from '../pages/loginPage';
 import authOperations from '../redux/auth/authOperations';
 import transactionsOperations from '../redux/transactions/transactionOperations';
+import { fetchStatistics } from '../redux/statistics/statisticsOperations';
+import { addStatistics } from '../redux/statistics/statisticsSlice';
 
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
@@ -22,6 +24,7 @@ export const App = () => {
   useEffect(() => {
     if (isLogged) {
       dispatch(transactionsOperations.getTransactions());
+      dispatch(fetchStatistics({}));
     }
   });
 
