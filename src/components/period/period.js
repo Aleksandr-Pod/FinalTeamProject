@@ -144,16 +144,15 @@ export const Period = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      fetchStatistics({
-        month: selectedMonth?.value ? selectedMonth.value : currentMonth,
-        year: selectedYear?.value ? selectedYear.value : '2022',
-      }),
-    ).then(response => {
-      const resp = response.payload;
-      dispatch(addStatistics(resp));
-    });
-  }, [selectedMonth, selectedYear, currentMonth, transactions, dispatch]);
+    if (selectedMonth) {
+      dispatch(
+        fetchStatistics({
+          month: selectedMonth?.value,
+          year: selectedYear?.value,
+        }),
+      );
+    }
+  }, [selectedMonth, transactions, dispatch]);
 
   return (
     <ul className={styles.list}>

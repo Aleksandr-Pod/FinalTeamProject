@@ -11,23 +11,7 @@ import { Currency } from '../components/dashboard/currency/currency';
 import { Ballance } from '../components/dashboard/ballance/ballance';
 import styles from './homePage.module.css';
 
-// import { useDispatch } from 'react-redux';
-// import { useEffect } from 'react';
-// import { fetchStatistics } from '../redux/statistics/statisticsOperations';
-// import { addStatistics } from '../redux/statistics/statisticsSlice';
-
 export const HomePage = () => {
-  // const dispatch = useDispatch();
-
-  // useEffect(() => {
-  //   dispatch(fetchStatistics({})).then(response => {
-  //     const resp = response.payload;
-  //     dispatch(addStatistics(resp));
-  //   });
-  // }, [dispatch]);
-
-  console.log('HomePage');
-
   return (
     <>
       <Media
@@ -41,7 +25,6 @@ export const HomePage = () => {
           <Fragment>
             {matches.small && (
               <>
-                {/* <p>Small</p> */}
                 <NavMenuMobile />
                 <Ballance />
                 <div className={styles.containerTable}>
@@ -51,7 +34,6 @@ export const HomePage = () => {
             )}
             {matches.medium && (
               <>
-                {/* <p>medium</p> */}
                 <div className={styles.currency}>
                   <div className={styles.nav_ballance}>
                     <NavMenu />
@@ -67,7 +49,6 @@ export const HomePage = () => {
             {matches.large && (
               <>
                 <div className={styles.largeSize}>
-                  {/* <p>large</p> */}
                   <div className={styles.leftSize}>
                     <NavMenu />
                     <Ballance />
