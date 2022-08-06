@@ -8,6 +8,10 @@
     max-width: 320px;
     margin: 0 auto;
 }
+.currencyMob {
+    width: 280px;
+    margin-top: 60px;
+}
 
 @media screen and (min-width: 768px) {
     .containerTable {
@@ -32,7 +36,7 @@
         display: flex;
         flex-direction: column;
         height: 100vh;
-        border-right: 1, 5px solid rgba(231, 229, 242, 1);
+        /* border-right: 1, 5px solid rgba(231, 229, 242, 1); */
         margin-right: 69px;
 
     }

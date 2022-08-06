@@ -10,7 +10,7 @@ export const NavMenu = () => {
           <NavLink
             to="/home"
             style={{ textDecoration: 'none' }}
-            // className={styles.text}
+            className={styles.text}
             children={({ isActive }) => {
               return (
                 <>
@@ -41,7 +41,7 @@ export const NavMenu = () => {
           <NavLink
             to="/diagram"
             style={{ textDecoration: 'none' }}
-            // className={styles.text}
+            className={styles.text}
             children={({ isActive }) => {
               return (
                 <>
