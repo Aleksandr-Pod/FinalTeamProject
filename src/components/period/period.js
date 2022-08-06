@@ -162,7 +162,7 @@ export const Period = () => {
           placeholder={'Month'}
           options={months}
           styles={customStyles}
-          isReadOnly={true}
+          isSearchable={false}
           defaultValue={
             statistics ? months[statistics.month - 1] : months[currentMonth - 1]
           }
@@ -178,7 +178,7 @@ export const Period = () => {
           options={years}
           styles={customStyles}
           defaultValue={years[0]}
-          isReadOnly={true}
+          isSearchable={false}
         />
         <svg className={styles.arrow} width="18" height="9">
           <use href={`${sprite}#icon-arrow`}></use>
