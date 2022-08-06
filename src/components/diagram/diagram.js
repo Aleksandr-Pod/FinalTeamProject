@@ -30,7 +30,9 @@ export const Diagram = () => {
     <div className={styles.wrapper}>
       {statistics?.result?.length > 0 ? (
         <div>
-          <p className={styles.balance}>₴ {totalBalance}</p>
+          <p className={styles.balance}>
+            ₴ {totalBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+          </p>
           <Doughnut data={data} />
         </div>
       ) : (

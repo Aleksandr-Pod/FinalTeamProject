@@ -6,7 +6,8 @@ export const StatTable = () => {
   const { statistics } = useSelector(state => state.statistics);
 
   const data = statistics.result.map(el => ({
-    ...el, id: el._id.category,
+    ...el,
+    id: el._id.category,
     sum: el.totalSum,
     backgroundColor: el._id.colorCategory,
     category: el._id.category,
@@ -30,16 +31,26 @@ export const StatTable = () => {
               ></div>
               <p className={styles.text}>{category}</p>
             </td>
-            <td className={styles.sum}>{sum}</td>
+            <td className={styles.sum}>
+              {sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+            </td>
           </tr>
         ))}
         <tr className={styles.data}>
           <td className={styles.title}>Expenses:</td>
-          <td className={styles.expenses}>{statistics?.totalExpense}</td>
+          <td className={styles.expenses}>
+            {statistics?.totalExpense
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+          </td>
         </tr>
         <tr className={styles.data}>
           <td className={styles.title}>Income:</td>
-          <td className={styles.income}>{statistics?.totalIncome}</td>
+          <td className={styles.income}>
+            {statistics?.totalIncome
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+          </td>
         </tr>
       </tbody>
     </table>
