@@ -26,7 +26,7 @@ export const App = () => {
       dispatch(transactionsOperations.getTransactions());
       dispatch(fetchStatistics({}));
     }
-  });
+  }, [dispatch, isLogged]);
 
   return (
     <>
