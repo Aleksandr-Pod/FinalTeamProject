@@ -10,7 +10,6 @@ export const TransactionTableMobile = () => {
     <>
       {transactions.length === 0 && (
         <>
-          <h3 className={styles.noTransactions}>No Transactions</h3>
           <p className={styles.transactionsText}>
             You haven't made any transactions yet
           </p>
