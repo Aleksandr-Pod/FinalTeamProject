@@ -6,10 +6,7 @@ import styles from './homePage.module.css';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
 import { ToastContainer, toast } from 'react-toastify';
-import {
-  TransactionTableMobile,
-  TransactionDesk,
-} from '../components/dashboard/transaction/';
+import { TransactionDesk } from '../components/dashboard/transaction/';
 import { Ballance } from '../components/dashboard/ballance/ballance';
 
 const CurrencyPage = () => {
