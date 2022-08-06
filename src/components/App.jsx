@@ -12,6 +12,7 @@ import authOperations from '../redux/auth/authOperations';
 import transactionsOperations from '../redux/transactions/transactionOperations';
 import { fetchStatistics } from '../redux/statistics/statisticsOperations';
 import { addStatistics } from '../redux/statistics/statisticsSlice';
+import { ToastContainer } from 'react-toastify';
 
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
@@ -65,6 +66,7 @@ export const App = () => {
         />
         <Route path="*" element={<PageNotFound path="/login" />} />;
       </Routes>
+      <ToastContainer />
     </>
   );
 };
