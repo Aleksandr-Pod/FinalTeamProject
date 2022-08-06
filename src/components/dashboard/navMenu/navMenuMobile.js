@@ -6,7 +6,7 @@ export const NavMenuMobile = () => {
   return (
     <nav>
       <ul className={styles.list}>
-        <li>
+        <li className={styles.list1}>
           <NavLink
             to="/home"
             children={({ isActive }) => {
@@ -26,7 +26,7 @@ export const NavMenuMobile = () => {
             }}
           />
         </li>
-        <li>
+        <li className={styles.list1}>
           <NavLink
             to="/diagram"
             children={({ isActive }) => {
@@ -46,7 +46,7 @@ export const NavMenuMobile = () => {
             }}
           />
         </li>
-        <li>
+        <li className={styles.list1}>
           <NavLink
             to="/currency"
             children={({ isActive }) => {

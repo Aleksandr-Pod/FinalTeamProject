@@ -1,84 +1,47 @@
- .currency {
-     width: 280px;
-
-     /* margin: 0 auto; */
-        border-radius: 30px;
-        border-spacing: 0px;
-        border-radius: 30px;
-        overflow: hidden;
-    
-        font-family: var(--primary-font-family);
-        font-weight: 400;
-        font-size: 16px;
-        line-height: 24px;
-        text-align: left;
-    
-        color: white;
-        background-color: var(--blue);
-        background-image: url('./vector-mobile.svg');
-        background-repeat: no-repeat;
-        background-size: contain;
-        background-position-y: bottom;
-}
-    
-.currency thead {
-        background-color: var(--lightBlue);
-}
- .currency tbody tr td {
-     padding-left: 22px;
-     padding-bottom: 8px;
- }
-
- .currency th {
-     padding: 11px 10px 16px 15px;
-     /* font-size: 18px; */
-     
- }
-
- .currency td {
-     padding: 10px 10px 4px;
- }
-
- @media screen and (min-width:768px) {
-     .currency {
-         width: 336px;
-        border-radius: 30px;
-            border-spacing: 0px;
-            border-radius: 30px;
-            overflow: hidden;
-        
-            font-family: var(--primary-font-family);
-            font-weight: 400;
-            font-size: 18px;
-            line-height: 1.5em;
-            text-align: left;
-        
-            color: white;
-            background-color: var(--blue);
-            background-image: url('./vector-mobile.svg');
-            background-repeat: no-repeat;
-            background-size: contain;
-            background-position-y: bottom;
-        }
-    .currency thead {
-    background-color: var(--lightBlue);
-}
-    .currency thead th {
-        padding: 11px 20px 16px;
-    }
-    
-    .currency tbody td {
-        padding: 10px 20px 4px;
-    }
-    
-    .currency tbody tr:last-child td {
-        padding-bottom: 22px;
-    }
-}
-
-@media screen and (min-width:1280px) {
 .currency {
-    width: 395px;
+  width: 280px;
+  margin: 31px auto;
+  border-radius: 30px;
+  border-spacing: 0px;
+  border-radius: 30px;
+  overflow: hidden;
+
+  font-family: var(--primary-font-family);
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
+  text-align: left;
+
+  color: white;
+  background-color: var(--blue);
+  background-image: url('./vector-mobile.svg');
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-y: bottom;
+}
+
+.currency thead {
+  background-color: var(--lightBlue);
+}
+.currency tbody tr td {
+  padding-left: 22px;
+  padding-bottom: 8px;
+}
+
+.currency th {
+  padding: 11px 10px 16px 15px;
+  /* font-size: 18px; */
+}
+
+.currency td {
+  padding: 10px 10px 4px;
+}
+
+@media screen and (min-width: 768px) {
+  .currency {
+    width: 336px;
+    height: 182px;
+    margin: 0;
     border-radius: 30px;
     border-spacing: 0px;
     border-radius: 30px;
@@ -96,26 +59,64 @@
     background-repeat: no-repeat;
     background-size: contain;
     background-position-y: bottom;
-}
-
-.currency thead {
+  }
+  .currency thead {
     background-color: var(--lightBlue);
+  }
+  .currency thead th {
+    padding: 11px 20px 16px;
+  }
+
+  .currency tbody td {
+    padding: 10px 20px 4px;
+  }
+
+  .currency tbody tr:last-child td {
+    padding-bottom: 22px;
+  }
 }
 
-.currency thead th {
+@media screen and (min-width: 1280px) {
+  .currency {
+    width: 395px;
+    margin: 31px auto;
+    border-radius: 30px;
+    border-spacing: 0px;
+    border-radius: 30px;
+    overflow: hidden;
+
+    font-family: var(--primary-font-family);
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1.5em;
+    text-align: left;
+
+    color: white;
+    background-color: var(--blue);
+    background-image: url('./vector-mobile.svg');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position-y: bottom;
+  }
+
+  .currency thead {
+    background-color: var(--lightBlue);
+  }
+
+  .currency thead th {
     font-weight: 700;
     padding: 17px 30px 20px;
-}
+  }
 
-.currency tbody td {
+  .currency tbody td {
     font-size: 16px;
     line-height: 1.5em;
     padding: 20px 30px 7px;
-}
+  }
 
-.currency tbody tr:last-child td {
+  .currency tbody tr:last-child td {
     padding-bottom: 135px;
-}
+  }
 }
 /* @media screen and (max-width: 767px) {
     .currency {
@@ -123,6 +124,3 @@
         margin: 0 auto;
     }
 } */
-
-
-    
