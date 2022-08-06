@@ -63,18 +63,8 @@ export const Currency = () => {
               currencies.map(({ ccy, buy, sale }, idx) => (
                 <tr key={idx}>
                   <td>{ccy}</td>
-                  <td>
-                    {Number(buy)
-                      .toFixed(2)
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-                  </td>
-                  <td>
-                    {Number(sale)
-                      .toFixed(2)
-                      .toString()
-                      .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-                  </td>
+                  <td>{Number(buy).toFixed(2)}</td>
+                  <td>{Number(sale).toFixed(2)}</td>
                 </tr>
               ))}
           </tbody>
