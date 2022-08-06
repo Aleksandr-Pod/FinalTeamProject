@@ -1,14 +1,25 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Media from 'react-media';
+import { useSelector } from 'react-redux';
 import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import styles from './homePage.module.css';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
+import { ToastContainer, toast } from 'react-toastify';
+import { TransactionDesk } from '../components/dashboard/transaction/';
+import { Ballance } from '../components/dashboard/ballance/ballance';
 
 const CurrencyPage = () => {
+  const { error } = useSelector(state => state.transactions);
+
+  useEffect(() => {
+    if (error) {
+      toast(error);
+    }
+  }, [error]);
+
   return (
     <>
-      {/* <h3>CurrencyPage</h3> */}
       <Media
         queries={{
           small: '(max-width: 768px)',
@@ -28,20 +39,34 @@ const CurrencyPage = () => {
             )}
             {matches.medium && (
               <>
-                <p>medium</p>
-                <NavMenu />
-                <p>BALLANCE</p>
-                <p>STAT Table</p>
-                <Currency />
+                <ToastContainer />
+                <div className={styles.currency}>
+                  <div className={styles.nav_ballance}>
+                    <NavMenu />
+                    <Ballance />
+                  </div>
+                  <Currency />
+                </div>
+                <div className={styles.containerTable}>
+                  <TransactionDesk />
+                </div>
               </>
             )}
             {matches.large && (
               <>
-                <p>large</p>
-                <NavMenu />
-                <p>BALLANCE</p>
-                <p>STAT Table</p>
-                <Currency />
+                <ToastContainer />
+                <div className={styles.largeSize}>
+                  <div className={styles.leftSize}>
+                    <NavMenu />
+                    <Ballance />
+                    <Currency />
+                  </div>
+                  <div className={styles.rightSize}>
+                    <div className={styles.containerTable}>
+                      <TransactionDesk />
+                    </div>
+                  </div>
+                </div>
               </>
             )}
           </Fragment>
