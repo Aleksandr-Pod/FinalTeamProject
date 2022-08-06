@@ -37,9 +37,10 @@ export default function RegisterForm() {
         }}
         validateOnMount
         onSubmit={async ({ email, password, firstName }) => {
-          dispatch(
+          await dispatch(
             authOperations.register({ email, password, name: firstName }),
           );
+          await dispatch(authOperations.login({ email, password }));
         }}
         validationSchema={loginSchema}
       >
