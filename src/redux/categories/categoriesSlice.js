@@ -6,6 +6,7 @@ const categoriesSlice = createSlice({
   initialState: {
     income: [],
     expense: [],
+    isLoading: false,
   },
   reducers: {
     addCategories(state, { payload }) {
@@ -13,9 +14,16 @@ const categoriesSlice = createSlice({
     },
   },
   extraReducers: {
+    [fetchCategories.pending]: state => {
+      state.isLoading = true;
+    },
     [fetchCategories.fulfilled]: (state, { payload }) => {
       state.income = [...payload.income];
       state.expense = [...payload.expense];
+      state.isLoading = false;
+    },
+    [fetchCategories.rejected]: state => {
+      state.isLoading = false;
     },
   },
 });
