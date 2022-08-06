@@ -27,7 +27,7 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   return (
     <>
-      <img src={logo} className={styles.logo} />
+      <img src={logo} className={styles.logo} alt="logo" />
       <Formik
         initialValues={{
           email: '',

@@ -1,22 +1,15 @@
-import { lazy } from 'react';
+import { lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
 // components
-// import HomePage from './homePage';
-// import CurrencyPage from './currencyPage';
-import StatPage from './statPage';
-import PageNotFound from './pageNotFound';
 import Header from '../components/dashboard/header/header';
 import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
 import styles from './styles.module.css';
 import Modal from '../components/modal/modal';
-
-//          не удалять !
-//          после переименования файлов снять коммент.
 const HomePage = lazy(() => import('./homePage'));
 const CurrencyPage = lazy(() => import('./currencyPage'));
-// const StatPage = lazy(() => import ('./statPage'));
-// const PageNotFound = lazy(() => import('./pageNotFound'));
+const StatPage = lazy(() => import('./statPage'));
+const PageNotFound = lazy(() => import('./pageNotFound'));
 
 const Dashboard = () => {
   console.log('Dashboard');
@@ -28,7 +21,11 @@ const Dashboard = () => {
     (activeBtn !== 'currency') &
     (activeBtn !== 'diagram')
   )
-    return <PageNotFound path="/home" />;
+    return (
+      <Suspense>
+        <PageNotFound path="/home" />
+      </Suspense>
+    );
   return (
     <>
       {/* <div className={styles.vector}></div> */}
@@ -37,9 +34,21 @@ const Dashboard = () => {
       <div className={styles.dash}>
         <Header />
         <Modal />
-        {activeBtn === 'home' && <HomePage />}
-        {activeBtn === 'currency' && <CurrencyPage />}
-        {activeBtn === 'diagram' && <StatPage />}
+        {activeBtn === 'home' && (
+          <Suspense>
+            <HomePage />
+          </Suspense>
+        )}
+        {activeBtn === 'currency' && (
+          <Suspense>
+            <CurrencyPage />
+          </Suspense>
+        )}
+        {activeBtn === 'diagram' && (
+          <Suspense>
+            <StatPage />
+          </Suspense>
+        )}
       </div>
       <Modal />
     </>
