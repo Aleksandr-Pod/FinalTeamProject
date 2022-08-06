@@ -36,6 +36,7 @@ const login = createAsyncThunk(
       token.set(response.data.data.token);
       dispatch(setTransactions(response.data.data));
       dispatch(setBalance(response.data.data.user.balance));
+      toast(response.data.message);
       return response.data.data;
     } catch (err) {
       return rejectWithValue(err.message);
