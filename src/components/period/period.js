@@ -4,7 +4,6 @@ import sprite from '../../images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchStatistics } from '../../redux/statistics/statisticsOperations';
-import { addStatistics } from '../../redux/statistics/statisticsSlice';
 
 const months = [
   { value: '1', label: 'January' },
@@ -137,7 +136,6 @@ const customStyles = {
 };
 
 export const Period = () => {
-  const { transactions } = useSelector(state => state.transactions);
   const { statistics } = useSelector(state => state.statistics);
 
   const currentMonth = new Date().toISOString().slice(5, 7);
@@ -154,7 +152,7 @@ export const Period = () => {
         }),
       );
     }
-  }, [selectedMonth, dispatch]);
+  }, [selectedMonth, selectedYear, dispatch]);
 
   return (
     <ul className={styles.list}>
@@ -164,6 +162,7 @@ export const Period = () => {
           placeholder={'Month'}
           options={months}
           styles={customStyles}
+          isReadOnly={true}
           defaultValue={
             statistics ? months[statistics.month - 1] : months[currentMonth - 1]
           }
@@ -179,6 +178,7 @@ export const Period = () => {
           options={years}
           styles={customStyles}
           defaultValue={years[0]}
+          isReadOnly={true}
         />
         <svg className={styles.arrow} width="18" height="9">
           <use href={`${sprite}#icon-arrow`}></use>
