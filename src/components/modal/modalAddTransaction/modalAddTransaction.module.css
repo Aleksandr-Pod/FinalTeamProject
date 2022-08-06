@@ -15,6 +15,33 @@
   z-index: 1200;
 }
 
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+.wrapperComment {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  row-gap: 20px;
+}
+
+.errorWrapper {
+  position: absolute;
+  top: 28px;
+
+  font-size: 14px;
+  color: #ff0000;
+}
+.errorWrapperComment {
+  position: absolute;
+  top: 78px;
+
+  font-size: 14px;
+  color: #ff0000;
+}
 .content {
   position: relative;
   height: 603px;
@@ -230,6 +257,11 @@ select {
 .addBtn:focus {
   background-color: var(--turquoise);
   color: var(--white);
+}
+
+.addBtn:disabled {
+  opacity: 0.3;
+  cursor: auto;
 }
 
 .cancelBtn {
