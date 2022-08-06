@@ -29,6 +29,7 @@ export const App = () => {
 
   useEffect(() => {
     if (isLogged) {
+      console.log('Getting transactions in App');
       dispatch(transactionsOperations.getTransactions());
       dispatch(fetchStatistics({}));
     }
