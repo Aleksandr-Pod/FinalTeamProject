@@ -11,7 +11,7 @@ import { StatTable } from '../components/statTable/statTable';
 // import styles from './styles.module.css';
 import styles from './statPage.module.css';
 
-export const StatPage = () => {
+const StatPage = () => {
   return (
     <Media
       queries={{
@@ -80,3 +80,4 @@ export const StatPage = () => {
     </Media>
   );
 };
+export default StatPage;

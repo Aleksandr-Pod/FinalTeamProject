@@ -13,7 +13,7 @@ import styles from './homePage.module.css';
 import { ToastContainer, toast } from 'react-toastify';
 import { useSelector } from 'react-redux';
 
-export const HomePage = () => {
+const HomePage = () => {
   const { error } = useSelector(state => state.transactions);
 
   useEffect(() => {
@@ -81,3 +81,4 @@ export const HomePage = () => {
     </>
   );
 };
+export default HomePage;

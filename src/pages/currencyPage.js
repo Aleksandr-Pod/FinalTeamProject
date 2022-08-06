@@ -4,7 +4,8 @@ import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import styles from './homePage.module.css';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
-export const CurrencyPage = () => {
+
+const CurrencyPage = () => {
   return (
     <>
       {/* <h3>CurrencyPage</h3> */}
@@ -49,3 +50,4 @@ export const CurrencyPage = () => {
     </>
   );
 };
+export default CurrencyPage;
