@@ -38,12 +38,15 @@
     }
 
     .text {
-        height: 80px;        
+        height: 80px;    
+            
     }
+      
 }
 
 @media screen and (max-width: 767px) {
     .wrapper {
+        margin-bottom: 32px;
         height: 280px;
         width: 280px;
     }

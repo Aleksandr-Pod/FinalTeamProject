@@ -13,57 +13,70 @@ import styles from './statPage.module.css';
 
 export const StatPage = () => {
   return (
-      <Media queries = {{
-        small: "(max-width: 767px)",
-        medium: "(min-width: 768px) and (max-width: 1279px)",
-        large: "(min-width: 1280px)"
-      }}>
-        {matches => (
-          <Fragment>
-            {matches.small && (
-              <div className={styles.wrap}>              
-                <NavMenuMobile />
+    <Media
+      queries={{
+        small: '(max-width: 767px)',
+        medium: '(min-width: 768px) and (max-width: 1279px)',
+        large: '(min-width: 1280px)',
+      }}
+    >
+      {matches => (
+        <Fragment>
+          {matches.small && (
+            <>
+              <NavMenuMobile />
+              <div className={styles.mobDiagram}>
                 <h3 className={styles.stat}>Statistics</h3>
-                <Diagram /> 
+                <Diagram />
                 <Period />
-                <StatTable/>
+                <StatTable />
               </div>
-            )}
-            {matches.medium && (
-              <div className={styles.wrap}>
+            </>
+          )}
+          {matches.medium && (
+            <>
+              <div className={styles.currency}>
                 <div>
                   <NavMenu />
-                  <Ballance/>
-                  <h3 className={styles.stat}>Statistics</h3>
-                  <Diagram/>
-                </div>
-                <div className={styles.right}>
-                  <Currency />
-                  <Period />
-                  <StatTable/>
-                </div>          
-              </div>
-            )}
-            {matches.large && (
-              <div className={styles.wrap}>
-                <div className={styles.left}>
-                  <NavMenu />
                   <Ballance />
-                  <Currency/>
                 </div>
-                <div className={styles.right}>
-                  <h3 className={styles.stat}>Statistics</h3>
-                  <div className={styles.chart}>
-                    <Diagram/>
-                    <div className={styles.table}>
-                      <Period/>
-                      <StatTable/>
-                    </div>
+                <Currency />
+              </div>
+              <div className={styles.right}>
+                <h3 className={styles.stat}>Statistics</h3>
+                <div className={styles.chart}>
+                  <div className={styles.diagram}>
+                    <Diagram />
+                  </div>
+                  <div className={styles.table}>
+                    <Period />
+                    <StatTable />
                   </div>
                 </div>
-              </div>)}
-          </Fragment>
-        )}
-      </Media>
-  )
+              </div>
+            </>
+          )}
+          {matches.large && (
+            <div className={styles.wrap}>
+              <div className={styles.left}>
+                <NavMenu />
+                <Ballance />
+                <Currency />
+              </div>
+              <div className={styles.right}>
+                <h3 className={styles.stat}>Statistics</h3>
+                <div className={styles.chart}>
+                  <Diagram />
+                  <div className={styles.table}>
+                    <Period />
+                    <StatTable />
+                  </div>
+                </div>
+              </div>
+            </div>
+          )}
+        </Fragment>
+      )}
+    </Media>
+  );
 };
