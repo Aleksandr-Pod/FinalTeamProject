@@ -157,6 +157,11 @@ select {
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
+  /* color: var(--grey); */
+  color: var(--black);
+}
+
+.placeholder {
   color: var(--grey);
 }
 
