@@ -1,67 +1,62 @@
 @import '../../../variables/colors.css';
 p {
-    margin: 0;
+  margin: 0;
 }
-    .box {
-        width: 280px;
-        height: 80px;
-        padding-left: 40px;
-        margin: 47px auto 32px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        background-color: white;
-        border-radius: 30px;
+.box {
+  width: 280px;
+  height: 80px;
+  padding-left: 40px;
+  margin: 15px auto 32px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  background-color: white;
+  border-radius: 30px;
+}
 
-    };
+.title {
+  margin: 0;
+  color: var(--darkGrey);
+}
 
-    .title {
-        margin: 0;
-        color: var(--darkGrey);
-        
-    }
-
-    .value {
-        margin: 0;
-        font-size: 30px;
-        font-weight: bold;
-    } 
+.value {
+  margin: 0;
+  font-size: 30px;
+  font-weight: bold;
+}
 
 @media screen and (min-width: 768px) {
-    .box {
-        width: 336px;
-        margin-bottom: 0px;
-        margin-top: 52px
-    };
-    .title {
-        margin: 0;
-        color: var(--darkGrey);
-        font-family: 'Circe';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 18px;
-            text-transform: uppercase;  
-    }
-    
+  .box {
+    width: 336px;
+    margin-bottom: 0px;
+    margin-top: 68px;
+  }
+  .title {
+    margin: 0;
+    color: var(--darkGrey);
+    font-family: 'Circe';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
 }
 @media screen and (min-width: 1280px) {
-    .box {
-        width: 395px;
-        margin: 0 0 32px 0;
-    };
-    .title {
-        margin: 0;
-        color: var(--darkGrey);
-        font-family: 'Circe';
-            font-style: normal;
-            font-weight: 400;
-            font-size: 12px;
-            line-height: 18px;
-            text-transform: uppercase;
-           
-    }
-    
+  .box {
+    width: 395px;
+    margin: 0;
+  }
+  .title {
+    margin: 0;
+    color: var(--darkGrey);
+    font-family: 'Circe';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+  }
 }
 
 /* .box {
