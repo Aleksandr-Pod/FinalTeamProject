@@ -24,20 +24,23 @@ export const StatTable = () => {
       {!isLoading && (
         <>
           <tbody>
-            {data.map(({ id, sum, backgroundColor, category }) => (
-              <tr key={id} className={styles.row}>
-                <td className={styles.category}>
-                  <div
-                    className={styles.square}
-                    style={{ background: backgroundColor }}
-                  ></div>
-                  <p className={styles.text}>{category}</p>
-                </td>
-                <td className={styles.sum}>
-                  {sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
-                </td>
-              </tr>
-            ))}
+            {data
+              .sort((a, b) => a.sum - b.sum)
+              .map(({ id, sum, backgroundColor, category }) => (
+                <tr key={id} className={styles.row}>
+                  <td className={styles.category}>
+                    <div
+                      className={styles.square}
+                      style={{ background: backgroundColor }}
+                    ></div>
+                    <p className={styles.text}>{category}</p>
+                  </td>
+                  <td className={styles.sum}>
+                    {sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+                  </td>
+                </tr>
+              ))
+            }
             <tr className={styles.data}>
               <td className={styles.title}>Expenses:</td>
               <td className={styles.expenses}>
