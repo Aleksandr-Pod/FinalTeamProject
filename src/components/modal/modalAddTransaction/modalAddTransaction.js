@@ -166,7 +166,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                         id="category"
                         className={styles.select}
                       >
-                        <option>Select a category </option>
+                        <option className={styles.placeholder}>Select a category </option>
                         {values.income
                           ? income.map((el, id) => {
                               return (
