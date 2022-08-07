@@ -13,7 +13,7 @@ import { Spinner } from '../../spinner/spinner';
 
 const transactionSchema = Yup.object().shape({
   type: Yup.boolean(),
-  amount: Yup.number().integer().positive().min(0.01).max(999999).required(),
+  amount: Yup.number().positive().min(0.01).max(999999).required(),
   date: Yup.string().required(),
   category: Yup.string()
     .matches(
@@ -57,13 +57,12 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   }, [keyPress]);
 
   const handleSubmit = async (values, { resetForm }) => {
-    const newDate = calcDate();
     const amountNum = Number(values.amount).toFixed(2);
     const categoryId = getCategoryId(values);
     const data = {
       amount: amountNum,
       isIncome: values.income,
-      date: newDate,
+      date: transformDate(values.date),
       category: values.category,
       categoryId,
       comment: values.comment,
@@ -73,14 +72,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     setShowModal(false);
     resetForm();
   };
-  function calcDate() {
-    const today = new Date();
-    let day = today.getDate();
-    if (day < 10) day = `0${day}`;
-    let month = today.getMonth() + 1;
-    if (month < 10) month = `0${month}`;
-    return `${day}-${month}-${today.getFullYear()}`;
-  }
+
   function getCategoryId(values) {
     let categoryId;
     values.income
@@ -96,8 +88,12 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
         });
     return categoryId;
   }
+  function transformDate(date) {
+    return `${date.slice(8)}.${date.slice(5, 7)}.${date.slice(0, 4)}`;
+  }
   const todayDate = new Date().toISOString().slice(0, 10);
-
+  const currentMonth = new Date().toISOString().slice(5, 7);
+  const currentStart = `2022-${currentMonth}-01`;
   return (
     <>
       {showModal ? (
@@ -166,7 +162,9 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                         id="category"
                         className={styles.select}
                       >
-                        <option className={styles.placeholder}>Select a category </option>
+                        <option className={styles.placeholder}>
+                          Select a category{' '}
+                        </option>
                         {values.income
                           ? income.map((el, id) => {
                               return (
@@ -212,7 +210,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                           className={styles.inputDate}
                           type="date"
                           name="date"
-                          min={todayDate}
+                          min={currentStart}
                           max={todayDate}
                           required
                         />
