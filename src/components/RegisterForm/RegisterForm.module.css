@@ -38,7 +38,7 @@
 }
 
 .input:focus,
-input:hover {
+.input:hover {
   border-bottom: 1px solid var(--turquoise);
 }
 
@@ -118,12 +118,12 @@ input:hover {
   left: 54px;
 
   font-size: 14px;
-  color: #ff0000;
+  color: #ff6596;
 }
 
 .statusBarWrapper {
   position: absolute;
-  top: 55px;
+  top: 30px;
 }
 .logo {
   margin-bottom: 64px;

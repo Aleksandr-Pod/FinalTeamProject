@@ -185,7 +185,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                       </Field>
                       {errors.category && touched.category ? (
                         <div className={styles.errorWrapper}>
-                          {'Please select category'}
+                          {'please, select category'}
                         </div>
                       ) : null}
                     </div>
@@ -201,7 +201,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                           required
                         />
                         {errors.amount && touched.amount ? (
-                          <div className={styles.errorWrapper}>
+                          <div className={styles.errorWrapperAmount}>
                             {errors.amount}
                           </div>
                         ) : null}
