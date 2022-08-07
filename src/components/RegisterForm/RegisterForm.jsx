@@ -6,7 +6,7 @@ import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
 import PasswordStrengthBar from '../passwordStrengthBar/PasswordStrengthBar';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import authOperations from '../../redux/auth/authOperations';
 import { ToastContainer } from 'react-toastify';
 
@@ -24,6 +24,8 @@ const loginSchema = Yup.object().shape({
 });
 
 export default function RegisterForm() {
+  const { error } = useSelector(state => state.auth);
+
   const dispatch = useDispatch();
   return (
     <>
@@ -40,7 +42,9 @@ export default function RegisterForm() {
           await dispatch(
             authOperations.register({ email, password, name: firstName }),
           );
-          await dispatch(authOperations.login({ email, password }));
+          if (!!error) {
+            await dispatch(authOperations.login({ email, password }));
+          }
         }}
         validationSchema={loginSchema}
       >

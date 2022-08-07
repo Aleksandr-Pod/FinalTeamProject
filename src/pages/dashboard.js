@@ -6,6 +6,8 @@ import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
 import styles from './styles.module.css';
 import Modal from '../components/modal/modal';
+import { Spinner } from '../components/spinner/spinner';
+
 const HomePage = lazy(() => import('./homePage'));
 const CurrencyPage = lazy(() => import('./currencyPage'));
 const StatPage = lazy(() => import('./statPage'));
@@ -35,17 +37,17 @@ const Dashboard = () => {
         <Header />
         <Modal />
         {activeBtn === 'home' && (
-          <Suspense>
+          <Suspense fallback={<Spinner />}>
             <HomePage />
           </Suspense>
         )}
         {activeBtn === 'currency' && (
-          <Suspense>
+          <Suspense fallback={<Spinner />}>
             <CurrencyPage />
           </Suspense>
         )}
         {activeBtn === 'diagram' && (
-          <Suspense>
+          <Suspense fallback={<Spinner />}>
             <StatPage />
           </Suspense>
         )}
