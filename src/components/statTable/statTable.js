@@ -3,6 +3,7 @@ import { useSelector } from 'react-redux';
 
 export const StatTable = () => {
   const { statistics, isLoading } = useSelector(state => state.statistics);
+  const { totalBalance } = useSelector(state => state.transactions);
 
   const data = statistics.result.map(el => ({
     ...el,
@@ -45,10 +46,18 @@ export const StatTable = () => {
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
               </td>
             </tr>
-            <tr className={styles.data}>
+            <tr className={`${styles.data} ${styles.rowIncome}`}>
               <td className={styles.title}>Income:</td>
               <td className={styles.income}>
                 {statistics?.totalIncome
+                  .toString()
+                  .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+              </td>
+            </tr>
+            <tr className={styles.ballance}>
+              <td className={styles.title}>Ballance:</td>
+              <td className={styles.ballanceTotal}>
+                {totalBalance
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
               </td>

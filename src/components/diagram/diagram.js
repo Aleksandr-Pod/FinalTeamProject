@@ -20,7 +20,6 @@ export const Diagram = () => {
   };
 
   const { statistics, isLoading } = useSelector(state => state.statistics);
-  const { totalBalance } = useSelector(state => state.transactions);
   statistics.result.forEach(el => {
     data.labels.push(el._id.category);
     data.datasets[0].data.push(el.totalSum);
@@ -35,7 +34,7 @@ export const Diagram = () => {
         ) : (
           <div>
             <p className={styles.balance}>
-              ₴ {totalBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+              ₴ {statistics?.totalExpense.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
             </p>
             <Doughnut data={data} />
           </div>
