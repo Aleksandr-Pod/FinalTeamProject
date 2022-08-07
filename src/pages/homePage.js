@@ -1,4 +1,4 @@
-import { Fragment } from 'react';
+import { Fragment, useEffect } from 'react';
 import Media from 'react-media';
 // components
 import {
@@ -10,9 +10,17 @@ import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
 import { Ballance } from '../components/dashboard/ballance/ballance';
 import styles from './homePage.module.css';
+import { ToastContainer, toast } from 'react-toastify';
+import { useSelector } from 'react-redux';
 
-export const HomePage = () => {
-  console.log('HomePage');
+const HomePage = () => {
+  const { error } = useSelector(state => state.transactions);
+
+  useEffect(() => {
+    if (error) {
+      toast(error);
+    }
+  }, [error]);
 
   return (
     <>
@@ -27,7 +35,7 @@ export const HomePage = () => {
           <Fragment>
             {matches.small && (
               <>
-                {/* <p>Small</p> */}
+                <ToastContainer />
                 <NavMenuMobile />
                 <Ballance />
                 <div className={styles.containerTable}>
@@ -37,7 +45,7 @@ export const HomePage = () => {
             )}
             {matches.medium && (
               <>
-                {/* <p>medium</p> */}
+                <ToastContainer />
                 <div className={styles.currency}>
                   <div className={styles.nav_ballance}>
                     <NavMenu />
@@ -52,8 +60,8 @@ export const HomePage = () => {
             )}
             {matches.large && (
               <>
+                <ToastContainer />
                 <div className={styles.largeSize}>
-                  {/* <p>large</p> */}
                   <div className={styles.leftSize}>
                     <NavMenu />
                     <Ballance />
@@ -73,3 +81,4 @@ export const HomePage = () => {
     </>
   );
 };
+export default HomePage;

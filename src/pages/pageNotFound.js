@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export const PageNotFound = ({ path = '/' }) => {
+const PageNotFound = ({ path = '/' }) => {
   console.log('BackPath=', path);
   return (
     <div style={{ textAlign: 'center' }}>
@@ -11,3 +11,4 @@ export const PageNotFound = ({ path = '/' }) => {
     </div>
   );
 };
+export default PageNotFound;

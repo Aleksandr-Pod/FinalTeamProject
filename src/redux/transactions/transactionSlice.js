@@ -30,7 +30,8 @@ export const transactionsSlice = createSlice({
     },
     [transactionsOperations.getTransactions.fulfilled]: (state, action) => {
       state.transactions = action.payload;
-      state.totalBalance = action.payload[0].balance;
+      state.totalBalance =
+        action.payload.length === 0 ? 0 : action.payload[0].balance;
       state.isLoading = false;
     },
     [transactionsOperations.getTransactions.rejected]: (state, action) => {
@@ -49,7 +50,7 @@ export const transactionsSlice = createSlice({
     },
 
     [transactionsOperations.addTransaction.rejected]: (state, action) => {
-      state.error = action.payload.message;
+      state.error = action.payload.response.data.message;
       state.isLoading = false;
     },
   },

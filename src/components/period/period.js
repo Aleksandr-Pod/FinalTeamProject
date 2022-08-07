@@ -4,7 +4,6 @@ import sprite from '../../images/sprite.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import { fetchStatistics } from '../../redux/statistics/statisticsOperations';
-import { addStatistics } from '../../redux/statistics/statisticsSlice';
 
 const months = [
   { value: '1', label: 'January' },
@@ -137,23 +136,23 @@ const customStyles = {
 };
 
 export const Period = () => {
-  const { transactions } = useSelector(state => state.transactions);
+  const { statistics } = useSelector(state => state.statistics);
+
   const currentMonth = new Date().toISOString().slice(5, 7);
   const [selectedMonth, setSelectedMonth] = useState(null);
   const [selectedYear, setSelectedYear] = useState(null);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(
-      fetchStatistics({
-        month: selectedMonth?.value ? selectedMonth.value : currentMonth,
-        year: selectedYear?.value ? selectedYear.value : '2022',
-      }),
-    ).then(response => {
-      const resp = response.payload;
-      dispatch(addStatistics(resp));
-    });
-  }, [selectedMonth, selectedYear, currentMonth, transactions, dispatch]);
+    if (selectedMonth) {
+      dispatch(
+        fetchStatistics({
+          month: selectedMonth?.value,
+          year: selectedYear?.value,
+        }),
+      );
+    }
+  }, [selectedMonth, selectedYear, dispatch]);
 
   return (
     <ul className={styles.list}>
@@ -163,7 +162,10 @@ export const Period = () => {
           placeholder={'Month'}
           options={months}
           styles={customStyles}
-          defaultValue={months[currentMonth - 1]}
+          isSearchable={false}
+          defaultValue={
+            statistics ? months[statistics.month - 1] : months[currentMonth - 1]
+          }
         />
         <svg className={styles.arrow} width="18" height="9">
           <use href={`${sprite}#icon-arrow`}></use>
@@ -176,6 +178,7 @@ export const Period = () => {
           options={years}
           styles={customStyles}
           defaultValue={years[0]}
+          isSearchable={false}
         />
         <svg className={styles.arrow} width="18" height="9">
           <use href={`${sprite}#icon-arrow`}></use>

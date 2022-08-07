@@ -1,18 +1,17 @@
 import styles from './statTable.module.css';
 import { useSelector } from 'react-redux';
-import { useEffect } from 'react';
 
 export const StatTable = () => {
-  const data = [];
+  // const data = [];
   const { statistics } = useSelector(state => state.statistics);
-  statistics?.result?.map(el => {
-    data.push({
-      id: el._id.category,
-      sum: el.totalSum,
-      backgroundColor: el._id.colorCategory,
-      category: el._id.category,
-    });
-  });
+
+  const data = statistics.result.map(el => ({
+    ...el,
+    id: el._id.category,
+    sum: el.totalSum,
+    backgroundColor: el._id.colorCategory,
+    category: el._id.category,
+  }));
 
   return (
     <table className={styles.table}>
@@ -32,16 +31,26 @@ export const StatTable = () => {
               ></div>
               <p className={styles.text}>{category}</p>
             </td>
-            <td className={styles.sum}>{sum}</td>
+            <td className={styles.sum}>
+              {sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+            </td>
           </tr>
         ))}
         <tr className={styles.data}>
           <td className={styles.title}>Expenses:</td>
-          <td className={styles.expenses}>{statistics?.totalExpense}</td>
+          <td className={styles.expenses}>
+            {statistics?.totalExpense
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+          </td>
         </tr>
         <tr className={styles.data}>
           <td className={styles.title}>Income:</td>
-          <td className={styles.income}>{statistics?.totalIncome}</td>
+          <td className={styles.income}>
+            {statistics?.totalIncome
+              .toString()
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+          </td>
         </tr>
       </tbody>
     </table>

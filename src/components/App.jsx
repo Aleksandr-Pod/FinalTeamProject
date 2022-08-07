@@ -1,42 +1,51 @@
+import { useEffect, lazy, Suspense } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
 // Components
-import { PrivateRoute } from './privateRoute';
-import { Dashboard } from '../pages/dashboard';
-import { RedirectRoute } from './redirectRoute';
-import { PageNotFound } from './pageNotFound/pageNotFound';
-// import { Home } from './dashboard/home';
-// import { Stat } from './dashboard/stat';
-// import { Currency } from './dashboard/currency';
-import { RegisterPage } from '../pages/registerPage';
-import { LoginPage } from '../pages/loginPage';
-import Modal from './modal/modal';
-import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import PrivateRoute from './privateRoute';
+import RedirectRoute from './redirectRoute'; // ругается, если lazy import
+// import PageNotFound from './pageNotFound/pageNotFound';
+// import RegisterPage from '../pages/registerPage';
+// import LoginPage from '../pages/loginPage';
+// import Dashboard from '../pages/dashboard';
 import authOperations from '../redux/auth/authOperations';
-import { useSelector } from 'react-redux';
 import transactionsOperations from '../redux/transactions/transactionOperations';
+import { fetchStatistics } from '../redux/statistics/statisticsOperations';
+import { ToastContainer } from 'react-toastify';
+
+const RegisterPage = lazy(() => import('../pages/registerPage'));
+const LoginPage = lazy(() => import('../pages/loginPage'));
+const Dashboard = lazy(() => import('../pages/dashboard'));
+const PageNotFound = lazy(() => import('../pages/pageNotFound'));
+// const PrivateRoute = lazy(() => import('./privateRoute'));
+// const RedirectRoute = lazy(() => import('./redirectRoute'));
 
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
 
   useEffect(() => {
     if (isLogged) {
+      console.log('Getting transactions in App');
       dispatch(transactionsOperations.getTransactions());
+      dispatch(fetchStatistics({}));
     }
-  });
+  }, [dispatch, isLogged]);
+
   return (
     <>
-      <Modal />
       <Routes>
         <Route
           path="/"
           element={
             <RedirectRoute>
-              <LoginPage />
+              <Suspense>
+                <LoginPage />
+              </Suspense>
             </RedirectRoute>
           }
         />
@@ -44,7 +53,9 @@ export const App = () => {
           path="/register"
           element={
             <RedirectRoute>
-              <RegisterPage />
+              <Suspense>
+                <RegisterPage />
+              </Suspense>
             </RedirectRoute>
           }
         />
@@ -52,7 +63,9 @@ export const App = () => {
           path="/login"
           element={
             <RedirectRoute>
-              <LoginPage />
+              <Suspense>
+                <LoginPage />
+              </Suspense>
             </RedirectRoute>
           }
         />
@@ -60,12 +73,15 @@ export const App = () => {
           path="/:activeBtn"
           element={
             <PrivateRoute>
-              <Dashboard />
+              <Suspense>
+                <Dashboard />
+              </Suspense>
             </PrivateRoute>
           }
         />
         <Route path="*" element={<PageNotFound path="/login" />} />;
       </Routes>
+      <ToastContainer />
     </>
   );
 };

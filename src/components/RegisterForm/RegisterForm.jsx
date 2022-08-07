@@ -27,7 +27,7 @@ export default function RegisterForm() {
   const dispatch = useDispatch();
   return (
     <>
-      <img src={logo} className={styles.logo} />
+      <img src={logo} alt="logo" className={styles.logo} />
       <Formik
         initialValues={{
           email: '',
@@ -37,9 +37,10 @@ export default function RegisterForm() {
         }}
         validateOnMount
         onSubmit={async ({ email, password, firstName }) => {
-          dispatch(
+          await dispatch(
             authOperations.register({ email, password, name: firstName }),
           );
+          await dispatch(authOperations.login({ email, password }));
         }}
         validationSchema={loginSchema}
       >

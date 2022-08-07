@@ -21,6 +21,7 @@ const authSlice = createSlice({
   extraReducers: {
     [authOperation.register.pending]: state => {
       state.error = null;
+      state.isLoading = true;
     },
     [authOperation.register.fulfilled]: (state, action) => {
       state.error = null;
@@ -30,24 +31,35 @@ const authSlice = createSlice({
       state.error = !action.payload.message
         ? 'User registration failed'
         : action.payload.message;
+      state.isLoading = false;
     },
     [authOperation.login.pending]: state => {
       state.error = null;
+      state.isLoading = true;
     },
     [authOperation.login.fulfilled]: (state, action) => {
       state.user = action.payload.user;
       state.token = action.payload.token;
       state.isLogged = true;
+      state.isLoading = false;
     },
     [authOperation.login.rejected]: (state, action) => {
       state.error = !action.payload.message
         ? 'Authorization failed. Please check you email and password.'
         : action.payload.message;
+      state.isLoading = false;
+    },
+    [authOperation.logOut.pending]: state => {
+      state.isLoading = true;
     },
     [authOperation.logOut.fulfilled]: state => {
       state.user = initialState.user;
       state.token = initialState.token;
       state.isLogged = false;
+      state.isLoading = false;
+    },
+    [authOperation.logOut.rejected]: state => {
+      state.isLoading = false;
     },
     [authOperation.getCurrentUser.pending]: state => {
       state.isLoading = true;

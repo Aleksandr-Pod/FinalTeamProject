@@ -30,6 +30,7 @@ export default function LoginForm() {
   return (
     <>
       <img src={logo} className={styles.logo} alt="logo" />
+
       <Formik
         initialValues={{
           email: '',

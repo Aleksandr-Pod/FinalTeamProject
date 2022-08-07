@@ -1,15 +1,19 @@
-import Header from '../components/dashboard/header/header';
+import { lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-import { HomePage } from './homePage';
-import { CurrencyPage } from './currencyPage';
-import { StatPage } from './statPage';
-import { PageNotFound } from '../components/pageNotFound/pageNotFound';
+// components
+import Header from '../components/dashboard/header/header';
 import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
 import styles from './styles.module.css';
+import Modal from '../components/modal/modal';
+const HomePage = lazy(() => import('./homePage'));
+const CurrencyPage = lazy(() => import('./currencyPage'));
+const StatPage = lazy(() => import('./statPage'));
+const PageNotFound = lazy(() => import('./pageNotFound'));
 
-export const Dashboard = () => {
+const Dashboard = () => {
   console.log('Dashboard');
+
   const { activeBtn } = useParams();
 
   if (
@@ -17,7 +21,11 @@ export const Dashboard = () => {
     (activeBtn !== 'currency') &
     (activeBtn !== 'diagram')
   )
-    return <PageNotFound path="/home" />;
+    return (
+      <Suspense>
+        <PageNotFound path="/home" />
+      </Suspense>
+    );
   return (
     <>
       {/* <div className={styles.vector}></div> */}
@@ -25,10 +33,25 @@ export const Dashboard = () => {
       <img className={styles.peach} src={PeachEllipse} alt="logo" />
       <div className={styles.dash}>
         <Header />
-        {activeBtn === 'home' && <HomePage />}
-        {activeBtn === 'currency' && <CurrencyPage />}
-        {activeBtn === 'diagram' && <StatPage />}
+        <Modal />
+        {activeBtn === 'home' && (
+          <Suspense>
+            <HomePage />
+          </Suspense>
+        )}
+        {activeBtn === 'currency' && (
+          <Suspense>
+            <CurrencyPage />
+          </Suspense>
+        )}
+        {activeBtn === 'diagram' && (
+          <Suspense>
+            <StatPage />
+          </Suspense>
+        )}
       </div>
+      <Modal />
     </>
   );
 };
+export default Dashboard;

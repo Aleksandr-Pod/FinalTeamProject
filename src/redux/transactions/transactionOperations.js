@@ -1,5 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
+import { toast } from 'react-toastify';
 const getTransactions = createAsyncThunk(
   'transactions/getTransactions',
   async (_, { rejectWithValue }) => {
@@ -18,6 +19,7 @@ const addTransaction = createAsyncThunk(
     try {
       const response = await axios.post('/api/transactions', credential);
       dispatch(getTransactions());
+      toast(response.data.message);
       return response.data.data.result;
     } catch (error) {
       return rejectWithValue(error);
