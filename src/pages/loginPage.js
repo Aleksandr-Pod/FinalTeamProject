@@ -6,7 +6,7 @@ import LoginForm from '../components/LoginForm/LoginForm';
 import { Spinner } from '../components/spinner/spinner';
 import { useSelector } from 'react-redux';
 
-export const LoginPage = () => {
+const LoginPage = () => {
   const { isLoading } = useSelector(state => state.auth);
   return (
     <>
@@ -28,3 +28,4 @@ export const LoginPage = () => {
     </>
   );
 };
+export default LoginPage;

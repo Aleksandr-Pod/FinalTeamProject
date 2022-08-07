@@ -7,7 +7,7 @@ import { Spinner } from '../components/spinner/spinner';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
 
-export const RegisterPage = () => {
+const RegisterPage = () => {
   const { isLoading, error } = useSelector(state => state.auth);
   return (
     <>
@@ -30,3 +30,4 @@ export const RegisterPage = () => {
     </>
   );
 };
+export default RegisterPage;
