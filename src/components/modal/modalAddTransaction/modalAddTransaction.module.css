@@ -71,6 +71,7 @@
   background-color: transparent;
   height: 32px;
   width: 32px;
+  transition: border var(--t-duration) var(--t-t-function);
 }
 
 .closeBtn:hover,
@@ -163,8 +164,8 @@ select {
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  /* color: var(--grey); */
   color: var(--black);
+  transition: color var(--t-duration) var(--t-t-function);
 }
 
 .placeholder {
@@ -193,6 +194,7 @@ select {
 .inputText {
   margin-top: 40px;
   padding-bottom: 8px;
+  transition: color var(--t-duration) var(--t-t-function);
 }
 
 .inputText:focus,
@@ -220,6 +222,7 @@ select {
   font-size: 18px;
   line-height: 27px;
   text-align: center;
+  transition: color var(--t-duration) var(--t-t-function);
 }
 
 .inputAmount:focus,
@@ -248,7 +251,6 @@ select {
 .inputDate:focus,
 .inputDate:hover {
   outline: none;
-  /* color: var(--blue); */
 }
 
 .buttons {
@@ -262,6 +264,7 @@ select {
   background-color: var(--white);
   border: 1px solid var(--turquoise);
   color: var(--turquoise);
+  transition: background-color color var(--t-duration) var(--t-t-function);
 }
 
 .addBtn:hover,
@@ -277,6 +280,7 @@ select {
 
 .cancelBtn {
   margin-top: 20px;
+  transition: background-color color var(--t-duration) var(--t-t-function);
 }
 
 .cancelBtn:hover,
