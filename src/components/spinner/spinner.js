@@ -11,6 +11,7 @@ export const Spinner = () => (
       position: 'fixed',
       top: '50%',
       left: '50%',
+      zIndex: '99',
       transform: 'translate(-50%, -50%)',
     }}
   />

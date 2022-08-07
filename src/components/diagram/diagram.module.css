@@ -1,57 +1,55 @@
 .wrapper {
-    position: relative;
-    height: 288px;
-    width: 288px;
+  position: relative;
+  height: 288px;
+  min-width: 288px;
 }
 
 .balance {
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    font-family: var(--primary-font-family);
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.5;
-}  
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-family: var(--primary-font-family);
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
+}
 
 .text {
-    margin-top: 50px;
-    padding: 15px;
-    width: 100%;
-    height: 100px;
-    border-radius: 30px;
-    background-color: rgb(233, 193, 241);
-    text-align: center;
-    font-family: 'Circe';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 24px;
+  margin-top: 50px;
+  padding: 15px;
+  width: 100%;
+  height: 100px;
+  border-radius: 30px;
+  background-color: rgb(233, 193, 241);
+  text-align: center;
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 24px;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-    .wrapper {
-        height: 336px;
-        width: 336px;
-    }
+  .wrapper {
+    height: 336px;
+    width: 336px;
+  }
 
-    .text {
-        height: 80px;    
-            
-    }
-      
+  .text {
+    height: 80px;
+  }
 }
 
 @media screen and (max-width: 767px) {
-    .wrapper {
-        margin-bottom: 32px;
-        height: 280px;
-        width: 280px;
-    }
+  .wrapper {
+    margin-bottom: 32px;
+    height: auto;
+    width: 280px;
+  }
 
-    .text {
-        height: 80px;
-    }
+  .text {
+    height: 80px;
+  }
 }
