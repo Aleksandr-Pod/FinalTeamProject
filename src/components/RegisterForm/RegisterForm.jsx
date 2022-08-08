@@ -1,14 +1,15 @@
 import React from 'react';
-import { Form, Field, Formik } from 'formik';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import styles from './registerForm.module.css';
+import { ToastContainer } from 'react-toastify';
 import * as Yup from 'yup';
+import { Form, Field, Formik } from 'formik';
+import styles from './registerForm.module.css';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
 import PasswordStrengthBar from '../passwordStrengthBar/passwordStrengthBar';
-import { useDispatch, useSelector } from 'react-redux';
 import authOperations from '../../redux/auth/authOperations';
-import { ToastContainer } from 'react-toastify';
+
 
 const loginSchema = Yup.object().shape({
   email: Yup.string()
@@ -35,8 +36,8 @@ const loginSchema = Yup.object().shape({
 
 export default function RegisterForm() {
   const { error } = useSelector(state => state.auth);
-
   const dispatch = useDispatch();
+  
   return (
     <>
       <img src={logo} alt="logo" className={styles.logo} />
