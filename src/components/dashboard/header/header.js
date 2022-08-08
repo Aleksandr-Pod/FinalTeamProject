@@ -1,31 +1,32 @@
-import { NavLink } from 'react-router-dom';
+import { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import styles from './header.module.css';
 import sprite from '../../../images/sprite.svg';
-import { useSelector } from 'react-redux';
-import { useState } from 'react';
-// import { toggleLogin } from '../../../redux/authSlice';
-// import authOperations from '../../../redux/auth/authOperations';
-
 import ModalLogout from '../../modalLogout/modalLogout';
 
-export default function Header() {
+export default function Header({ setShowTransactionModal }) {
   const [showModal, setShowModal] = useState(false);
   const { user } = useSelector(state => state.auth);
+  const navigate = useNavigate();
 
   const toggleLogin = () => {
     setShowModal(!showModal);
   };
-
+  const toHome = () => {
+    setShowTransactionModal(false);
+    navigate('/home');
+  };
   return (
     <>
       <header className={styles.header}>
         <div className={styles.wrapper}>
-          <NavLink to="/home" className={styles.navLink}>
+          <div className={styles.navLink} onClick={toHome}>
             <svg className={styles.logo} width="40" height="40">
               <use href={`${sprite}#icon-Group`}></use>
             </svg>
             <p className={styles.logoName}>Wallet</p>
-          </NavLink>
+          </div>
         </div>
         <div className={styles.secondWrapper}>
           <p className={styles.user}>{user.name}</p>

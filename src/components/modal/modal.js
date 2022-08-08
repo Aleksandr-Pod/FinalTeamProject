@@ -1,13 +1,13 @@
 import { createPortal } from 'react-dom';
-import { useState, useEffect, useCallback } from 'react';
+import { useEffect, useCallback } from 'react';
 import sprite from '../../images/sprite.svg';
 import styles from './modal.module.css';
 import ModalAddTransaction from './modalAddTransaction/modalAddTransaction';
 
 const modalRoot = document.querySelector('#modal-root');
 
-export default function Modal() {
-  const [showModal, setShowModal] = useState(false);
+export default function Modal({ showModal, setShowModal }) {
+  // const [showModal, setShowModal] = useState(false);
   const keyPress = useCallback(
     e => {
       if (e.key === 'Escape' && showModal) {

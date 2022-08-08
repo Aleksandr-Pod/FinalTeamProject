@@ -1,4 +1,4 @@
-import { lazy, Suspense } from 'react';
+import { lazy, Suspense, useState } from 'react';
 import { useParams } from 'react-router-dom';
 // components
 import Header from '../components/dashboard/header/header';
@@ -15,10 +15,9 @@ const StatPage = lazy(() => import('./statPage'));
 const PageNotFound = lazy(() => import('./pageNotFound'));
 
 const Dashboard = () => {
-  console.log('Dashboard');
+  const [showModal, setShowModal] = useState(false);
 
   const { activeBtn } = useParams();
-
   if (
     (activeBtn !== 'home') &
     (activeBtn !== 'currency') &
@@ -35,13 +34,13 @@ const Dashboard = () => {
       <img className={styles.purple} src={PurpleEllipse} alt="logo" />
       <img className={styles.peach} src={PeachEllipse} alt="logo" />
       <div className={styles.dash}>
-        <Header />
+        <Header setShowTransactionModal={setShowModal} />
         {activeBtn === 'home' && (
           <>
             <Suspense fallback={<Spinner />}>
               <HomePage />
             </Suspense>
-            <Modal />
+            <Modal showModal={showModal} setShowModal={setShowModal} />
           </>
         )}
         {activeBtn === 'diagram' && (
@@ -49,7 +48,7 @@ const Dashboard = () => {
             <Suspense fallback={<Spinner />}>
               <StatPage />
             </Suspense>
-            <Modal />
+            <Modal showModal={showModal} setShowModal={setShowModal} />
           </>
         )}
         {activeBtn === 'currency' && (
