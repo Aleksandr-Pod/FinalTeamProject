@@ -30,17 +30,13 @@ export default function Header() {
         <div className={styles.secondWrapper}>
           <p className={styles.user}>{user.name}</p>
           <div className={styles.vl}></div>
-          <div className={styles.logOut}>
-            <button className={styles.exitButton} onClick={toggleLogin}>
+          <div className={styles.logOut} onClick={toggleLogin}>
+            <button className={styles.exitButton}>
               <svg className={styles.exit} width="18" height="18">
                 <use href={`${sprite}#icon-exit`}></use>
               </svg>
             </button>
-            <button
-              onClick={toggleLogin}
-              type="button"
-              className={styles.button}
-            >
+            <button type="button" className={styles.button}>
               Exit
             </button>
             {showModal && <ModalLogout closeModalLogout={toggleLogin} />}
