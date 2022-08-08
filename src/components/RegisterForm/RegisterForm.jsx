@@ -24,7 +24,7 @@ const loginSchema = Yup.object().shape({
     .required('Required'),
   firstName: Yup.string()
     .matches(/\S+/, 'The name cannot start with a space.')
-    .min(3, 'Should be 3 chars min.')
+    .min(1, 'Should be 1 chars min.')
     .max(12, 'Should be 12 chars max.')
     .matches(
       /^([A-Za-zа-яА-Я\s]*)?$/,
