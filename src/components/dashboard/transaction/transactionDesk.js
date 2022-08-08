@@ -1,5 +1,5 @@
 import { useSelector } from 'react-redux';
-import styles from './TransactionDesk.module.css';
+import styles from './transactionDesk.module.css';
 import { TransactionTableDesk } from './transactionTableDesk';
 
 export const TransactionDesk = () => {

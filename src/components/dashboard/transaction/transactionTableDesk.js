@@ -1,5 +1,5 @@
 import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
-import styles from './TransactionDesk.module.css';
+import styles from './transactionDesk.module.css';
 export const TransactionTableDesk = ({
   date,
   isIncome,
