@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { Form, Field, Formik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import styles from './LoginForm.module.css';
+import styles from './loginForm.module.css';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';

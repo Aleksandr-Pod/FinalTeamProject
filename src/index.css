@@ -14,11 +14,11 @@ code {
 
 @font-face {
   font-family: 'Circe';
-  src: url('../public/fonts/Circe-Bold.eot');
-  src: url('../public/fonts/Circe-Bold.eot?#iefix') format('embedded-opentype'),
-    url('../public/fonts/Circe-Bold.woff2') format('woff2'),
-    url('../public/fonts/Circe-Bold.woff') format('woff'),
-    url('../public/fonts/Circe-Bold.ttf') format('truetype');
+  src: url('./fonts/Circe-Bold.eot');
+  src: url('./fonts/Circe-Bold.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/Circe-Bold.woff2') format('woff2'),
+    url('./fonts/Circe-Bold.woff') format('woff'),
+    url('./fonts/Circe-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -26,12 +26,11 @@ code {
 
 @font-face {
   font-family: 'Circe';
-  src: url('../public/fonts/Circe-Regular.eot');
-  src: url('../public/fonts/Circe-Regular.eot?#iefix')
-      format('embedded-opentype'),
-    url('../public/fonts/Circe-Regular.woff2') format('woff2'),
-    url('../public/fonts/Circe-Regular.woff') format('woff'),
-    url('../public/fonts/Circe-Regular.ttf') format('truetype');
+  src: url('./fonts/Circe-Regular.eot');
+  src: url('./fonts/Circe-Regular.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/Circe-Regular.woff2') format('woff2'),
+    url('./fonts/Circe-Regular.woff') format('woff'),
+    url('./fonts/Circe-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -39,12 +38,11 @@ code {
 
 @font-face {
   font-family: 'Poppins';
-  src: url('../public/fonts/Poppins-Bold.eot');
-  src: url('../public/fonts/Poppins-Bold.eot?#iefix')
-      format('embedded-opentype'),
-    url('../public/fonts/Poppins-Bold.woff2') format('woff2'),
-    url('../public/fonts/Poppins-Bold.woff') format('woff'),
-    url('../public/fonts/Poppins-Bold.ttf') format('truetype');
+  src: url('./fonts/Poppins-Bold.eot');
+  src: url('./fonts/Poppins-Bold.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/Poppins-Bold.woff2') format('woff2'),
+    url('./fonts/Poppins-Bold.woff') format('woff'),
+    url('./fonts/Poppins-Bold.ttf') format('truetype');
   font-weight: bold;
   font-style: normal;
   font-display: swap;
@@ -52,12 +50,11 @@ code {
 
 @font-face {
   font-family: 'Poppins';
-  src: url('../public/fonts/Poppins-Regular.eot');
-  src: url('../public/fonts/Poppins-Regular.eot?#iefix')
-      format('embedded-opentype'),
-    url('../public/fonts/Poppins-Regular.woff2') format('woff2'),
-    url('../public/fonts/Poppins-Regular.woff') format('woff'),
-    url('../public/fonts/Poppins-Regular.ttf') format('truetype');
+  src: url('./fonts/Poppins-Regular.eot');
+  src: url('./fonts/Poppins-Regular.eot?#iefix') format('embedded-opentype'),
+    url('./fonts/Poppins-Regular.woff2') format('woff2'),
+    url('./fonts/Poppins-Regular.woff') format('woff'),
+    url('./fonts/Poppins-Regular.ttf') format('truetype');
   font-weight: normal;
   font-style: normal;
   font-display: swap;
@@ -76,6 +73,9 @@ code {
   --lightGrey: #e0e0e0;
   --darkGrey: #a6a6a6;
   --background: #e7eaf2;
+  --box-shadow-table: -5px 6px 7px -3px rgba (0, 0, 0, 0.29);
   --primary-font-family: 'Circe', sans-serif;
   --accent-font-family: 'Poppins', sans-serif;
+  --t-t-function: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-duration: 250ms;
 }

@@ -14,7 +14,9 @@ export const NavMenuMobile = () => {
                 <>
                   <svg
                     className={
-                      isActive ? `${styles.iconActive}` : `${styles.icon} `
+                      isActive
+                        ? `${styles.iconActive}`
+                        : `${styles.iconMobile} `
                     }
                     width="38"
                     height="38"
@@ -34,7 +36,9 @@ export const NavMenuMobile = () => {
                 <>
                   <svg
                     className={
-                      isActive ? `${styles.iconActive}` : `${styles.icon} `
+                      isActive
+                        ? `${styles.iconActive}`
+                        : `${styles.iconMobile} `
                     }
                     width="38"
                     height="38"
@@ -54,7 +58,9 @@ export const NavMenuMobile = () => {
                 <>
                   <svg
                     className={
-                      isActive ? `${styles.iconActive}` : `${styles.icon} `
+                      isActive
+                        ? `${styles.iconActive}`
+                        : `${styles.iconMobile} `
                     }
                     width="38"
                     height="38"

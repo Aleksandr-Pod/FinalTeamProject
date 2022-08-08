@@ -78,7 +78,7 @@ const customStyles = {
     },
     padding: 0,
     backdropFilter: 'blur(50px)',
-    background: 'rgba(255, 255, 255, 0.6)',
+    background: 'rgb(255, 255, 255)',
 
     borderRadius: 20,
     boxShadow: '0px 6px 15px rgba(0, 0, 0, 0.1)',

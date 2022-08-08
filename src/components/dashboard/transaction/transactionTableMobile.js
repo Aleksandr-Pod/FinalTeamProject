@@ -1,7 +1,7 @@
 // import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
-import styles from './TransactionMobile.module.css';
+import styles from './transactionMobile.module.css';
 
 export const TransactionTableMobile = () => {
   const { transactions } = useSelector(state => state.transactions);

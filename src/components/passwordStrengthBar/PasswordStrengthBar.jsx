@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import styles from './PasswordStrengthBar.module.css';
+import styles from './passwordStrengthBar.module.css';
 import { validatePassword } from '../../helpers/validatePassword';
 
 export default function PasswordStrengthBar({ password }) {

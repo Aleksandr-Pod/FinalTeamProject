@@ -1,5 +1,7 @@
 import { Fragment, useEffect } from 'react';
+import { useSelector } from 'react-redux';
 import Media from 'react-media';
+import { ToastContainer, toast } from 'react-toastify';
 // components
 import {
   TransactionTableMobile,
@@ -10,8 +12,6 @@ import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
 import { Ballance } from '../components/dashboard/ballance/ballance';
 import styles from './homePage.module.css';
-import { ToastContainer, toast } from 'react-toastify';
-import { useSelector } from 'react-redux';
 
 const HomePage = () => {
   const { error } = useSelector(state => state.transactions);

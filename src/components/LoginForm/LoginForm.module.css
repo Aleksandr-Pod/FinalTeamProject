@@ -37,7 +37,7 @@
 }
 
 .input:focus,
-input:hover {
+.input:hover {
   border-bottom: 1px solid #24cca7;
 }
 
@@ -117,7 +117,7 @@ input:hover {
   left: 54px;
 
   font-size: 14px;
-  color: #ff0000;
+  color: #ff6596;
 }
 .logo {
   margin-bottom: 64px;
