@@ -36,7 +36,7 @@
 }
 
 .title {
-    margin: 0 0 8px 0;
+    margin: 0 0 12px 0;
     padding: 0;
     text-align: center;
     color: var(--blue);
@@ -105,6 +105,7 @@
 @media screen and (max-width: 767px) {
     .modal {
         width: 300px;
+        height: 465px;
         border-radius: 10px;
         padding: 10px;
     }
