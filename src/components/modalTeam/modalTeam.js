@@ -4,7 +4,7 @@ import { FaRegTimesCircle, FaGithub } from "react-icons/fa";
 import styles from './modalTeam.module.css';
 
 import OPodmazko from '../../images/team/OPodmazko.jpg';
-import SChehov from '../../images/team/SChehov.jpg';
+import SChekhov from '../../images/team/SChekhov.jpg';
 import OStarichenko from '../../images/team/OStarichenko.jpg';
 import OLosev from '../../images/team/OLosev.jpg';
 import TKuchma from '../../images/team/TKuchma.jpg';
@@ -72,17 +72,17 @@ export default function ModalTeam({ closeModalTeam }) {
                         <a                            
                             target="_blank"
                             rel="noopener noreferrer"
-                            href="https://example.com"
+                            href="https://github.com/StasChekhov"
                             className={styles.ref}                            
                         >
                             <div className={styles.foto}>
                                 <img
                                     className={styles.img}
-                                    src={SChehov}
-                                    alt='SChehov'
+                                    src={SChekhov}
+                                    alt='SChekhov'
                                 />
                             </div>
-                            <h3 className={styles.name}>Stanislav<br />Chehov</h3>
+                            <h3 className={styles.name}>Stanislav<br />Chekhov</h3>
                             <div className={styles.wrap}>
                                 <p className={styles.role}>Scrum Master</p>
                                 <FaGithub /> 
