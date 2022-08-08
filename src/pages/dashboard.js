@@ -6,6 +6,7 @@ import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
 import styles from './styles.module.css';
 import Modal from '../components/modal/modal';
+import Footer from '../components/footer/footer';
 import { Spinner } from '../components/spinner/spinner';
 
 const HomePage = lazy(() => import('./homePage'));
@@ -53,6 +54,7 @@ const Dashboard = () => {
         )}
       </div>
       <Modal />
+      <Footer/>
     </>
   );
 };
