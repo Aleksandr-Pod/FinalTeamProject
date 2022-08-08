@@ -54,10 +54,10 @@
   fill: var(--grey);
 }
 
-.exit:hover,
+/* .exit:hover,
 .exit:focus {
   fill: var(--blue);
-}
+} */
 
 .button {
   color: var(--grey);
@@ -73,10 +73,10 @@
   text-align: right;
 }
 
-.button:hover,
+/* .button:hover,
 .button:focus {
   color: var(--blue);
-}
+} */
 
 .exitButton {
   border: none;
@@ -92,6 +92,12 @@
   display: flex;
   align-items: center;
   cursor: pointer;
+}
+.logOut:hover .button {
+  color: var(--blue);
+}
+.logOut:hover .exit {
+  fill: var(--blue);
 }
 
 .vl {
