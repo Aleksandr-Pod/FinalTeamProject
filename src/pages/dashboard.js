@@ -36,25 +36,29 @@ const Dashboard = () => {
       <img className={styles.peach} src={PeachEllipse} alt="logo" />
       <div className={styles.dash}>
         <Header />
-        <Modal />
         {activeBtn === 'home' && (
-          <Suspense fallback={<Spinner />}>
-            <HomePage />
-          </Suspense>
+          <>
+            <Suspense fallback={<Spinner />}>
+              <HomePage />
+            </Suspense>
+            <Modal />
+          </>
+        )}
+        {activeBtn === 'diagram' && (
+          <>
+            <Suspense fallback={<Spinner />}>
+              <StatPage />
+            </Suspense>
+            <Modal />
+          </>
         )}
         {activeBtn === 'currency' && (
           <Suspense fallback={<Spinner />}>
             <CurrencyPage />
           </Suspense>
         )}
-        {activeBtn === 'diagram' && (
-          <Suspense fallback={<Spinner />}>
-            <StatPage />
-          </Suspense>
-        )}
       </div>
-      <Modal />
-      <Footer/>
+      <Footer />
     </>
   );
 };
