@@ -4,6 +4,7 @@
 
 .modalWrapper {
   position: fixed;
+  overflow-y: auto;
   top: 0;
   left: 0;
   width: 100%;
@@ -30,17 +31,24 @@
 
 .errorWrapper {
   position: absolute;
-  top: 28px;
+  top: 30px;
 
   font-size: 14px;
-  color: #ff0000;
+  color: var(--pink);
+}
+.errorWrapperAmount {
+  position: absolute;
+  top: 33px;
+
+  font-size: 14px;
+  color: var(--pink);
 }
 .errorWrapperComment {
   position: absolute;
-  top: 78px;
+  top: 80px;
 
   font-size: 14px;
-  color: #ff0000;
+  color: var(--pink);
 }
 .content {
   position: relative;
@@ -64,6 +72,7 @@
   background-color: transparent;
   height: 32px;
   width: 32px;
+  transition: border var(--t-duration) var(--t-t-function);
 }
 
 .closeBtn:hover,
@@ -136,7 +145,6 @@
   font-weight: 700;
   font-size: 16px;
   line-height: 24px;
-  margin-right: 24px;
   color: var(--lightGrey);
   margin-left: 24px;
 }
@@ -157,6 +165,11 @@ select {
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
+  color: var(--black);
+  transition: color var(--t-duration) var(--t-t-function);
+}
+
+.placeholder {
   color: var(--grey);
 }
 
@@ -182,6 +195,7 @@ select {
 .inputText {
   margin-top: 40px;
   padding-bottom: 8px;
+  transition: color var(--t-duration) var(--t-t-function);
 }
 
 .inputText:focus,
@@ -209,8 +223,11 @@ select {
   font-size: 18px;
   line-height: 27px;
   text-align: center;
+  transition: color var(--t-duration) var(--t-t-function);
 }
-
+.inputAmount::placeholder {
+  padding-right: 35px;
+}
 .inputAmount:focus,
 .inputAmount:hover {
   outline: none;
@@ -231,13 +248,12 @@ select {
   font-weight: 400;
   font-size: 18px;
   line-height: 27px;
-  color: var(--black);
+  color: #6d6d6d;
 }
 
 .inputDate:focus,
 .inputDate:hover {
   outline: none;
-  color: var(--blue);
 }
 
 .buttons {
@@ -251,6 +267,7 @@ select {
   background-color: var(--white);
   border: 1px solid var(--turquoise);
   color: var(--turquoise);
+  transition: background-color color var(--t-duration) var(--t-t-function);
 }
 
 .addBtn:hover,
@@ -266,6 +283,7 @@ select {
 
 .cancelBtn {
   margin-top: 20px;
+  transition: background-color color var(--t-duration) var(--t-t-function);
 }
 
 .cancelBtn:hover,
@@ -407,7 +425,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
   .inputText {
     width: 280px;
-    padding-bottom: 60px;
+    /* padding-bottom: 60px; */
   }
 
   .select {

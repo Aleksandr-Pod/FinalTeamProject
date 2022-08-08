@@ -2,7 +2,7 @@ import loginSvg from '../images/login.svg';
 import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
 import s from './loginPage.module.css';
-import LoginForm from '../components/LoginForm/LoginForm';
+import LoginForm from '../components/loginForm/loginForm';
 import { Spinner } from '../components/spinner/spinner';
 import { useSelector } from 'react-redux';
 

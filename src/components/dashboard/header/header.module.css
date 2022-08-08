@@ -1,6 +1,6 @@
 .header {
   position: fixed;
-  top:0;
+  top: 0;
   left: 0;
   display: flex;
   justify-content: space-between;
@@ -54,6 +54,11 @@
   fill: var(--grey);
 }
 
+/* .exit:hover,
+.exit:focus {
+  fill: var(--blue);
+} */
+
 .button {
   color: var(--grey);
   border: none;
@@ -68,6 +73,11 @@
   text-align: right;
 }
 
+/* .button:hover,
+.button:focus {
+  color: var(--blue);
+} */
+
 .exitButton {
   border: none;
   margin: 0;
@@ -78,9 +88,16 @@
   cursor: pointer;
 }
 
-.logOut{
-  display:flex;
+.logOut {
+  display: flex;
   align-items: center;
+  cursor: pointer;
+}
+.logOut:hover .button {
+  color: var(--blue);
+}
+.logOut:hover .exit {
+  fill: var(--blue);
 }
 
 .vl {
@@ -94,11 +111,12 @@
   display: flex;
   text-decoration: none;
   color: var(--black);
+  cursor: pointer;
 }
 
 @media screen and (max-width: 767px) {
-  .header{
-    height:60px;
+  .header {
+    height: 60px;
     position: fixed;
     top: 0;
     left: 0;

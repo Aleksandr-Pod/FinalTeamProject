@@ -1,29 +1,41 @@
 import React from 'react';
 import { Form, Field, Formik } from 'formik';
 import { NavLink } from 'react-router-dom';
-import styles from './RegisterForm.module.css';
+import styles from './registerForm.module.css';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
-import PasswordStrengthBar from '../passwordStrengthBar/PasswordStrengthBar';
-import { useDispatch } from 'react-redux';
+import PasswordStrengthBar from '../passwordStrengthBar/passwordStrengthBar';
+import { useDispatch, useSelector } from 'react-redux';
 import authOperations from '../../redux/auth/authOperations';
 import { ToastContainer } from 'react-toastify';
 
 const loginSchema = Yup.object().shape({
-  email: Yup.string().email('Email must be valid').required('Required'),
+  email: Yup.string()
+    .email('Email must be valid')
+    .min(2, 'Should be 2 chars min.')
+    .required('Required'),
   password: Yup.string()
     .min(6, 'Should be 6 chars min.')
     .max(12, 'Should be 12 chars max.')
     .required('Required'),
-  passwordConfirmation: Yup.string().oneOf(
-    [Yup.ref('password'), null],
-    'Passwords must match',
-  ),
-  firstName: Yup.string().min(3, 'Should be 3 chars min.').required('Required'),
+  passwordConfirmation: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Required'),
+  firstName: Yup.string()
+    .matches(/\S+/, 'The name cannot start with a space.')
+    .min(1, 'Should be 1 chars min.')
+    .max(12, 'Should be 12 chars max.')
+    .matches(
+      /^([A-Za-zа-яА-Я\s]*)?$/,
+      'Only alphabets and spaces are allowed for this field.',
+    )
+    .required('Required'),
 });
 
 export default function RegisterForm() {
+  const { error } = useSelector(state => state.auth);
+
   const dispatch = useDispatch();
   return (
     <>
@@ -40,7 +52,9 @@ export default function RegisterForm() {
           await dispatch(
             authOperations.register({ email, password, name: firstName }),
           );
-          await dispatch(authOperations.login({ email, password }));
+          if (!!error) {
+            await dispatch(authOperations.login({ email, password }));
+          }
         }}
         validationSchema={loginSchema}
       >
