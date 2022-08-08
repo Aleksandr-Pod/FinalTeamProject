@@ -224,7 +224,9 @@ select {
   text-align: center;
   transition: color var(--t-duration) var(--t-t-function);
 }
-
+.inputAmount::placeholder {
+  padding-right: 35px;
+}
 .inputAmount:focus,
 .inputAmount:hover {
   outline: none;
@@ -422,7 +424,7 @@ input[type='date']::-webkit-calendar-picker-indicator {
 
   .inputText {
     width: 280px;
-    padding-bottom: 60px;
+    /* padding-bottom: 60px; */
   }
 
   .select {
