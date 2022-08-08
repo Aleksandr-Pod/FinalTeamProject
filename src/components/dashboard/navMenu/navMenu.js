@@ -27,7 +27,7 @@ export const NavMenu = () => {
                   </svg>
                   <span
                     className={
-                      isActive ? `${styles.textActive}` : `${styles.text}`
+                      isActive ? `${styles.textActive}` : `${styles.link}`
                     }
                   >
                     Home
@@ -58,7 +58,7 @@ export const NavMenu = () => {
                   </svg>
                   <span
                     className={
-                      isActive ? `${styles.textActive}` : `${styles.text}`
+                      isActive ? `${styles.textActive}` : `${styles.link}`
                     }
                   >
                     Statistics
