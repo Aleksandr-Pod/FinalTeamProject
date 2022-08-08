@@ -1,0 +1,55 @@
+.footer {
+    width: 100%;
+    background-color: var(--grey);  
+    height: 60px;  
+}
+
+.container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 18px;
+}
+
+.text {
+    padding-top: 2px;
+    font-family: var(--primary-font-family);
+    line-height: 1.2;
+}
+
+.top,
+.bottom {
+    display: flex;
+}
+
+.btn {
+    padding: 0;
+    margin-left: 5px;
+    background-color: transparent;
+    border: transparent;
+    cursor: pointer;    
+}
+
+.team {    
+    font-family: var(--primary-font-family);
+    font-weight: 700;
+    text-decoration: underline;
+}
+
+.team:hover,
+.team:focus {
+    color: var(--turquoise);
+}
+
+@media screen and (max-width: 767px) {
+    .container {
+        flex-direction: column;
+        padding: 8px;
+        font-size: 15px;
+    }
+
+    .border {
+        display: none;
+    }
+}

@@ -11,16 +11,26 @@ import authOperations from '../../redux/auth/authOperations';
 import { ToastContainer } from 'react-toastify';
 
 const loginSchema = Yup.object().shape({
-  email: Yup.string().email('Email must be valid').required('Required'),
+  email: Yup.string()
+    .email('Email must be valid')
+    .min(2, 'Should be 2 chars min.')
+    .required('Required'),
   password: Yup.string()
     .min(6, 'Should be 6 chars min.')
     .max(12, 'Should be 12 chars max.')
     .required('Required'),
-  passwordConfirmation: Yup.string().oneOf(
-    [Yup.ref('password'), null],
-    'Passwords must match',
-  ),
-  firstName: Yup.string().min(3, 'Should be 3 chars min.').required('Required'),
+  passwordConfirmation: Yup.string()
+    .oneOf([Yup.ref('password'), null], 'Passwords must match')
+    .required('Required'),
+  firstName: Yup.string()
+    .matches(/\S+/, 'The name cannot start with a space.')
+    .min(3, 'Should be 3 chars min.')
+    .max(12, 'Should be 12 chars max.')
+    .matches(
+      /^([A-Za-zа-яА-Я\s]*)?$/,
+      'Only alphabets and spaces are allowed for this field.',
+    )
+    .required('Required'),
 });
 
 export default function RegisterForm() {
