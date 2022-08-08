@@ -32,7 +32,7 @@ export default function Header({ setShowTransactionModal }) {
           <p className={styles.user}>{user.name}</p>
           <div className={styles.vl}></div>
           <div className={styles.logOut} onClick={toggleLogin}>
-            <button className={styles.exitButton}>
+            <button aria-label="Log out" className={styles.exitButton}>
               <svg className={styles.exit} width="18" height="18">
                 <use href={`${sprite}#icon-exit`}></use>
               </svg>
