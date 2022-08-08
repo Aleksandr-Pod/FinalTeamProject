@@ -27,6 +27,7 @@ export default function Modal({ showModal, setShowModal }) {
       <button
         className={styles.button}
         type="button"
+        aria-label="Open modal for add transaction"
         onClick={() => setShowModal(true)}
       >
         <svg className={styles.svg} width="20" height="20">
