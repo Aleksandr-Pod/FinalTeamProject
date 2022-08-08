@@ -28,12 +28,13 @@ const Dashboard = () => {
         <PageNotFound path="/home" />
       </Suspense>
     );
+
   return (
     <>
       {/* <div className={styles.vector}></div> */}
       <img className={styles.purple} src={PurpleEllipse} alt="logo" />
       <img className={styles.peach} src={PeachEllipse} alt="logo" />
-      <div className={styles.dash}>
+      <div className={`${styles.dash}  ${showModal ? styles.offScroll : ''}`}>
         <Header setShowTransactionModal={setShowModal} />
         {activeBtn === 'home' && (
           <>
