@@ -2,7 +2,7 @@ import registerSvg from '../images/register.svg';
 import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
 import s from './registerPage.module.css';
-import RegisterForm from '../components/RegisterForm/RegisterForm';
+import RegisterForm from '../components/registerForm/registerForm';
 import { Spinner } from '../components/spinner/spinner';
 import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';

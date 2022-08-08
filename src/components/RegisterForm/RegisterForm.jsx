@@ -1,11 +1,11 @@
 import React from 'react';
 import { Form, Field, Formik } from 'formik';
 import { NavLink } from 'react-router-dom';
-import styles from './RegisterForm.module.css';
+import styles from './registerForm.module.css';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
-import PasswordStrengthBar from '../passwordStrengthBar/PasswordStrengthBar';
+import PasswordStrengthBar from '../passwordStrengthBar/passwordStrengthBar';
 import { useDispatch, useSelector } from 'react-redux';
 import authOperations from '../../redux/auth/authOperations';
 import { ToastContainer } from 'react-toastify';
