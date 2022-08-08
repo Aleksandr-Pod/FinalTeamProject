@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import styles from './header.module.css';
 import sprite from '../../../images/sprite.svg';
@@ -32,7 +32,7 @@ export default function Header({ setShowTransactionModal }) {
           <p className={styles.user}>{user.name}</p>
           <div className={styles.vl}></div>
           <div className={styles.logOut} onClick={toggleLogin}>
-            <button className={styles.exitButton}>
+            <button aria-label="Log out" className={styles.exitButton}>
               <svg className={styles.exit} width="18" height="18">
                 <use href={`${sprite}#icon-exit`}></use>
               </svg>

@@ -1,6 +1,6 @@
 {
   "short_name": "Wallet",
-  "name": "Wallet",
+  "name": "Wallet: money likes to be counted.",
   "icons": [
     {
       "src": "maskable_icon.png",
@@ -10,7 +10,7 @@
     },
     {
       "src": "favicon.ico",
-      "sizes": "64x64 32x32 24x24 16x16",
+      "sizes": "64x64",
       "type": "image/x-icon"
     },
     {
@@ -24,7 +24,8 @@
       "sizes": "512x512"
     }
   ],
-  "start_url": ".",
+  "id": "/",
+  "start_url": "/",
   "display": "standalone",
   "theme_color": "#000000",
   "background_color": "#ffffff"

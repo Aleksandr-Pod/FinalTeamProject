@@ -19,9 +19,7 @@ const transactionSchema = Yup.object().shape({
       /(Regular|Unregular|Basic|Products|Car|Self|Kids|House|Education|Leisure|Other)/,
     )
     .required(),
-  comment: Yup.string()
-    .min(1, 'Comment must be at least 1 characters.')
-    .required(),
+  comment: Yup.string(),
 });
 
 export default function ModalAddTransaction({ showModal, setShowModal }) {
@@ -80,6 +78,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     <div className={styles.modalWrapper} onClick={layOutClick}>
       <div className={styles.content}>
         <button
+          aria-label="Checkbox type transaction"
           className={styles.closeBtn}
           type="button"
           onClick={() => setShowModal(false)}
@@ -97,7 +96,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
             category: '',
             amount: '',
             date: todayDate,
-            comment: '',
+            comment: ' ',
           }}
           validateOnMount
           onSubmit={handleSubmit}
