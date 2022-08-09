@@ -39,7 +39,7 @@ const register = createAsyncThunk(
       token.set(response.data.data.token);
       toast(response.data.message);
       dispatch(
-        login({ email: credentials.password, password: credentials.password }),
+        login({ email: credentials.email, password: credentials.password }),
       );
       return response.data;
     } catch (err) {
