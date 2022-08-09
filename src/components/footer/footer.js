@@ -20,7 +20,7 @@ export default function Footer() {
                 <div className={styles.bottom}>
                     <p className={styles.text}> Developed by </p>
                     <button className={styles.btn} type="button" onClick={toggleModalTeam}>
-                        <span className={styles.team}>team</span>
+                        <span className={styles.team}>Try Catch</span>
                     </button>
                     {showModal && <ModalTeam closeModalTeam={toggleModalTeam} />}
                 </div>
