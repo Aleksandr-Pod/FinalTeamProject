@@ -1,126 +1,127 @@
 .table {
-    margin-bottom: 48px;
-    border-collapse: collapse;
-    min-width: 280px;
-    font-family: 'Circe';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 16px;
-    line-height: 1.125;
+  margin-bottom: 48px;
+  border-collapse: collapse;
+  min-width: 280px;
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.125;
 }
 
 .header {
-    height: 58px;
-    background: var(--white);  
+  height: 58px;
+  background: var(--white);
 }
 
 .table thead tr th {
-    padding: 16px 20px 15px 20px;
-    font-weight: 700;
-    font-size: 18px;
-    line-height: 1.5;
+  padding: 16px 20px 15px 20px;
+  font-weight: 700;
+  font-size: 18px;
+  line-height: 1.5;
 }
 
 .table thead tr th:first-child {
-    border-radius: 30px 0 0 30px;
-    text-align: start;
+  border-radius: 30px 0 0 30px;
+  text-align: start;
 }
 
 .table thead tr th:last-child {
-    border-radius: 0 30px 30px 0;
-    text-align: end;
+  border-radius: 0 30px 30px 0;
+  text-align: end;
 }
 
 .row {
-    height: 52px;
-    border-bottom: 1px solid #dcdcdf;
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);    
+  height: 52px;
+  border-bottom: 1px solid #dcdcdf;
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
 }
 
 .category {
-    display: flex;
-    align-items: center;
-    height: 50px;
+  display: flex;
+  align-items: center;
+  height: 50px;
+  max-width: 170px;
 }
 
 .square {
-    display: inline-block;
-    margin-left: 20px;
-    width: 24px;
-    height: 24px;
-    border-radius: 2px;
+  display: inline-block;
+  margin-left: 20px;
+  width: 24px;
+  height: 24px;
+  border-radius: 2px;
 }
 
 .text {
-    width: 120px;
-    margin-left: 16px;
+  width: 120px;
+  margin-left: 16px;
 }
 
 .sum {
-    text-align: end;
-    padding-right: 20px;
+  text-align: end;
+  padding-right: 20px;
 }
 
-.data, 
+.data,
 .ballance {
-    font-family: 'Circe';
-    font-style: normal;
-    font-weight: 700;
-    font-size: 16px;
-    line-height: 1.5;
+  font-family: 'Circe';
+  font-style: normal;
+  font-weight: 700;
+  font-size: 16px;
+  line-height: 1.5;
 }
 
 .rowIncome {
-    box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
+  box-shadow: 0px 1px 0px rgba(255, 255, 255, 0.6);
 }
 
 .ballance {
-    height: 52px;
-    border-top: 1px solid #dcdcdf;
+  height: 52px;
+  border-top: 1px solid #dcdcdf;
 }
 
 .title {
-    text-align: start;
-    padding-left: 20px;
-    height: 38px;
+  text-align: start;
+  padding-left: 20px;
+  height: 38px;
 }
 
 .income {
-    padding-right: 20px;
-    text-align: end;
-    color: #24CCA7;
+  padding-right: 20px;
+  text-align: end;
+  color: #24cca7;
 }
 
 .expenses {
-    padding-right: 20px;
-    text-align: end;
-    color: #FF6596;
+  padding-right: 20px;
+  text-align: end;
+  color: #ff6596;
 }
 
 .ballanceTotal {
-    padding-right: 20px;
-    text-align: end;
-    color: #5410ad;
+  padding-right: 20px;
+  text-align: end;
+  color: #5410ad;
 }
 
 @media screen and (min-width: 768px) and (max-width: 1279px) {
-    .table {
-        min-width: 336px;        
-    }
+  .table {
+    min-width: 336px;
+  }
 
-    .text {
-        width: 150px;
-        margin-left: 16px;
-    }
+  .text {
+    width: 150px;
+    margin-left: 16px;
+  }
 }
 
 @media screen and (min-width: 1280px) {
-    .table {
-        min-width: 395px;
-    }
+  .table {
+    min-width: 395px;
+  }
 
-    .text {
-        width: 150px;
-        margin-left: 16px;
-    }
+  .text {
+    width: 150px;
+    margin-left: 16px;
+  }
 }
