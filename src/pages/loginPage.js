@@ -10,21 +10,18 @@ const LoginPage = () => {
   const { isLoading } = useSelector(state => state.auth);
   return (
     <>
-      {isLoading ? (
-        <Spinner />
-      ) : (
-        <div className={s.allPage}>
-          <div className={s.leftSide}>
-            <img className={s.logo} src={loginSvg} alt="logo" />
-            <h3 className={s.text}>Finance App</h3>
-          </div>
-          <img className={s.purple} src={PurpleEllipse} alt="logo" />
-          <img className={s.peach} src={PeachEllipse} alt="logo" />
-          <div className={s.rightSide}>
-            <div className={s.modal}>{<LoginForm />}</div>
-          </div>
+      {isLoading && <Spinner />}
+      <div className={s.allPage}>
+        <div className={s.leftSide}>
+          <img className={s.logo} src={loginSvg} alt="logo" />
+          <h3 className={s.text}>Finance App</h3>
         </div>
-      )}
+        <img className={s.purple} src={PurpleEllipse} alt="logo" />
+        <img className={s.peach} src={PeachEllipse} alt="logo" />
+        <div className={s.rightSide}>
+          <div className={s.modal}>{<LoginForm />}</div>
+        </div>
+      </div>
     </>
   );
 };

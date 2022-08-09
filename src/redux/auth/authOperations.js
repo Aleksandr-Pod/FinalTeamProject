@@ -25,6 +25,7 @@ const login = createAsyncThunk(
       toast(response.data.message);
       return response.data.data;
     } catch (err) {
+      toast(err.response.data.message);
       return rejectWithValue(err.message);
     }
   },

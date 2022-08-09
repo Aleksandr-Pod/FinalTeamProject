@@ -19,13 +19,13 @@ const loginSchema = Yup.object().shape({
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const { error, isLoading } = useSelector(state => state.auth);
+  // const { error, isLoading } = useSelector(state => state.auth);
 
-  useEffect(() => {
-    if (!isLoading) {
-      toast(error);
-    }
-  }, [error, isLoading]);
+  // useEffect(() => {
+  //   if (!isLoading) {
+  //     toast(error);
+  //   }
+  // }, [error, isLoading]);
 
   return (
     <>
