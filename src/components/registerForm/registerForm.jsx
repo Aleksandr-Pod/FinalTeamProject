@@ -10,7 +10,6 @@ import logo from '../../images/logo.svg';
 import PasswordStrengthBar from '../passwordStrengthBar/passwordStrengthBar';
 import authOperations from '../../redux/auth/authOperations';
 
-
 const loginSchema = Yup.object().shape({
   email: Yup.string()
     .email('Email must be valid')
@@ -35,9 +34,8 @@ const loginSchema = Yup.object().shape({
 });
 
 export default function RegisterForm() {
-  const { error } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-  
+
   return (
     <>
       <img src={logo} alt="logo" className={styles.logo} />
@@ -49,13 +47,10 @@ export default function RegisterForm() {
           firstName: '',
         }}
         validateOnMount
-        onSubmit={async ({ email, password, firstName }) => {
-          await dispatch(
+        onSubmit={({ email, password, firstName }) => {
+          dispatch(
             authOperations.register({ email, password, name: firstName }),
           );
-          if (!!error) {
-            await dispatch(authOperations.login({ email, password }));
-          }
         }}
         validationSchema={loginSchema}
       >
