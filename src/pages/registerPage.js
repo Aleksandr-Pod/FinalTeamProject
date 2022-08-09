@@ -5,13 +5,11 @@ import s from './registerPage.module.css';
 import RegisterForm from '../components/registerForm/registerForm';
 import { Spinner } from '../components/spinner/spinner';
 import { useSelector } from 'react-redux';
-import { toast } from 'react-toastify';
 
 const RegisterPage = () => {
-  const { isLoading, error } = useSelector(state => state.auth);
+  const { isLoading } = useSelector(state => state.auth);
   return (
     <>
-      {error && toast(error)}
       {isLoading ? (
         <Spinner />
       ) : (
