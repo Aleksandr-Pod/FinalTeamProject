@@ -45,7 +45,7 @@ export default function ModalTeam({ closeModalTeam }) {
                 >
                     <FaRegTimesCircle size={20} />                    
                 </button>
-                <h2 className={styles.title}>Our team</h2>
+                <h2 className={styles.title}>Our team "Try Catch"</h2>
                 <ul className={styles.list}>
                     <li className={styles.item}>
                         <a                            

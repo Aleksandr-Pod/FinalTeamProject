@@ -110,6 +110,10 @@
         padding: 10px;
     }
 
+    .title {
+        font-size: 20px;
+    }
+
     .list {
         margin: -4px;
     }
