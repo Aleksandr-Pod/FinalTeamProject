@@ -3,6 +3,7 @@ import { createPortal } from 'react-dom';
 import { FaRegTimesCircle, FaGithub } from "react-icons/fa";
 import styles from './modalTeam.module.css';
 
+import logo from '../../images/logoTeam.jpg';
 import OPodmazko from '../../images/team/OPodmazko.jpg';
 import SChekhov from '../../images/team/SChekhov.jpg';
 import OStarichenko from '../../images/team/OStarichenko.jpg';
@@ -45,7 +46,14 @@ export default function ModalTeam({ closeModalTeam }) {
                 >
                     <FaRegTimesCircle size={20} />                    
                 </button>
-                <h2 className={styles.title}>Our team "Try Catch"</h2>
+                <div className={styles.team}>
+                    <h2 className={styles.title}>Team "Try Catch"</h2>
+                    <img
+                        className={styles.logo}
+                        src={logo}
+                        alt='logo'
+                    />                    
+                </div>
                 <ul className={styles.list}>
                     <li className={styles.item}>
                         <a                            
