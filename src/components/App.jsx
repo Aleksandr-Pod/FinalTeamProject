@@ -8,6 +8,8 @@ import RedirectRoute from './redirectRoute'; // ругается, если lazy 
 // import RegisterPage from '../pages/registerPage';
 // import LoginPage from '../pages/loginPage';
 // import Dashboard from '../pages/dashboard';
+import GoogleAuth from '../components/googleAuth/googleAuth';
+
 import authOperations from '../redux/auth/authOperations';
 import transactionsOperations from '../redux/transactions/transactionOperations';
 import { fetchStatistics } from '../redux/statistics/statisticsOperations';
@@ -23,7 +25,6 @@ const PageNotFound = lazy(() => import('../pages/pageNotFound'));
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
@@ -47,6 +48,14 @@ export const App = () => {
                 <LoginPage />
               </Suspense>
             </RedirectRoute>
+          }
+        />
+        <Route
+          path="/home/google-user"
+          element={
+            <Suspense>
+              <GoogleAuth />
+            </Suspense>
           }
         />
         <Route

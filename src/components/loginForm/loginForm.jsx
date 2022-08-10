@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Form, Field, Formik } from 'formik';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import styles from './loginForm.module.css';
 import * as Yup from 'yup';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
 import authOperations from '../../redux/auth/authOperations';
-import { ToastContainer, toast } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),
@@ -19,13 +19,6 @@ const loginSchema = Yup.object().shape({
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  // const { error, isLoading } = useSelector(state => state.auth);
-
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     toast(error);
-  //   }
-  // }, [error, isLoading]);
 
   return (
     <>
@@ -90,6 +83,14 @@ export default function LoginForm() {
               <NavLink to="/register" className={styles.link}>
                 REGISTRATION
               </NavLink>
+
+              <a
+                href="https://wallet-gls.herokuapp.com/api/users/google"
+                className={styles.link}
+                type="submit"
+              >
+                Auth with Google
+              </a>
             </div>
           </Form>
         )}
