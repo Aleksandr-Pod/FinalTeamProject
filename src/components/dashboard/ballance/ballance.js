@@ -1,5 +1,5 @@
-import s from './ballance.module.css';
 import { useSelector } from 'react-redux';
+import s from './ballance.module.css';
 
 export const Ballance = () => {
   const { totalBalance } = useSelector(state => state.transactions);

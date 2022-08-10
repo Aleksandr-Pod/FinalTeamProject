@@ -7,6 +7,8 @@ import { Spinner } from '../spinner/spinner';
 Chart.register(Tooltip, Title, ArcElement);
 
 export const Diagram = () => {
+  const { statistics, isLoading } = useSelector(state => state.statistics);
+
   const data = {
     datasets: [
       {
@@ -19,7 +21,6 @@ export const Diagram = () => {
     labels: [],
   };
 
-  const { statistics, isLoading } = useSelector(state => state.statistics);
   statistics.result.forEach(el => {
     data.labels.push(el._id.category);
     data.datasets[0].data.push(el.totalSum);

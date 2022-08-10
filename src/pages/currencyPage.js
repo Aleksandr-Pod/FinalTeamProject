@@ -1,13 +1,13 @@
 import { Fragment, useEffect } from 'react';
 import Media from 'react-media';
 import { useSelector } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
-import styles from './homePage.module.css';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Currency } from '../components/dashboard/currency/currency';
-import { ToastContainer, toast } from 'react-toastify';
 import { TransactionDesk } from '../components/dashboard/transaction/';
 import { Ballance } from '../components/dashboard/ballance/ballance';
+import styles from './homePage.module.css';
 
 const CurrencyPage = () => {
   const { error } = useSelector(state => state.transactions);

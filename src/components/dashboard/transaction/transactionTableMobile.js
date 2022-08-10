@@ -1,4 +1,3 @@
-// import { useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import EllipsisText from 'react-ellipsis-text';
 import styles from './transactionMobile.module.css';

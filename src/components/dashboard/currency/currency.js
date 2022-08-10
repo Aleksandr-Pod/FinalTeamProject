@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import css from './currency.module.css';
-import propTypes from 'prop-types';
+import { ThreeDots } from 'react-loader-spinner';
 import { getCurrency } from '../../../api/currencyAPI';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCurrencies, addQueryDate } from '../../../redux/curerncySlice';
-import { ThreeDots } from 'react-loader-spinner';
+import css from './currency.module.css';
 
 export const Currency = () => {
   const { currencies, queryDate } = useSelector(state => state.currency);
@@ -69,15 +68,4 @@ export const Currency = () => {
       )}
     </>
   );
-};
-
-Currency.prototype = {
-  currencies: propTypes.arrayOf(
-    propTypes.shape({
-      id: propTypes.string,
-      ccy: propTypes.string,
-      buy: propTypes.string,
-      sale: propTypes.number,
-    }),
-  ).isRequired,
 };
