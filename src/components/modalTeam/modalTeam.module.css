@@ -35,6 +35,19 @@
     color: var(--blue);
 }
 
+.team {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo {
+    display: inline-block;
+    height: 50px;
+    width: auto;
+    margin-right: 10px;
+}
+
 .title {
     margin: 0 0 12px 0;
     padding: 0;
@@ -108,6 +121,14 @@
         height: 465px;
         border-radius: 10px;
         padding: 10px;
+    }
+
+    .logo {
+        height: 35px;
+    }
+
+    .title {
+        font-size: 20px;
     }
 
     .list {

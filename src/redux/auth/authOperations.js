@@ -14,20 +14,6 @@ const token = {
   },
 };
 
-const register = createAsyncThunk(
-  'auth/register',
-  async (credentials, { rejectWithValue }) => {
-    try {
-      const response = await axios.post('/api/users/register', credentials);
-      token.set(response.data.data.token);
-      toast(response.data.message);
-      return response.data;
-    } catch (err) {
-      return rejectWithValue(err.response.data);
-    }
-  },
-);
-
 const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue, dispatch }) => {
@@ -39,7 +25,26 @@ const login = createAsyncThunk(
       toast(response.data.message);
       return response.data.data;
     } catch (err) {
+      toast(err.response.data.message);
       return rejectWithValue(err.message);
+    }
+  },
+);
+
+const register = createAsyncThunk(
+  'auth/register',
+  async (credentials, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.post('/api/users/register', credentials);
+      token.set(response.data.data.token);
+      toast(response.data.message);
+      dispatch(
+        login({ email: credentials.email, password: credentials.password }),
+      );
+      return response.data;
+    } catch (err) {
+      toast(err.response.data.message);
+      return rejectWithValue(err.response.data);
     }
   },
 );
