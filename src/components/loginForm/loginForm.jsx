@@ -1,8 +1,8 @@
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
-import { Form, Field, Formik } from 'formik';
 import * as Yup from 'yup';
+import { Form, Field, Formik } from 'formik';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
 import authOperations from '../../redux/auth/authOperations';
@@ -18,13 +18,6 @@ const loginSchema = Yup.object().shape({
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  // const { error, isLoading } = useSelector(state => state.auth);
-
-  // useEffect(() => {
-  //   if (!isLoading) {
-  //     toast(error);
-  //   }
-  // }, [error, isLoading]);
 
   return (
     <>
