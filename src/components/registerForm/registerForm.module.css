@@ -22,23 +22,26 @@
 
 .inputWrapper {
   position: relative;
+  border-bottom: 1px solid var(--lightGrey);
 }
 
 .input {
-  padding-left: 54px;
   padding-top: 4px;
   padding-bottom: 8px;
   border: none;
-  border-bottom: 1px solid var(--lightGrey);
+
   outline: none;
 
   background-color: transparent;
 
   transition: 0.3s;
 }
+.input::placeholder {
+  color: var(--grey);
+}
 
-.input:focus,
-.input:hover {
+.inputWrapper:focus,
+.inputWrapper:hover {
   border-bottom: 1px solid var(--turquoise);
 }
 

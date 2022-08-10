@@ -21,14 +21,14 @@
 
 .inputWrapper {
   position: relative;
+  border-bottom: 1px solid #e0e0e0;
 }
 
 .input {
-  padding-left: 54px;
   padding-top: 4px;
   padding-bottom: 8px;
   border: none;
-  border-bottom: 1px solid #e0e0e0;
+
   outline: none;
 
   background-color: transparent;
@@ -36,8 +36,8 @@
   transition: 0.3s;
 }
 
-.input:focus,
-.input:hover {
+.inputWrapper:focus,
+.inputWrapper:hover {
   border-bottom: 1px solid #24cca7;
 }
 
@@ -46,6 +46,9 @@
   position: absolute;
   top: 5px;
   left: 10px;
+}
+.input::placeholder {
+  color: var(--grey);
 }
 
 .input:focus + .icon,
