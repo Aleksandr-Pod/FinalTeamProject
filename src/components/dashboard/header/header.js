@@ -1,9 +1,9 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import styles from './header.module.css';
 import sprite from '../../../images/sprite.svg';
 import ModalLogout from '../../modalLogout/modalLogout';
+import styles from './header.module.css';
 
 export default function Header({ setShowTransactionModal }) {
   const [showModal, setShowModal] = useState(false);

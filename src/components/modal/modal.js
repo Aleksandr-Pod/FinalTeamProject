@@ -7,7 +7,6 @@ import ModalAddTransaction from './modalAddTransaction/modalAddTransaction';
 const modalRoot = document.querySelector('#modal-root');
 
 export default function Modal({ showModal, setShowModal }) {
-  // const [showModal, setShowModal] = useState(false);
   const keyPress = useCallback(
     e => {
       if (e.key === 'Escape' && showModal) {

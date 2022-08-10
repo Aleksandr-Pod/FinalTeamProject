@@ -1,10 +1,9 @@
 import { useEffect, useState } from 'react';
-import css from './currency.module.css';
-import propTypes from 'prop-types';
+import { ThreeDots } from 'react-loader-spinner';
 import { getCurrency } from '../../../api/currencyAPI';
 import { useSelector, useDispatch } from 'react-redux';
 import { addCurrencies, addQueryDate } from '../../../redux/curerncySlice';
-import { ThreeDots } from 'react-loader-spinner';
+import css from './currency.module.css';
 
 export const Currency = () => {
   const { currencies, queryDate } = useSelector(state => state.currency);
@@ -16,7 +15,6 @@ export const Currency = () => {
     if ((currencies.length !== 0) & (currentTime - queryDate < 60 * 60 * 3000))
       return;
     if (isLoading === true) return;
-    console.log('Currency request ...');
     (async () => {
       setIsLoading(true);
       await getCurrency().then(data => {
@@ -29,9 +27,7 @@ export const Currency = () => {
         setIsLoading(false);
       });
     })();
-  }, [currencies.length, currentTime, dispatch, queryDate, isLoading]);
-  // эти зависимости не нужны, т.к. каждый раз меняется currentTime
-  // и всё равно useEffect срабатівает каждій раз.
+  });
 
   return (
     <>
@@ -72,15 +68,4 @@ export const Currency = () => {
       )}
     </>
   );
-};
-
-Currency.prototype = {
-  currencies: propTypes.arrayOf(
-    propTypes.shape({
-      id: propTypes.string,
-      ccy: propTypes.string,
-      buy: propTypes.string,
-      sale: propTypes.number,
-    }),
-  ).isRequired,
 };

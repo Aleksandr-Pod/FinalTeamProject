@@ -1,9 +1,9 @@
-import styles from './period.module.css';
-import Select from 'react-select';
-import sprite from '../../images/sprite.svg';
-import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
+import Select from 'react-select';
+import { useDispatch, useSelector } from 'react-redux';
 import { fetchStatistics } from '../../redux/statistics/statisticsOperations';
+import sprite from '../../images/sprite.svg';
+import styles from './period.module.css';
 
 const months = [
   { value: '1', label: 'January' },
