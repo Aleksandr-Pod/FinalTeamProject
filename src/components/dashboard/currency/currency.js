@@ -16,7 +16,6 @@ export const Currency = () => {
     if ((currencies.length !== 0) & (currentTime - queryDate < 60 * 60 * 3000))
       return;
     if (isLoading === true) return;
-    console.log('Currency request ...');
     (async () => {
       setIsLoading(true);
       await getCurrency().then(data => {
@@ -29,9 +28,7 @@ export const Currency = () => {
         setIsLoading(false);
       });
     })();
-  }, [currencies.length, currentTime, dispatch, queryDate, isLoading]);
-  // эти зависимости не нужны, т.к. каждый раз меняется currentTime
-  // и всё равно useEffect срабатівает каждій раз.
+  });
 
   return (
     <>

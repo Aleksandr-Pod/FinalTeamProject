@@ -1,7 +1,7 @@
 import { Link } from 'react-router-dom';
 
 const PageNotFound = ({ path = '/' }) => {
-  console.log('BackPath=', path);
+
   return (
     <div style={{ textAlign: 'center' }}>
       <h2>Page not Found</h2>
