@@ -6,6 +6,7 @@ const initialState = {
   isLogged: false,
   isLoading: false,
   error: null,
+  isAuthGoogle: null,
 };
 const authSlice = createSlice({
   name: 'auth',
@@ -52,6 +53,7 @@ const authSlice = createSlice({
     [authOperation.loginGoogle.pending]: state => {
       state.error = null;
       state.isLoading = true;
+      state.isAuthGoogle = true;
     },
     [authOperation.loginGoogle.fulfilled]: (state, action) => {
       state.user = action.payload.user;
@@ -64,6 +66,7 @@ const authSlice = createSlice({
         ? 'Authorization failed.'
         : action.payload.message;
       state.isLoading = false;
+      state.isAuthGoogle = false;
     },
     [authOperation.logOut.pending]: state => {
       state.isLoading = true;
