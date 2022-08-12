@@ -8,16 +8,11 @@ import ModalLogout from '../../modalLogout/modalLogout';
 import { LangSwitcher } from '../../langSwitcher/langSwitcher';
 import styles from './header.module.css';
 
-const lngs = {
-  en: { nativeName: 'ENG' },
-  ua: { nativeName: 'UA' },
-};
-
 export default function Header({ setShowTransactionModal }) {
   const [showModal, setShowModal] = useState(false);
   const { user } = useSelector(state => state.auth);
   const navigate = useNavigate();
-  const { t, i18n } = useTranslation();
+  const { t } = useTranslation();
 
   const toggleLogin = () => {
     setShowModal(!showModal);
@@ -36,20 +31,6 @@ export default function Header({ setShowTransactionModal }) {
             </svg>
             <p className={styles.logoName}>Wallet</p>
           </div>
-        </div>
-        <div>
-          {Object.keys(lngs).map(lng => (
-            <button
-              key={lng}
-              style={{
-                fontWeight: i18n.resolvedLanguage === lng ? 'bold' : 'normal',
-              }}
-              type="submit"
-              onClick={() => i18n.changeLanguage(lng)}
-            >
-              {lngs[lng].nativeName}
-            </button>
-          ))}
         </div>
         <div className={styles.secondWrapper}>
           <p className={styles.user}>{user.name}</p>

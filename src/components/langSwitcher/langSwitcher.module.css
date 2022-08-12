@@ -1,10 +1,35 @@
 .menuBtn {
-  width: 27px;
-  height: 27px;
+  width: 20px;
+  height: 20px;
   border: none;
   margin-left: 10px;
   margin-right: 10px;
   background-size: contain;
   background-color: #fff;
   background-image: url(../../images/lang.svg);
+}
+.menuSelect {
+  width: 50px;
+  height: 35px;
+  margin-bottom: 5px;
+  border: 1px solid var(--grey);
+  border-radius: 5px;
+}
+.menuSelect:hover,
+.menuSelect:focus {
+  box-shadow: 0px 1px 3px rgb(0 0 0 / 12%), 0px 1px 1px rgb(0 0 0 / 14%),
+    0px 2px 1px rgb(0 0 0 / 20%), 0px 4px 4px 0px #00000040;
+  transform: scale(1.1);
+}
+.eng {
+  background-size: cover;
+  background-image: url(../../images/icon-eng.svg);
+}
+.ru {
+  background-size: cover;
+  background-image: url(../../images/icon-ru.svg);
+}
+.ua {
+  background-size: cover;
+  background-image: url(../../images/icon-ua.svg);
 }

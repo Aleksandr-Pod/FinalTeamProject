@@ -1,27 +1,37 @@
 import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/menu';
+import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 import styles from './langSwitcher.module.css';
-import sprite from '../../images/spriteLang.svg';
 
 export const LangSwitcher = () => {
+  const { i18n } = useTranslation();
+  let navigate = useNavigate();
   return (
     <Menu>
-      <MenuButton className={styles.menuBtn}></MenuButton>
+      <MenuButton
+        aria-label={'open menu change language'}
+        transition="all 0.2s"
+        className={styles.menuBtn}
+      ></MenuButton>
       <MenuList>
-        <MenuItem>
-          <svg
-            // className={styles.arrow}
-            width="18"
-            height="9"
-          >
-            <use href={`${sprite}#icon-ua`}></use>
-          </svg>
-        </MenuItem>
-        <MenuItem>
-          <svg class="icon" width="40" height="40">
-            <use href={`${sprite}#icon-ru`}></use>
-          </svg>
-        </MenuItem>
-        <MenuItem>en</MenuItem>
+        <MenuItem
+          w={50}
+          aria-label={'change english language'}
+          className={`${styles.menuSelect} ${styles.eng}`}
+          onClick={() => i18n.changeLanguage('en')}
+        ></MenuItem>
+        <MenuItem
+          aria-label={'change ukraninian language'}
+          className={`${styles.menuSelect} ${styles.ua}`}
+          onClick={() => i18n.changeLanguage('ua')}
+        ></MenuItem>
+        <MenuItem
+          aria-label={'change russian language'}
+          className={`${styles.menuSelect} ${styles.ru}`}
+          onClick={() => {
+            navigate('/home/ru', { replace: true });
+          }}
+        ></MenuItem>
       </MenuList>
     </Menu>
   );
