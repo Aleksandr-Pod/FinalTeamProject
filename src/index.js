@@ -8,6 +8,7 @@ import { PersistGate } from 'redux-persist/es/integration/react';
 import 'modern-normalize/modern-normalize.css';
 import './index.css';
 import 'react-toastify/dist/ReactToastify.css';
+import './helpers/i18';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>

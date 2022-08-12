@@ -1,0 +1,10 @@
+.menuBtn {
+  width: 27px;
+  height: 27px;
+  border: none;
+  margin-left: 10px;
+  margin-right: 10px;
+  background-size: contain;
+  background-color: #fff;
+  background-image: url(../../images/lang.svg);
+}

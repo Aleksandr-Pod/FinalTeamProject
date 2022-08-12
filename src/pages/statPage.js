@@ -1,5 +1,6 @@
 import { Fragment } from 'react';
 import Media from 'react-media';
+import { useTranslation } from 'react-i18next';
 
 import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
@@ -11,6 +12,7 @@ import { StatTable } from '../components/statTable/statTable';
 import styles from './statPage.module.css';
 
 const StatPage = () => {
+  const { t } = useTranslation();
   return (
     <Media
       queries={{
@@ -25,7 +27,7 @@ const StatPage = () => {
             <>
               <NavMenuMobile />
               <div className={styles.mobDiagram}>
-                <h3 className={styles.stat}>Statistics</h3>
+                <h3 className={styles.stat}>{t('nav.statistics')}</h3>
                 <Diagram />
                 <Period />
                 <StatTable />
@@ -42,7 +44,7 @@ const StatPage = () => {
                 <Currency />
               </div>
               <div className={styles.right}>
-                <h3 className={styles.stat}>Statistics</h3>
+                <h3 className={styles.stat}>{t('nav.statistics')}</h3>
                 <div className={styles.chart}>
                   <div className={styles.diagram}>
                     <Diagram />
@@ -63,7 +65,7 @@ const StatPage = () => {
                 <Currency />
               </div>
               <div className={styles.right}>
-                <h3 className={styles.stat}>Statistics</h3>
+                <h3 className={styles.stat}>{t('nav.statistics')}</h3>
                 <div className={styles.chart}>
                   <Diagram />
                   <div className={styles.table}>

@@ -1,4 +1,6 @@
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+
 import { ThreeDots } from 'react-loader-spinner';
 import { getCurrency } from '../../../api/currencyAPI';
 import { useSelector, useDispatch } from 'react-redux';
@@ -6,6 +8,8 @@ import { addCurrencies, addQueryDate } from '../../../redux/curerncySlice';
 import css from './currency.module.css';
 
 export const Currency = () => {
+  const { t } = useTranslation();
+
   const { currencies, queryDate } = useSelector(state => state.currency);
   const [isLoading, setIsLoading] = useState(false);
   const dispatch = useDispatch();
@@ -49,9 +53,9 @@ export const Currency = () => {
         <table className={css.currency}>
           <thead>
             <tr>
-              <th>Currency</th>
-              <th>Purchase</th>
-              <th>Sale</th>
+              <th>{t('carency.carency')}</th>
+              <th>{t('carency.purchase')}</th>
+              <th>{t('carency.sale')}</th>
             </tr>
           </thead>
           <tbody>

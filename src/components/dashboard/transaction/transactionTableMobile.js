@@ -1,8 +1,12 @@
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+
 import EllipsisText from 'react-ellipsis-text';
 import styles from './transactionMobile.module.css';
 
 export const TransactionTableMobile = () => {
+  const { t } = useTranslation();
+
   const { transactions } = useSelector(state => state.transactions);
 
   return (
@@ -25,12 +29,12 @@ export const TransactionTableMobile = () => {
             >
               <thead className={styles.tableHead}>
                 <tr>
-                  <th>Date</th>
-                  <th>Type</th>
-                  <th>Category</th>
-                  <th>Comment</th>
-                  <th>Amount</th>
-                  <th>Balance</th>
+                  <th>{t('transactions.date')}</th>
+                  <th>{t('transactions.type')}</th>
+                  <th>{t('transactions.category')}</th>
+                  <th>{t('transactions.comment')}</th>
+                  <th>{t('transactions.sum')}</th>
+                  <th>{t('transactions.balance')}</th>
                 </tr>
               </thead>
               <tbody className={styles.tbody}>

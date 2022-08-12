@@ -1,7 +1,10 @@
 import styles from './statTable.module.css';
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 
 export const StatTable = () => {
+  const { t } = useTranslation();
+
   const { statistics, isLoading } = useSelector(state => state.statistics);
   const { totalBalance } = useSelector(state => state.transactions);
 
@@ -17,8 +20,8 @@ export const StatTable = () => {
     <table className={styles.table}>
       <thead className={styles.header}>
         <tr className={styles.tr}>
-          <th>Category</th>
-          <th>Sum</th>
+          <th>{t('category')}</th>
+          <th>{t('sum')}</th>
         </tr>
       </thead>
       {!isLoading && (
@@ -39,10 +42,9 @@ export const StatTable = () => {
                     {sum.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
                   </td>
                 </tr>
-              ))
-            }
+              ))}
             <tr className={styles.data}>
-              <td className={styles.title}>Expenses:</td>
+              <td className={styles.title}>{t('expense')}:</td>
               <td className={styles.expenses}>
                 {statistics?.totalExpense
                   .toString()
@@ -50,7 +52,7 @@ export const StatTable = () => {
               </td>
             </tr>
             <tr className={`${styles.data} ${styles.rowIncome}`}>
-              <td className={styles.title}>Income:</td>
+              <td className={styles.title}>{t('income')}:</td>
               <td className={styles.income}>
                 {statistics?.totalIncome
                   .toString()
@@ -58,11 +60,9 @@ export const StatTable = () => {
               </td>
             </tr>
             <tr className={styles.ballance}>
-              <td className={styles.title}>Ballance:</td>
+              <td className={styles.title}>{t('balance')}:</td>
               <td className={styles.ballanceTotal}>
-                {totalBalance
-                  .toString()
-                  .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
+                {totalBalance.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
               </td>
             </tr>
           </tbody>
