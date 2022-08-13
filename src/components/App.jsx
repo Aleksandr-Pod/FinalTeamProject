@@ -4,6 +4,7 @@ import { Routes, Route } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 // Components
 import PrivateRoute from './privateRoute';
+import GoogleAuth from '../components/googleAuth/googleAuth';
 import RedirectRoute from './redirectRoute';
 import authOperations from '../redux/auth/authOperations';
 import transactionsOperations from '../redux/transactions/transactionOperations';
@@ -17,7 +18,6 @@ const PageNotFound = lazy(() => import('../pages/pageNotFound'));
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
   const dispatch = useDispatch();
-
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);
@@ -40,6 +40,14 @@ export const App = () => {
                 <LoginPage />
               </Suspense>
             </RedirectRoute>
+          }
+        />
+        <Route
+          path="/home/google-user"
+          element={
+            <Suspense>
+              <GoogleAuth />
+            </Suspense>
           }
         />
         <Route

@@ -52,10 +52,11 @@
 
   .modal {
     max-width: 533px;
-    height: 468px;
+    min-height: 468px;
     background-color: white;
     border-radius: 20px;
     padding-top: 40px;
+    padding-bottom: 40px;
   }
 
   .logo {
@@ -106,7 +107,7 @@
 
   .modal {
     width: 533px;
-    height: 468px;
+    min-height: 468px;
     background-color: white;
     border-radius: 20px;
   }

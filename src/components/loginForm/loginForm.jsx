@@ -1,3 +1,4 @@
+
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -82,6 +83,14 @@ export default function LoginForm() {
               <NavLink to="/register" className={styles.link}>
                 REGISTRATION
               </NavLink>
+
+              <a
+                href="https://wallet-gls.herokuapp.com/api/users/google"
+                className={styles.link}
+                type="submit"
+              >
+                Auth with Google
+              </a>
             </div>
           </Form>
         )}
