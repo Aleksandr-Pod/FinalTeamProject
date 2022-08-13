@@ -65,9 +65,9 @@ export default function RegisterForm() {
                 type="email"
                 autoComplete="off"
               />
-              {errors.email && touched.email ? (
+              {errors.email && touched.email && (
                 <div className={styles.errorWrapper}>{errors.email}</div>
-              ) : null}
+              )}
 
               <svg className={styles.icon} width="21" height="16">
                 <use href={sprite + '#icon-mail'} />
@@ -83,15 +83,19 @@ export default function RegisterForm() {
                 type="password"
                 autoComplete="off"
               />
-              {errors.password && touched.password ? (
+              {errors.password && touched.password && (
                 <div className={styles.errorWrapper}>{errors.password}</div>
-              ) : null}
+              )}
+              {values.password.length > 0 && (
+                <div className={styles.statusBarWrapper}>
+                  <PasswordStrengthBar password={values.password} />
+                </div>
+              )}
 
               <svg className={styles.icon} width="17" height="21">
                 <use href={sprite + '#icon-lock'} />
               </svg>
             </div>
-
             <div className={styles.inputWrapper}>
               <Field
                 className={styles.input}
@@ -101,16 +105,11 @@ export default function RegisterForm() {
                 type="password"
                 autoComplete="off"
               />
-              {errors.passwordConfirmation && touched.passwordConfirmation ? (
+              {errors.passwordConfirmation && touched.passwordConfirmation && (
                 <div className={styles.errorWrapper}>
                   {errors.passwordConfirmation}
                 </div>
-              ) : null}
-              {values.passwordConfirmation.length > 0 ? (
-                <div className={styles.statusBarWrapper}>
-                  <PasswordStrengthBar password={values.passwordConfirmation} />
-                </div>
-              ) : null}
+              )}
 
               <svg className={styles.icon} width="17" height="21">
                 <use href={sprite + '#icon-lock'} />
@@ -126,9 +125,9 @@ export default function RegisterForm() {
                 type="text"
                 autoComplete="off"
               />
-              {errors.firstName && touched.firstName ? (
+              {errors.firstName && touched.firstName && (
                 <div className={styles.errorWrapper}>{errors.firstName}</div>
-              ) : null}
+              )}
 
               <svg className={styles.icon} width="19" height="18">
                 <use href={sprite + '#icon-user'} />

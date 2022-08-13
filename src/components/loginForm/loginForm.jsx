@@ -1,4 +1,3 @@
-
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
@@ -46,9 +45,9 @@ export default function LoginForm() {
                 type="email"
                 autoComplete="off"
               />
-              {errors.email && touched.email ? (
+              {errors.email && touched.email && (
                 <div className={styles.errorWrapper}>{errors.email}</div>
-              ) : null}
+              )}
               <svg className={styles.icon} width="21" height="16">
                 <use href={sprite + '#icon-mail'} />
               </svg>
@@ -63,9 +62,9 @@ export default function LoginForm() {
                 type="password"
                 autoComplete="off"
               />
-              {errors.password && touched.password ? (
+              {errors.password && touched.password && (
                 <div className={styles.errorWrapper}>{errors.password}</div>
-              ) : null}
+              )}
 
               <svg className={styles.icon} width="17" height="21">
                 <use href={sprite + '#icon-lock'} />
