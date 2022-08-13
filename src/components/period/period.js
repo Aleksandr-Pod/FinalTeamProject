@@ -1,24 +1,10 @@
 import { useEffect, useState } from 'react';
 import Select from 'react-select';
+import { useTranslation } from 'react-i18next';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchStatistics } from '../../redux/statistics/statisticsOperations';
 import sprite from '../../images/sprite.svg';
 import styles from './period.module.css';
-
-const months = [
-  { value: '1', label: 'January' },
-  { value: '2', label: 'February' },
-  { value: '3', label: 'March' },
-  { value: '4', label: 'April' },
-  { value: '5', label: 'May' },
-  { value: '6', label: 'June' },
-  { value: '7', label: 'July' },
-  { value: '8', label: 'August' },
-  { value: '9', label: 'September' },
-  { value: '10', label: 'October' },
-  { value: '11', label: 'November' },
-  { value: '12', label: 'December' },
-];
 
 const years = [{ value: '2022', label: '2022' }];
 
@@ -136,6 +122,21 @@ const customStyles = {
 };
 
 export const Period = () => {
+  const { t } = useTranslation();
+  const months = [
+    { value: '1', label: t('month.jan') },
+    { value: '2', label: t('month.feb') },
+    { value: '3', label: t('month.mar') },
+    { value: '4', label: t('month.apr') },
+    { value: '5', label: t('month.may') },
+    { value: '6', label: t('month.jun') },
+    { value: '7', label: t('month.jul') },
+    { value: '8', label: t('month.aug') },
+    { value: '9', label: t('month.sep') },
+    { value: '10', label: t('month.oct') },
+    { value: '11', label: t('month.nov') },
+    { value: '12', label: t('month.dec') },
+  ];
   const { statistics } = useSelector(state => state.statistics);
 
   const currentMonth = new Date().toISOString().slice(5, 7);

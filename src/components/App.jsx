@@ -14,6 +14,7 @@ const RegisterPage = lazy(() => import('../pages/registerPage'));
 const LoginPage = lazy(() => import('../pages/loginPage'));
 const Dashboard = lazy(() => import('../pages/dashboard'));
 const PageNotFound = lazy(() => import('../pages/pageNotFound'));
+const RuPage = lazy(() => import('../pages/ru'));
 
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
@@ -76,6 +77,16 @@ export const App = () => {
             <PrivateRoute>
               <Suspense>
                 <Dashboard />
+              </Suspense>
+            </PrivateRoute>
+          }
+        />
+        <Route
+          path="/home/ru"
+          element={
+            <PrivateRoute>
+              <Suspense>
+                <RuPage />
               </Suspense>
             </PrivateRoute>
           }

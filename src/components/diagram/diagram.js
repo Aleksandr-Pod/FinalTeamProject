@@ -1,5 +1,6 @@
 import { Chart, Tooltip, Title, ArcElement } from 'chart.js';
 import { Doughnut } from 'react-chartjs-2';
+import { useTranslation } from 'react-i18next';
 import styles from './diagram.module.css';
 import { useSelector } from 'react-redux';
 import { Spinner } from '../spinner/spinner';
@@ -7,6 +8,7 @@ import { Spinner } from '../spinner/spinner';
 Chart.register(Tooltip, Title, ArcElement);
 
 export const Diagram = () => {
+  const { t } = useTranslation();
   const { statistics, isLoading } = useSelector(state => state.statistics);
 
   const data = {
@@ -44,11 +46,7 @@ export const Diagram = () => {
           </div>
         )
       ) : (
-        !isLoading && (
-          <p className={styles.text}>
-            There are no expence transactions for this period
-          </p>
-        )
+        !isLoading && <p className={styles.text}>{t('diagram.text')}</p>
       )}
     </div>
   );
