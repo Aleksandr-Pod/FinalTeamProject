@@ -1,26 +1,19 @@
 import { useEffect, lazy, Suspense } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Routes, Route } from 'react-router-dom';
+import { ToastContainer } from 'react-toastify';
 // Components
 import PrivateRoute from './privateRoute';
-import RedirectRoute from './redirectRoute'; // ругается, если lazy import
-// import PageNotFound from './pageNotFound/pageNotFound';
-// import RegisterPage from '../pages/registerPage';
-// import LoginPage from '../pages/loginPage';
-// import Dashboard from '../pages/dashboard';
 import GoogleAuth from '../components/googleAuth/googleAuth';
-
+import RedirectRoute from './redirectRoute';
 import authOperations from '../redux/auth/authOperations';
 import transactionsOperations from '../redux/transactions/transactionOperations';
 import { fetchStatistics } from '../redux/statistics/statisticsOperations';
-import { ToastContainer } from 'react-toastify';
 
 const RegisterPage = lazy(() => import('../pages/registerPage'));
 const LoginPage = lazy(() => import('../pages/loginPage'));
 const Dashboard = lazy(() => import('../pages/dashboard'));
 const PageNotFound = lazy(() => import('../pages/pageNotFound'));
-// const PrivateRoute = lazy(() => import('./privateRoute'));
-// const RedirectRoute = lazy(() => import('./redirectRoute'));
 
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
@@ -31,7 +24,6 @@ export const App = () => {
 
   useEffect(() => {
     if (isLogged) {
-      console.log('Getting transactions in App');
       dispatch(transactionsOperations.getTransactions());
       dispatch(fetchStatistics({}));
     }

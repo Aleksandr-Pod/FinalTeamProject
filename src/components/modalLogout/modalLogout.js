@@ -1,21 +1,19 @@
-import styles from './modalLogout.module.css';
 import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
 import authOperations from '../../redux/auth/authOperations';
 import { Spinner } from '../spinner/spinner';
+import styles from './modalLogout.module.css';
 
 const modalRoot = document.getElementById('modal-root');
 
 export default function ModalLogout({ closeModalLogout }) {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.auth);
-  console.log(isLoading);
 
   const logOut = () => {
     dispatch(authOperations.logOut());
-    // closeModalLogout();
   };
 
   const onBackdropClick = e => {

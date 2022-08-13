@@ -1,6 +1,6 @@
 import { Fragment } from 'react';
 import Media from 'react-media';
-// components
+
 import { NavMenuMobile } from '../components/dashboard/navMenu/navMenuMobile';
 import { NavMenu } from '../components/dashboard/navMenu/navMenu';
 import { Ballance } from '../components/dashboard/ballance/ballance';
@@ -8,7 +8,6 @@ import { Currency } from '../components/dashboard/currency/currency';
 import { Diagram } from '../components/diagram/diagram';
 import { Period } from '../components/period/period';
 import { StatTable } from '../components/statTable/statTable';
-// import styles from './styles.module.css';
 import styles from './statPage.module.css';
 
 const StatPage = () => {

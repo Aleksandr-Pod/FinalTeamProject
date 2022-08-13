@@ -1,13 +1,13 @@
-import React from 'react';
-import { Form, Field, Formik } from 'formik';
+
 import { useDispatch } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import styles from './loginForm.module.css';
+import { ToastContainer } from 'react-toastify';
 import * as Yup from 'yup';
+import { Form, Field, Formik } from 'formik';
 import sprite from '../../images/sprite.svg';
 import logo from '../../images/logo.svg';
 import authOperations from '../../redux/auth/authOperations';
-import { ToastContainer } from 'react-toastify';
+import styles from './loginForm.module.css';
 
 const loginSchema = Yup.object().shape({
   email: Yup.string().email('Email must be valid').required('Required'),

@@ -1,6 +1,6 @@
 import { lazy, Suspense, useState } from 'react';
 import { useParams } from 'react-router-dom';
-// components
+
 import Header from '../components/dashboard/header/header';
 import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
@@ -16,7 +16,6 @@ const PageNotFound = lazy(() => import('./pageNotFound'));
 
 const Dashboard = () => {
   const [showModal, setShowModal] = useState(false);
-
   const { activeBtn } = useParams();
   if (
     (activeBtn !== 'home') &
@@ -31,7 +30,6 @@ const Dashboard = () => {
 
   return (
     <>
-      {/* <div className={styles.vector}></div> */}
       <img className={styles.purple} src={PurpleEllipse} alt="logo" />
       <img className={styles.peach} src={PeachEllipse} alt="logo" />
       <div className={`${styles.dash}  ${showModal ? styles.offScroll : ''}`}>
