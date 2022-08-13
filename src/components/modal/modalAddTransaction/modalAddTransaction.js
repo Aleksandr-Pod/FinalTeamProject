@@ -10,6 +10,7 @@ import { fetchStatistics } from '../../../redux/statistics/statisticsOperations'
 import { Spinner } from '../../spinner/spinner';
 import sprite from '../../../images/sprite.svg';
 import styles from './modalAddTransaction.module.css';
+// import { findAllByTestId } from '@testing-library/react';
 
 export default function ModalAddTransaction({ showModal, setShowModal }) {
   const { t } = useTranslation();
@@ -128,10 +129,10 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                       type="checkbox"
                       className={styles.checkboxInput}
                       id="checkbox"
-                      onChange={e => {
-                        handleChange(e);
-                        setFieldValue('category', '');
-                      }}
+                      // onChange={e => {
+                      //   handleChange(e);
+                      //   setFieldValue('category', '');
+                      // }}
                     />
                     <label htmlFor="checkbox"></label>
                   </span>
@@ -151,26 +152,22 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                       {t('addTransactions.select')}
                     </option>
                     {values.income
-                      ? income.map((el, id) => {
-                          return (
-                            <option key={id} value={el.name}>
-                              {el.name}
-                            </option>
-                          );
-                        })
-                      : expense.map((el, id) => {
-                          return (
-                            <option key={id} value={el.name}>
-                              {el.name}
-                            </option>
-                          );
-                        })}
+                      ? income.map((el, id) => (
+                          <option key={id} value={el.name}>
+                            {el.name}
+                          </option>
+                        ))
+                      : expense.map((el, id) => (
+                          <option key={id} value={el.name}>
+                            {el.name}
+                          </option>
+                        ))}
                   </Field>
-                  {errors.category && touched.category ? (
+                  {errors.category && touched.category && (
                     <div className={styles.errorWrapper}>
                       {t('addTransactions.errCategory')}
                     </div>
-                  ) : null}
+                  )}
                 </div>
                 <div className={styles.amount}>
                   {/* AMOUNT */}
@@ -183,11 +180,11 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                       placeholder="0.00"
                       required
                     />
-                    {errors.amount && touched.amount ? (
+                    {errors.amount && touched.amount && (
                       <div className={styles.errorWrapperAmount}>
                         {errors.amount}
                       </div>
-                    ) : null}
+                    )}
                   </div>
                   {/* DATE */}
                   <div className={styles.wrapper}>
@@ -199,9 +196,9 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                       max={todayDate}
                       required
                     />
-                    {errors.date && touched.date ? (
+                    {errors.date && touched.date && (
                       <div className={styles.errorWrapper}>{errors.date}</div>
-                    ) : null}
+                    )}
                   </div>
                 </div>
                 {isLoading && <Spinner />}
@@ -215,11 +212,11 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                     placeholder="Comment"
                     autoComplete="off"
                   />
-                  {errors.comment && touched.comment ? (
+                  {errors.comment && touched.comment && (
                     <div className={styles.errorWrapperComment}>
                       {errors.comment}
                     </div>
-                  ) : null}
+                  )}
                 </div>
                 {/* SUBMIT */}
                 <div className={styles.buttons}>
@@ -234,7 +231,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                   <button
                     className={styles.cancelBtn}
                     type="button"
-                    onClick={() => setShowModal(prev => !prev)}
+                    onClick={() => setShowModal(false)}
                   >
                     {t('addTransactions.cancel')}
                   </button>
