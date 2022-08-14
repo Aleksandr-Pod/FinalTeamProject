@@ -2,11 +2,16 @@
   width: 20px;
   height: 20px;
   border: none;
-  margin-left: 10px;
-  margin-right: 10px;
-  background-size: contain;
-  background-color: #fff;
-  background-image: url(../../images/lang.svg);
+  /* margin-left: 10px; */
+  background-color: transparent;
+}
+.icon {
+  /* margin-right: 10px;
+  margin-left: 10px; */
+  fill: var(--grey);
+}
+.menuBtn:hover .icon {
+  fill: var(--blue);
 }
 .menuSelect {
   width: 50px;
@@ -14,6 +19,7 @@
   margin-bottom: 5px;
   border: 1px solid var(--grey);
   border-radius: 5px;
+  z-index: 1300;
 }
 .menuSelect:hover,
 .menuSelect:focus {
@@ -32,4 +38,10 @@
 .ua {
   background-size: cover;
   background-image: url(../../images/icon-ua.svg);
+}
+
+@media screen and (min-width: 768px) {
+  .menuBtn {
+    margin-right: 10px;
+  }
 }

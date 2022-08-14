@@ -209,7 +209,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                     type="text"
                     id="comment"
                     name="comment"
-                    placeholder="Comment"
+                    placeholder={t('addTransactions.comment')}
                     autoComplete="off"
                   />
                   {errors.comment && touched.comment && (

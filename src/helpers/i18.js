@@ -49,6 +49,7 @@ i18n
             errAmountBigSum: 'amount must be less than or equal to 999 999',
             errAmountLittleSum: 'amount must be greater than or equal to 0.01',
             errDate: 'date is a required field',
+            comment: 'Comment',
           },
           month: {
             jan: 'January',
@@ -112,6 +113,7 @@ i18n
             errAmountBigSum: 'сума має бути меншою або дорівнювати 999 999',
             errAmountLittleSum: 'сума має бути більшою або дорівнювати 0.01',
             errDate: "поле дата обов'язкове",
+            comment: 'Коментар',
           },
           month: {
             jan: 'Січень',
