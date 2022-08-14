@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
+    "@chakra-ui/menu": "^2.0.8",
     "@reduxjs/toolkit": "^1.8.3",
     "@testing-library/jest-dom": "^5.16.4",
     "@testing-library/react": "^13.3.0",
@@ -10,12 +11,15 @@
     "axios": "^0.27.2",
     "chart.js": "^3.8.2",
     "formik": "^2.2.9",
+    "i18next": "^21.9.0",
+    "i18next-browser-languagedetector": "^6.1.5",
     "modern-normalize": "^1.1.0",
     "prop-types": "^15.8.1",
     "react": "^18.2.0",
     "react-chartjs-2": "^4.3.1",
     "react-dom": "^18.2.0",
     "react-ellipsis-text": "^1.2.1",
+    "react-i18next": "^11.18.3",
     "react-icons": "^4.4.0",
     "react-loader-spinner": "^5.1.7-beta.1",
     "react-media": "^1.10.0",
@@ -33,7 +37,9 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "netlify": "netlify"
+    "netlify": "netlify",
+    "predeploy": "npm run build",
+    "deploy": "netlify deploy -p"
   },
   "eslintConfig": {
     "extends": [

@@ -1,16 +1,16 @@
 import { useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import styles from './transactionDesk.module.css';
 import { TransactionTableDesk } from './transactionTableDesk';
 
 export const TransactionDesk = () => {
+  const { t } = useTranslation();
   const { transactions } = useSelector(state => state.transactions);
   return (
     <>
       {transactions.length === 0 && (
         <>
-          <p className={styles.transactionsText}>
-            You haven't made any transactions yet
-          </p>
+          <p className={styles.transactionsText}>{t('transactions.text')}</p>
         </>
       )}
       {transactions.length > 0 && (
@@ -18,12 +18,18 @@ export const TransactionDesk = () => {
           <table className={styles.transactionTable}>
             <thead>
               <tr className={styles.headString}>
-                <th className={styles.headDate}>Date</th>
-                <th>Type</th>
-                <th className={styles.headCategory}>Category</th>
-                <th className={styles.headComment}>Comment</th>
-                <th className={styles.headSum}>Sum</th>
-                <th className={styles.headBalance}>Balance</th>
+                <th className={styles.headDate}>{t('transactions.date')}</th>
+                <th>{t('transactions.type')}</th>
+                <th className={styles.headCategory}>
+                  {t('transactions.category')}
+                </th>
+                <th className={styles.headComment}>
+                  {t('transactions.comment')}
+                </th>
+                <th className={styles.headSum}>{t('transactions.sum')}</th>
+                <th className={styles.headBalance}>
+                  {t('transactions.balance')}
+                </th>
               </tr>
             </thead>
             <tbody className="">

@@ -2,6 +2,7 @@ import { Fragment, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Media from 'react-media';
 import { ToastContainer, toast } from 'react-toastify';
+
 // components
 import {
   TransactionTableMobile,

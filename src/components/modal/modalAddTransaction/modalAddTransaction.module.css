@@ -43,13 +43,6 @@
   font-size: 14px;
   color: var(--pink);
 }
-.errorWrapperComment {
-  position: absolute;
-  top: 80px;
-
-  font-size: 14px;
-  color: var(--pink);
-}
 .content {
   position: relative;
   height: 603px;

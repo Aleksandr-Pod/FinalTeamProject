@@ -14,6 +14,23 @@ const token = {
   },
 };
 
+const loginGoogle = createAsyncThunk(
+  'auth/loginGoogle',
+  async (credentials, { rejectWithValue, dispatch }) => {
+    try {
+      const response = await axios.post('/api/users/google-user', credentials);
+      token.set(response.data.data.token);
+      dispatch(setTransactions(response.data.data));
+      dispatch(setBalance(response.data.data.user.balance));
+      toast(response.data.message);
+      return response.data.data;
+    } catch (err) {
+      toast(err.response.data.message);
+      return rejectWithValue(err.message);
+    }
+  },
+);
+
 const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue, dispatch }) => {
@@ -81,6 +98,7 @@ const authOperations = {
   login,
   logOut,
   getCurrentUser,
+  loginGoogle,
 };
 
 export default authOperations;

@@ -1,8 +1,12 @@
 import { NavLink } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 import styles from './navMenu.module.css';
 import sprite from '../../../images/sprite.svg';
 
 export const NavMenu = () => {
+  const { t } = useTranslation();
+
   return (
     <nav>
       <ul className={styles.ulColumn}>
@@ -30,7 +34,7 @@ export const NavMenu = () => {
                       isActive ? `${styles.textActive}` : `${styles.link}`
                     }
                   >
-                    Home
+                    {t('nav.home')}
                   </span>
                 </>
               );
@@ -61,7 +65,7 @@ export const NavMenu = () => {
                       isActive ? `${styles.textActive}` : `${styles.link}`
                     }
                   >
-                    Statistics
+                    {t('nav.statistics')}
                   </span>
                 </>
               );
