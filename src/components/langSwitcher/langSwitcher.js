@@ -18,7 +18,7 @@ export const LangSwitcher = () => {
           <use href={`${sprite}#lang`}></use>
         </svg>
       </MenuButton>
-      <MenuList zIndex={1500}>
+      <MenuList>
         <MenuItem
           w={50}
           aria-label={'change english language'}

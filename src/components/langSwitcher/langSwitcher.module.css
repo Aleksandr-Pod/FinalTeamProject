@@ -4,17 +4,11 @@
   border: none;
   /* margin-left: 10px; */
   background-color: transparent;
-  /* background-size: contain;
-  background-color: #fff;
-  background-image: url(../../images/lang.svg); */
-  z-index: 1300;
 }
 .icon {
   /* margin-right: 10px;
   margin-left: 10px; */
-  /* fill: var(--grey);
-   */
-  fill: red;
+  fill: var(--grey);
 }
 .menuBtn:hover .icon {
   fill: var(--blue);
