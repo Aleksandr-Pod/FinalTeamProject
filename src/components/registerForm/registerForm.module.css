@@ -26,6 +26,8 @@
 }
 
 .input {
+  width: 240px;
+  margin-left: 40px;
   padding-top: 4px;
   padding-bottom: 8px;
   border: none;
@@ -142,7 +144,7 @@
   }
 
   .input {
-    width: 410px;
+    width: 370px;
     padding-left: 50px;
   }
   .btn {
