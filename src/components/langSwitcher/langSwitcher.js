@@ -2,6 +2,7 @@ import { Menu, MenuButton, MenuList, MenuItem } from '@chakra-ui/menu';
 import { useNavigate } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import styles from './langSwitcher.module.css';
+import sprite from '../../images/sprite.svg';
 
 export const LangSwitcher = () => {
   const { i18n } = useTranslation();
@@ -12,8 +13,12 @@ export const LangSwitcher = () => {
         aria-label={'open menu change language'}
         transition="all 0.2s"
         className={styles.menuBtn}
-      ></MenuButton>
-      <MenuList>
+      >
+        <svg className={styles.icon} width="18" height="18">
+          <use href={`${sprite}#lang`}></use>
+        </svg>
+      </MenuButton>
+      <MenuList zIndex={1500}>
         <MenuItem
           w={50}
           aria-label={'change english language'}
