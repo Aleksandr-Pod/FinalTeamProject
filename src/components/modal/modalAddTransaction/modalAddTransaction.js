@@ -31,7 +31,6 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.transactions);
   const { income, expense } = categoriesType;
-  console.log(expense);
 
   const layOutClick = e => {
     if (e.currentTarget === e.target) setShowModal(false);
