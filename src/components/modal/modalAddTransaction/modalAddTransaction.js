@@ -1,16 +1,14 @@
-import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
 
-import { fetchCategories } from '../../../redux/categories/categoriesOperations';
 import transactionOperations from '../../../redux/transactions/transactionOperations';
 import { fetchStatistics } from '../../../redux/statistics/statisticsOperations';
 import { Spinner } from '../../spinner/spinner';
 import sprite from '../../../images/sprite.svg';
 import styles from './modalAddTransaction.module.css';
-// import { findAllByTestId } from '@testing-library/react';
+import { categoriesType } from '../../categories';
 
 export default function ModalAddTransaction({ showModal, setShowModal }) {
   const { t } = useTranslation();
@@ -32,26 +30,20 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
 
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.transactions);
-  const { income, expense } = useSelector(state => state.categories);
+  const { income, expense } = categoriesType;
+  console.log(expense);
 
   const layOutClick = e => {
     if (e.currentTarget === e.target) setShowModal(false);
   };
 
-  useEffect(() => {
-    if (income.length === 0 || expense.length === 0)
-      dispatch(fetchCategories());
-  }, [dispatch, expense.length, income.length]);
-
   const handleSubmit = async (values, { resetForm }) => {
     const amountNum = Number(values.amount).toFixed(2);
-    const categoryId = getCategoryId(values);
     const data = {
       amount: amountNum,
       isIncome: values.income,
       date: transformDate(values.date),
       category: values.category,
-      categoryId,
       comment: values.comment,
     };
     await dispatch(transactionOperations.addTransaction(data));
@@ -60,21 +52,6 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
     resetForm();
   };
 
-  function getCategoryId(values) {
-    let categoryId;
-    values.income
-      ? income.forEach(el => {
-          if (el.name === values.category) {
-            categoryId = el.id;
-          }
-        })
-      : expense.forEach(el => {
-          if (el.name === values.category) {
-            categoryId = el.id;
-          }
-        });
-    return categoryId;
-  }
   function transformDate(date) {
     return `${date.slice(8)}.${date.slice(5, 7)}.${date.slice(0, 4)}`;
   }
@@ -129,10 +106,10 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                       type="checkbox"
                       className={styles.checkboxInput}
                       id="checkbox"
-                      // onChange={e => {
-                      //   handleChange(e);
-                      //   setFieldValue('category', '');
-                      // }}
+                      onChange={e => {
+                        handleChange(e);
+                        setFieldValue('category', '');
+                      }}
                     />
                     <label htmlFor="checkbox"></label>
                   </span>
@@ -153,8 +130,8 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                     </option>
                     {values.income
                       ? income.map((el, id) => (
-                          <option key={id} value={el.name}>
-                            {el.name}
+                          <option key={id} value={el}>
+                            {el}
                           </option>
                         ))
                       : expense.map((el, id) => (
