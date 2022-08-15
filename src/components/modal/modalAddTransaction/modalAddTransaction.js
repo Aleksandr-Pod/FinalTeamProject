@@ -129,10 +129,10 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                       type="checkbox"
                       className={styles.checkboxInput}
                       id="checkbox"
-                      // onChange={e => {
-                      //   handleChange(e);
-                      //   setFieldValue('category', '');
-                      // }}
+                      onChange={e => {
+                        handleChange(e);
+                        setFieldValue('category', '');
+                      }}
                     />
                     <label htmlFor="checkbox"></label>
                   </span>
