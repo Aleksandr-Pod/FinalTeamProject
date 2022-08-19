@@ -14,7 +14,7 @@ export const TransactionDesk = () => {
         </>
       )}
       {transactions.length > 0 && (
-        <>
+        <div className={styles.tableWrapper}>
           <table className={styles.transactionTable}>
             <thead>
               <tr className={styles.headString}>
@@ -60,7 +60,7 @@ export const TransactionDesk = () => {
               )}
             </tbody>
           </table>
-        </>
+        </div>
       )}
     </>
   );
