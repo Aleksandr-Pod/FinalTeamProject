@@ -4,8 +4,7 @@ import { toast } from 'react-toastify';
 import { setTransactions, setBalance } from '../transactions/transactionSlice';
 
 // axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
-axios.defaults.baseURL = 'http://localhost:3030';
-// const baseURL = 'http://localhost:3030';
+axios.defaults.baseURL = 'http://wallet-01.herokuapp.com/';
 
 const token = {
   set(token) {
