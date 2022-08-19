@@ -18,6 +18,11 @@ const authSlice = createSlice({
     changeError(state, { payload }) {
       state.error = payload;
     },
+    logOut(state) {
+      state.isLogged = false;
+      state.token = '';
+      state.user = initialState.user;
+    },
   },
   extraReducers: {
     [authOperation.register.pending]: state => {
@@ -95,5 +100,5 @@ const authSlice = createSlice({
     },
   },
 });
-export const { changeLoading, changeError } = authSlice.actions;
+export const { changeLoading, changeError, logOut } = authSlice.actions;
 export default authSlice.reducer;

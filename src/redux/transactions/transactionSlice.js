@@ -14,6 +14,7 @@ export const transactionsSlice = createSlice({
   reducers: {
     resetTransactions(state) {
       state.transactions = [];
+      state.error = null;
     },
     setTransactions(state, action) {
       state.transactions = action.payload.lastTransactions;

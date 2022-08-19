@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
+// import { logOut } from '../auth/authSlice';
 
 const getTransactions = createAsyncThunk(
   'transactions/getTransactions',
@@ -23,6 +24,10 @@ const addTransaction = createAsyncThunk(
       toast(response.data.message);
       return response.data.data.result;
     } catch (error) {
+      // console.log(logOut);
+      if (error.response.data.message === 'jwt expired')
+        console.log(error.response.data.message);
+      // dispatch(logOut());
       return rejectWithValue(error);
     }
   },
