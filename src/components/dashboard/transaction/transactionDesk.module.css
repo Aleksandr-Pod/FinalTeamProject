@@ -98,6 +98,21 @@
   .bodyString {
     height: 3.625rem;
   }
+  .bodyString:hover {
+    background-color: rgb(234, 252, 186);
+  }
+  .layout {
+    display: flex;
+    justify-content: center;
+    padding: 10px 50px;
+    background-color: blanchedalmond;
+  }
+  .layout button {
+    width: 100px;
+  }
+  .firstBtn {
+    margin-right: 50px;
+  }
 }
 @media screen and (min-width: 1280px) {
   .transactionTable {
