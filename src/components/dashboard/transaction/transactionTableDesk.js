@@ -1,5 +1,7 @@
 import EllipsisText from 'react-ellipsis-text/lib/components/EllipsisText';
+import { useSelector } from 'react-redux';
 import styles from './transactionDesk.module.css';
+
 export const TransactionTableDesk = ({
   handleClick,
   id,
@@ -10,8 +12,15 @@ export const TransactionTableDesk = ({
   sum,
   balance,
 }) => {
+  const { currentId } = useSelector(state => state.transactions);
+
   return (
-    <tr className={styles.bodyString} onClick={() => handleClick(id)}>
+    <tr
+      className={`${styles.bodyString} ${
+        styles[id === currentId && 'selected']
+      }`}
+      onClick={() => handleClick(id)}
+    >
       <td className={styles.date}> {date} </td>
       <td>{isIncome ? '+' : '-'}</td>
       <td className={styles.category}>{category}</td>

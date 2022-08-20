@@ -4,6 +4,7 @@ import transactionsOperations from './transactionOperations';
 const initialState = {
   transactions: [],
   totalBalance: 0,
+  currentId: '',
   isLoading: false,
   error: null,
 };
@@ -22,6 +23,9 @@ export const transactionsSlice = createSlice({
     },
     setBalance(state, { payload }) {
       state.totalBalance = payload;
+    },
+    setCurrentId(state, { payload }) {
+      state.currentId = payload;
     },
   },
   extraReducers: {
@@ -57,5 +61,5 @@ export const transactionsSlice = createSlice({
   },
 });
 
-export const { resetTransactions, setTransactions, setBalance } =
+export const { resetTransactions, setTransactions, setBalance, setCurrentId } =
   transactionsSlice.actions;

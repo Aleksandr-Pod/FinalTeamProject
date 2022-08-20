@@ -1,23 +1,25 @@
 import { useState, useEffect, useCallback } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import styles from './transactionDesk.module.css';
 import { TransactionTableDesk } from './transactionTableDesk';
+import { setCurrentId } from '../../../redux/transactions/transactionSlice';
 
 export const TransactionDesk = () => {
   const [showTableModal, setShowTableModal] = useState(false);
-  console.log('showTableModal', showTableModal);
   const { t } = useTranslation();
-  const { transactions } = useSelector(state => state.transactions);
-  let transId = 0;
+  const { transactions, currentId } = useSelector(state => state.transactions);
+  const dispatch = useDispatch();
+  console.log('currentId:', currentId);
 
   const keyPress = useCallback(
     e => {
       if (e.key === 'Escape' && showTableModal) {
+        dispatch(setCurrentId(''));
         setShowTableModal(false);
       }
     },
-    [setShowTableModal, showTableModal],
+    [dispatch, showTableModal],
   );
 
   useEffect(() => {
@@ -26,16 +28,16 @@ export const TransactionDesk = () => {
   }, [keyPress]);
 
   const handleClick = id => {
-    console.log('handleClick _id', id);
+    dispatch(setCurrentId(id));
     setShowTableModal(true);
   };
 
-  const editRecord = id => {
-    console.log('Edit record id:', id);
+  const editRecord = () => {
+    console.log('Edit record id:', currentId);
   };
 
-  const deleteRecord = id => {
-    console.log('Delete record id:', id);
+  const deleteRecord = () => {
+    console.log('Delete record id:', currentId);
   };
 
   return (
@@ -78,6 +80,7 @@ export const TransactionDesk = () => {
                   }) => (
                     <TransactionTableDesk
                       key={_id}
+                      id={_id}
                       handleClick={handleClick}
                       date={date}
                       isIncome={isIncome}
@@ -97,10 +100,17 @@ export const TransactionDesk = () => {
           </div>
           {showTableModal && (
             <div className={styles.layout}>
-              <button className={styles.firstBtn} onClick={editRecord}>
-                EDIT
-              </button>
+              <button onClick={editRecord}>EDIT</button>
               <button onClick={deleteRecord}>DELETE</button>
+              <button
+                className={styles.lastBtn}
+                onClick={() => {
+                  dispatch(setCurrentId(''));
+                  setShowTableModal(false);
+                }}
+              >
+                CANCEL
+              </button>
             </div>
           )}
         </>
