@@ -24,10 +24,21 @@ const addTransaction = createAsyncThunk(
       toast(response.data.message);
       return response.data.data.result;
     } catch (error) {
-      // console.log(logOut);
-      if (error.response.data.message === 'jwt expired')
-        console.log(error.response.data.message);
-      // dispatch(logOut());
+      return rejectWithValue(error);
+    }
+  },
+);
+
+const deleteTransaction = createAsyncThunk(
+  'transactions/deleteTransactions',
+  async (credential, { rejectWithValue, dispatch }) => {
+    console.log('credential', credential);
+    try {
+      const response = await axios.delete('/api/transactions', credential);
+      dispatch(getTransactions());
+      toast(response.data.message);
+      return;
+    } catch (error) {
       return rejectWithValue(error);
     }
   },
@@ -36,6 +47,7 @@ const addTransaction = createAsyncThunk(
 const transactionsOperations = {
   getTransactions,
   addTransaction,
+  deleteTransaction,
 };
 
 export default transactionsOperations;

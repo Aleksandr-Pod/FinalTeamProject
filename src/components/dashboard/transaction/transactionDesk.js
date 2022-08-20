@@ -4,13 +4,16 @@ import { useTranslation } from 'react-i18next';
 import styles from './transactionDesk.module.css';
 import { TransactionTableDesk } from './transactionTableDesk';
 import { setCurrentId } from '../../../redux/transactions/transactionSlice';
+import transactionsOperations from '../../../redux/transactions/transactionOperations';
+import { fetchStatistics } from '../../../redux/statistics/statisticsOperations';
 
 export const TransactionDesk = () => {
   const [showTableModal, setShowTableModal] = useState(false);
   const { t } = useTranslation();
-  const { transactions, currentId } = useSelector(state => state.transactions);
+  const { transactions, error, currentId } = useSelector(
+    state => state.transactions,
+  );
   const dispatch = useDispatch();
-  console.log('currentId:', currentId);
 
   const keyPress = useCallback(
     e => {
@@ -36,8 +39,17 @@ export const TransactionDesk = () => {
     console.log('Edit record id:', currentId);
   };
 
-  const deleteRecord = () => {
+  const deleteRecord = async () => {
     console.log('Delete record id:', currentId);
+    await dispatch(
+      transactionsOperations.deleteTransaction({
+        transactionId: currentId,
+      }),
+    );
+    if (error) return;
+    await dispatch(fetchStatistics({}));
+    setShowTableModal(false);
+    dispatch(setCurrentId(''));
   };
 
   return (

@@ -48,15 +48,28 @@ export const transactionsSlice = createSlice({
       state.isLoading = true;
       state.error = null;
     },
-
     [transactionsOperations.addTransaction.fulfilled]: (state, action) => {
       state.totalBalance = action.payload.balance;
       state.isLoading = false;
     },
-
     [transactionsOperations.addTransaction.rejected]: (state, action) => {
       state.error = action.payload.response.data.message;
       state.isLoading = false;
+    },
+
+    [transactionsOperations.deleteTransaction.pending]: state => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [transactionsOperations.deleteTransaction.fulfilled]: state => {
+      state.isLoading = false;
+    },
+    [transactionsOperations.deleteTransaction.rejected]: (
+      state,
+      { payload },
+    ) => {
+      state.isLoading = true;
+      state.error = payload.response.data.message;
     },
   },
 });
