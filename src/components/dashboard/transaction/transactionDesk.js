@@ -39,15 +39,15 @@ export const TransactionDesk = () => {
     console.log('Edit record id:', currentId);
   };
 
-  const deleteRecord = async () => {
+  const deleteRecord = () => {
     console.log('Delete record id:', currentId);
-    await dispatch(
+    dispatch(
       transactionsOperations.deleteTransaction({
         transactionId: currentId,
       }),
     );
     if (error) return;
-    await dispatch(fetchStatistics({}));
+    dispatch(fetchStatistics({}));
     setShowTableModal(false);
     dispatch(setCurrentId(''));
   };
