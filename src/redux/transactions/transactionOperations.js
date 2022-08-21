@@ -1,14 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 import { toast } from 'react-toastify';
-// import { logOut } from '../auth/authSlice';
 
 const getTransactions = createAsyncThunk(
   'transactions/getTransactions',
   async (_, { rejectWithValue }) => {
     try {
       const response = await axios.get('/api/transactions');
-      return response.data.data.lastTransactions;
+      return response.data.data;
     } catch (error) {
       return rejectWithValue(error);
     }
@@ -34,7 +33,9 @@ const deleteTransaction = createAsyncThunk(
   async (credential, { rejectWithValue, dispatch }) => {
     console.log('credential', credential);
     try {
-      const response = await axios.delete('/api/transactions', credential);
+      const response = await axios.delete('/api/transactions', {
+        data: credential,
+      });
       dispatch(getTransactions());
       toast(response.data.message);
       return;

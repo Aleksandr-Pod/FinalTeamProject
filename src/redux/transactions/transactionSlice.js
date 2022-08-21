@@ -18,8 +18,8 @@ export const transactionsSlice = createSlice({
       state.error = null;
     },
     setTransactions(state, action) {
-      state.transactions = action.payload.lastTransactions;
-      state.totalBalance = action.payload.user.balance;
+      state.transactions = action.payload.data.allTransactions;
+      state.totalBalance = action.payload.data.totalBalance;
     },
     setBalance(state, { payload }) {
       state.totalBalance = payload;
@@ -33,10 +33,13 @@ export const transactionsSlice = createSlice({
       state.error = null;
       state.isLoading = true;
     },
-    [transactionsOperations.getTransactions.fulfilled]: (state, action) => {
-      state.transactions = action.payload;
-      state.totalBalance =
-        action.payload.length === 0 ? 0 : action.payload[0].balance;
+    [transactionsOperations.getTransactions.fulfilled]: (
+      state,
+      { payload },
+    ) => {
+      state.transactions = payload.allTransactions;
+      state.totalBalance = payload.totalBalance;
+      // action.payload.length === 0 ? 0 : action.payload[0].balance;
       state.isLoading = false;
     },
     [transactionsOperations.getTransactions.rejected]: (state, action) => {
