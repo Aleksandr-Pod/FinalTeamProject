@@ -1,11 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { setTransactions, setBalance } from '../transactions/transactionSlice';
+import { setTransactions } from '../transactions/transactionSlice';
 
 // axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
-axios.defaults.baseURL = 'http://wallet-01.herokuapp.com/';
-// axios.defaults.baseURL = 'http://localhost:3030/';
+// axios.defaults.baseURL = 'http://wallet-01.herokuapp.com/';
+axios.defaults.baseURL = 'http://localhost:3030/';
 
 const token = {
   set(token) {
@@ -21,11 +21,10 @@ const loginGoogle = createAsyncThunk(
   async (credentials, { rejectWithValue, dispatch }) => {
     try {
       const response = await axios.post('/api/users/google-user', credentials);
-      token.set(response.data.data.token);
-      dispatch(setTransactions(response.data.data));
-      dispatch(setBalance(response.data.data.user.balance));
+      token.set(response.data.token);
+      dispatch(setTransactions(response.data));
       toast(response.data.message);
-      return response.data.data;
+      return response.data;
     } catch (err) {
       toast(err.response.data.message);
       return rejectWithValue(err.message);
@@ -36,13 +35,14 @@ const loginGoogle = createAsyncThunk(
 const login = createAsyncThunk(
   'auth/login',
   async (credentials, { rejectWithValue, dispatch }) => {
+    console.log('credentials:', credentials);
     try {
       const response = await axios.post(`/api/users/login`, credentials);
-      token.set(response.data.data.token);
-      dispatch(setTransactions(response.data.data));
-      dispatch(setBalance(response.data.data.user.balance));
+      token.set(response.data.token);
+      console.log('dispatch allTransactions - response.data:', response.data);
+      dispatch(setTransactions(response.data));
       toast(response.data.message);
-      return response.data.data;
+      return response.data;
     } catch (err) {
       toast(err.response.data.message);
       return rejectWithValue(err.message);

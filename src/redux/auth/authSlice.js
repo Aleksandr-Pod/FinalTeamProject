@@ -43,16 +43,16 @@ const authSlice = createSlice({
       state.error = null;
       state.isLoading = true;
     },
-    [authOperation.login.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+    [authOperation.login.fulfilled]: (state, { payload }) => {
+      state.user = payload.user;
+      state.token = payload.token;
       state.isLogged = true;
       state.isLoading = false;
     },
-    [authOperation.login.rejected]: (state, action) => {
-      state.error = !action.payload.message
-        ? 'Authorization failed.Please check you email and password.'
-        : action.payload.message;
+    [authOperation.login.rejected]: (state, { payload }) => {
+      state.error = payload.message
+        ? payload.message
+        : 'Authorization failed. Please check you email and password.';
       state.isLoading = false;
     },
     [authOperation.loginGoogle.pending]: state => {
