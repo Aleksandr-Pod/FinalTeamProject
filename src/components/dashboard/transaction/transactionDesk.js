@@ -13,6 +13,7 @@ export const TransactionDesk = () => {
   const { transactions, error, currentId } = useSelector(
     state => state.transactions,
   );
+
   const dispatch = useDispatch();
 
   const keyPress = useCallback(
