@@ -19,24 +19,31 @@ const PageNotFound = lazy(() => import('../pages/pageNotFound'));
 const RuPage = lazy(() => import('../pages/ru'));
 
 export const App = () => {
-  const { isLogged } = useSelector(state => state.auth);
-  const { error } = useSelector(state => state.transactions);
+  const { isLogged, error } = useSelector(state => state.auth);
+  const { transactions, error: transactionsError } = useSelector(
+    state => state.transactions,
+  );
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLogged & (error === 'jwt expired')) {
+    if (
+      isLogged &
+      (error === 'jwt expired' || transactionsError === 'jwt expired')
+    ) {
       dispatch(logOut());
       dispatch(resetTransactions());
     }
     dispatch(authOperations.getCurrentUser());
-  }, [dispatch, error, isLogged]);
+  }, [dispatch, error, isLogged, transactionsError]);
 
   useEffect(() => {
-    if (isLogged) {
+    if (isLogged & !transactions.length) {
       dispatch(transactionsOperations.getTransactions());
-      dispatch(fetchStatistics({}));
+      if (transactions.length) {
+        dispatch(fetchStatistics({}));
+      }
     }
-  }, [dispatch, isLogged]);
+  }, [dispatch, isLogged, transactions.length]);
 
   return (
     <>
