@@ -11,12 +11,15 @@ const statisticsSlice = createSlice({
     addStatistics(state, { payload }) {
       state.statData = payload;
     },
+    resetStats(state) {
+      state.statData = [];
+    },
   },
   extraReducers: {
     [fetchStatistics.pending]: (state, action) => {
       state.isLoading = true;
     },
-    [fetchStatistics.fulfilled]: (state, {payload}) => {
+    [fetchStatistics.fulfilled]: (state, { payload }) => {
       state.statData = payload;
       state.isLoading = false;
     },
@@ -26,5 +29,5 @@ const statisticsSlice = createSlice({
   },
 });
 
-export const { addStatistics } = statisticsSlice.actions;
+export const { addStatistics, resetStats } = statisticsSlice.actions;
 export default statisticsSlice.reducer;

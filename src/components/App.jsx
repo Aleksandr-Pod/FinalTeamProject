@@ -11,6 +11,7 @@ import { logOut } from '../redux/auth/authSlice';
 import transactionsOperations from '../redux/transactions/transactionOperations';
 import { resetTransactions } from '../redux/transactions/transactionSlice';
 import { fetchStatistics } from '../redux/statistics/statisticsOperations';
+import { resetStats } from '../redux/statistics/statisticsSlice';
 
 const RegisterPage = lazy(() => import('../pages/registerPage'));
 const LoginPage = lazy(() => import('../pages/loginPage'));
@@ -19,10 +20,11 @@ const PageNotFound = lazy(() => import('../pages/pageNotFound'));
 const RuPage = lazy(() => import('../pages/ru'));
 
 export const App = () => {
-  const { isLogged, error } = useSelector(state => state.auth);
+  const { user, isLogged, error } = useSelector(state => state.auth);
   const { transactions, error: transactionsError } = useSelector(
     state => state.transactions,
   );
+  const { statData } = useSelector(state => state.statistics);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -32,18 +34,21 @@ export const App = () => {
     ) {
       dispatch(logOut());
       dispatch(resetTransactions());
+      dispatch(resetStats());
     }
-    dispatch(authOperations.getCurrentUser());
-  }, [dispatch, error, isLogged, transactionsError]);
+    if (!user.name) dispatch(authOperations.getCurrentUser());
+  }, [dispatch, error, isLogged, transactionsError, user.name]);
 
   useEffect(() => {
-    if (isLogged & !transactions.length) {
+    if (isLogged && !transactions.length) {
+      console.log('App - Getting Transactions ...');
       dispatch(transactionsOperations.getTransactions());
-      if (transactions.length) {
-        dispatch(fetchStatistics({}));
-      }
     }
-  }, [dispatch, isLogged, transactions.length]);
+    if (isLogged && !statData.length) {
+      console.log('App - Getting Stats ...');
+      dispatch(fetchStatistics({}));
+    }
+  }, [dispatch, isLogged, statData.length, transactions.length]);
 
   return (
     <>

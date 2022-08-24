@@ -1,11 +1,15 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { setTransactions } from '../transactions/transactionSlice';
+import {
+  setTransactions,
+  resetTransactions,
+} from '../transactions/transactionSlice';
+import { resetStats } from '../statistics/statisticsSlice';
 import { prepareIncomeData } from '../../helpers/prepareIncomeData';
 
 // axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
-axios.defaults.baseURL = 'http://wallet-01.herokuapp.com/';
+axios.defaults.baseURL = 'https://wallet-01.herokuapp.com/';
 // axios.defaults.baseURL = 'http://localhost:3030/';
 
 const token = {
@@ -75,6 +79,8 @@ const logOut = createAsyncThunk(
     try {
       await axios.get(`/api/users/logout`);
       token.unset();
+      dispatch(resetTransactions());
+      dispatch(resetStats());
     } catch (err) {
       return rejectWithValue(err.response.data);
     }

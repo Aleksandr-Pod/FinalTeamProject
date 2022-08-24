@@ -20,7 +20,7 @@ const authSlice = createSlice({
     },
     logOut(state) {
       state.isLogged = false;
-      state.token = '';
+      state.token = null;
       state.user = initialState.user;
     },
   },
@@ -99,7 +99,7 @@ const authSlice = createSlice({
     [authOperation.getCurrentUser.rejected]: state => {
       state.isLoading = false;
       state.isLogged = false;
-      state.token = '';
+      state.token = null;
     },
   },
 });
