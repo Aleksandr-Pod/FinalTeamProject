@@ -41,14 +41,18 @@ export const App = () => {
 
   useEffect(() => {
     if (isLogged && !transactions.length) {
+      // console.log("isLogged:", isLogged);
+      // console.log("Transactions.length", transactions.length );
       console.log('App - Getting Transactions ...');
       dispatch(transactionsOperations.getTransactions());
     }
-    if (isLogged && !statData.length) {
+    if (isLogged && !statData) {
+      // console.log("isLogged:", isLogged);
+      // console.log("statData:", statData );
       console.log('App - Getting Stats ...');
       dispatch(fetchStatistics({}));
     }
-  }, [dispatch, isLogged, statData.length, transactions.length]);
+  }, [dispatch, isLogged, statData, transactions.length]);
 
   return (
     <>

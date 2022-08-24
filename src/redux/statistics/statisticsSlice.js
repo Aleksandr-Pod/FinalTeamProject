@@ -4,7 +4,7 @@ import { fetchStatistics } from './statisticsOperations';
 const statisticsSlice = createSlice({
   name: 'statistics',
   initialState: {
-    statData: [],
+    statData: null,
     isLoading: false,
   },
   reducers: {
@@ -12,7 +12,7 @@ const statisticsSlice = createSlice({
       state.statData = payload;
     },
     resetStats(state) {
-      state.statData = [];
+      state.statData = null;
     },
   },
   extraReducers: {

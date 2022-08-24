@@ -39,9 +39,11 @@ const loginGoogle = createAsyncThunk(
 
 const login = createAsyncThunk(
   'auth/login',
-  async (credentials, { rejectWithValue, dispatch }) => {
+  async (credentials, { getState, rejectWithValue, dispatch }) => {
     try {
       const response = await axios.post(`/api/users/login`, credentials);
+      const { auth } = getState();
+      console.log('isLogged in Login Operation:', auth.isLogged);
       token.set(response.data.token);
       // sorting data by date
       response.data = prepareIncomeData(response.data);
@@ -75,9 +77,12 @@ const register = createAsyncThunk(
 
 const logOut = createAsyncThunk(
   'auth/logout',
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { getState, dispatch, rejectWithValue }) => {
     try {
-      await axios.get(`/api/users/logout`);
+      const resp = await axios.get(`/api/users/logout`);
+      console.log('resp', resp);
+      const { auth } = getState();
+      console.log('isLogged in logOut Operation:', auth.isLogged);
       token.unset();
       dispatch(resetTransactions());
       dispatch(resetStats());

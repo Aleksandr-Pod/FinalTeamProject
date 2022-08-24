@@ -78,6 +78,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperation.logOut.fulfilled]: state => {
+      console.log('logOut fulfilled');
       state.user = initialState.user;
       state.token = initialState.token;
       state.isLogged = false;
