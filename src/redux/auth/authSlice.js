@@ -44,6 +44,7 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperation.login.fulfilled]: (state, { payload }) => {
+      console.log('login reducer in slice');
       state.user = payload.user;
       state.token = payload.token;
       state.isLogged = true;
