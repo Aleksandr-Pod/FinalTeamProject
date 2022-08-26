@@ -3,7 +3,12 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 import styles from './transactionDesk.module.css';
 import { TransactionTableDesk } from './transactionTableDesk';
-import { setCurrentId } from '../../../redux/transactions/transactionSlice';
+import {
+  setCurrentId,
+  setModalInitials,
+  setOperation,
+  setShowModal,
+} from '../../../redux/transactions/transactionSlice';
 import transactionsOperations from '../../../redux/transactions/transactionOperations';
 import { fetchStatistics } from '../../../redux/statistics/statisticsOperations';
 
@@ -38,6 +43,21 @@ export const TransactionDesk = () => {
 
   const editRecord = () => {
     console.log('Edit record id:', currentId);
+    const { isIncome, category, amount, date, comment } = transactions.find(
+      el => el._id === currentId,
+    );
+    dispatch(
+      setModalInitials({
+        isIncome,
+        category,
+        amount,
+        date,
+        comment,
+      }),
+    );
+    setShowTableModal(false);
+    dispatch(setOperation('editTransaction'));
+    dispatch(setShowModal(true));
   };
 
   const deleteRecord = () => {

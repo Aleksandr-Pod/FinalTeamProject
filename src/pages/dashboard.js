@@ -1,6 +1,6 @@
-import { lazy, Suspense, useState } from 'react';
+import { lazy, Suspense } from 'react';
 import { useParams } from 'react-router-dom';
-
+import { useSelector } from 'react-redux';
 import Header from '../components/dashboard/header/header';
 import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
@@ -15,7 +15,7 @@ const StatPage = lazy(() => import('./statPage'));
 const PageNotFound = lazy(() => import('./pageNotFound'));
 
 const Dashboard = () => {
-  const [showModal, setShowModal] = useState(false);
+  const { showModal } = useSelector(state => state.transactions);
   const { activeBtn } = useParams();
   if (
     (activeBtn !== 'home') &
@@ -33,13 +33,13 @@ const Dashboard = () => {
       <img className={styles.purple} src={PurpleEllipse} alt="logo" />
       <img className={styles.peach} src={PeachEllipse} alt="logo" />
       <div className={`${styles.dash}  ${showModal ? styles.offScroll : ''}`}>
-        <Header setShowTransactionModal={setShowModal} />
+        <Header />
         {activeBtn === 'home' && (
           <>
             <Suspense fallback={<Spinner />}>
               <HomePage />
             </Suspense>
-            <Modal showModal={showModal} setShowModal={setShowModal} />
+            <Modal />
           </>
         )}
         {activeBtn === 'diagram' && (
@@ -47,7 +47,7 @@ const Dashboard = () => {
             <Suspense fallback={<Spinner />}>
               <StatPage />
             </Suspense>
-            <Modal showModal={showModal} setShowModal={setShowModal} />
+            <Modal />
           </>
         )}
         {activeBtn === 'currency' && (

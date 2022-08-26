@@ -36,19 +36,15 @@ export const App = () => {
       dispatch(resetTransactions());
       dispatch(resetStats());
     }
-    if (!user.name) dispatch(authOperations.getCurrentUser());
+    dispatch(authOperations.getCurrentUser());
   }, [dispatch, error, isLogged, transactionsError, user.name]);
 
   useEffect(() => {
     if (isLogged && !transactions.length) {
-      // console.log("isLogged:", isLogged);
-      // console.log("Transactions.length", transactions.length );
       console.log('App - Getting Transactions ...');
       dispatch(transactionsOperations.getTransactions());
     }
     if (isLogged && !statData) {
-      // console.log("isLogged:", isLogged);
-      // console.log("statData:", statData );
       console.log('App - Getting Stats ...');
       dispatch(fetchStatistics({}));
     }

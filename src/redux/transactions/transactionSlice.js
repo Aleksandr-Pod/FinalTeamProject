@@ -7,6 +7,15 @@ const initialState = {
   currentId: '',
   isLoading: false,
   error: null,
+  showModal: false,
+  modalInitials: {
+    isIncome: false,
+    category: '',
+    amount: '',
+    date: new Date().toISOString().slice(0, 10),
+    comment: ' ',
+  },
+  operation: 'addTransaction',
 };
 
 export const transactionsSlice = createSlice({
@@ -20,9 +29,23 @@ export const transactionsSlice = createSlice({
     setTransactions(state, action) {
       state.transactions = action.payload.allTransactions;
       state.totalBalance = action.payload.user.balance;
+      state.error = null;
+      state.isLoading = false;
     },
     setCurrentId(state, { payload }) {
       state.currentId = payload;
+    },
+    setShowModal(state, { payload }) {
+      state.showModal = payload;
+    },
+    setModalInitials(state, { payload }) {
+      state.modalInitials = payload;
+    },
+    resetModalInitials(state) {
+      state.modalInitials = initialState.modalInitials;
+    },
+    setOperation(state, { payload }) {
+      state.operation = payload;
     },
   },
   extraReducers: {
@@ -49,9 +72,27 @@ export const transactionsSlice = createSlice({
     },
     [transactionsOperations.addTransaction.fulfilled]: (state, action) => {
       state.totalBalance = action.payload.balance;
+      state.operation = 'addTransaction';
+      state.modalInitials = initialState.modalInitials;
+      state.showModal = false;
       state.isLoading = false;
     },
     [transactionsOperations.addTransaction.rejected]: (state, action) => {
+      state.error = action.payload.response.data.message;
+      state.isLoading = false;
+    },
+
+    [transactionsOperations.editTransaction.pending]: state => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    [transactionsOperations.editTransaction.fulfilled]: (state, action) => {
+      state.operation = 'addTransaction';
+      state.modalInitials = initialState.modalInitials;
+      state.showModal = false;
+      state.isLoading = false;
+    },
+    [transactionsOperations.editTransaction.rejected]: (state, action) => {
       state.error = action.payload.response.data.message;
       state.isLoading = false;
     },
@@ -73,5 +114,13 @@ export const transactionsSlice = createSlice({
   },
 });
 
-export const { resetTransactions, setTransactions, setBalance, setCurrentId } =
-  transactionsSlice.actions;
+export const {
+  resetTransactions,
+  setTransactions,
+  setBalance,
+  setCurrentId,
+  setShowModal,
+  setModalInitials,
+  resetModalInitials,
+  setOperation,
+} = transactionsSlice.actions;
