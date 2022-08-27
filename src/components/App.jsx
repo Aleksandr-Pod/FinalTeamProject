@@ -20,7 +20,9 @@ const PageNotFound = lazy(() => import('../pages/pageNotFound'));
 const RuPage = lazy(() => import('../pages/ru'));
 
 export const App = () => {
-  const { user, isLogged, error } = useSelector(state => state.auth);
+  const { user, isLogged, token, isLoading, error } = useSelector(
+    state => state.auth,
+  );
   const { transactions, error: transactionsError } = useSelector(
     state => state.transactions,
   );
@@ -36,19 +38,23 @@ export const App = () => {
       dispatch(resetTransactions());
       dispatch(resetStats());
     }
-    dispatch(authOperations.getCurrentUser());
-  }, [dispatch, error, isLogged, transactionsError, user.name]);
+  }, [dispatch, error, isLogged, transactionsError]);
 
   useEffect(() => {
-    if (isLogged && !transactions.length) {
+    if (token && !user.name && !isLoading)
+      dispatch(authOperations.getCurrentUser());
+  }, [dispatch, isLoading, user.name, token]);
+
+  useEffect(() => {
+    if (isLogged && user.name && !transactions.length) {
       console.log('App - Getting Transactions ...');
       dispatch(transactionsOperations.getTransactions());
     }
-    if (isLogged && !statData) {
+    if (isLogged && user.name && !statData) {
       console.log('App - Getting Stats ...');
       dispatch(fetchStatistics({}));
     }
-  }, [dispatch, isLogged, statData, transactions.length]);
+  }, [dispatch, isLogged, statData, user.name, transactions.length]);
 
   return (
     <>

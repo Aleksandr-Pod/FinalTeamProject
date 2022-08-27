@@ -13,10 +13,12 @@ import transactionsOperations from '../../../redux/transactions/transactionOpera
 import { fetchStatistics } from '../../../redux/statistics/statisticsOperations';
 
 export const TransactionDesk = () => {
-  const [showTableModal, setShowTableModal] = useState(false);
   const { t } = useTranslation();
   const { transactions, error, currentId } = useSelector(
     state => state.transactions,
+  );
+  const [showTableModal, setShowTableModal] = useState(
+    currentId ? true : false,
   );
 
   const dispatch = useDispatch();

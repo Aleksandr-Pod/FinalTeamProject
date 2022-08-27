@@ -22,7 +22,7 @@
   .largeSize {
     display: flex;
     flex-direction: row;
-    width: 100vh;
+    width: 100vw;
   }
 
   .leftSize {
@@ -32,19 +32,19 @@
     margin-right: 69px;
   }
 
-  .containerTable {
-    width: 100%;
-    margin-top: 46px;
-    margin-left: -16px;
-  }
   .rightSize {
-    width: 100vh;
-    padding-left: 69px;
+    width: 100vw;
+    padding-left: 53px;
     margin-left: 1px;
     margin-top: 0px;
 
-    max-width: 44rem;
+    /* max-width: 44rem; */
     border-left: 1px solid rgba(231, 229, 242, 1);
     box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05);
+  }
+  .containerTable {
+    width: 100%;
+    margin-top: 46px;
+    margin-left: 0px;
   }
 }
