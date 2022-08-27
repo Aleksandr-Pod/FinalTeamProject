@@ -226,7 +226,9 @@ export default function ModalAddTransaction({ operation }) {
                     type="submit"
                     disabled={isValid ? false : true}
                   >
-                    {t('addTransactions.add')}
+                    {operation === 'addTransaction'
+                      ? t('addTransactions.text')
+                      : 'EDIT transaction'}
                   </button>
                   <button
                     className={styles.cancelBtn}

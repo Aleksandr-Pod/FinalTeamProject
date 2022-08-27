@@ -104,6 +104,7 @@
     background-color: rgb(248, 238, 89);
   }
   .layout {
+    width: 715px;
     display: flex;
     justify-content: space-evenly;
     padding: 10px 50px;

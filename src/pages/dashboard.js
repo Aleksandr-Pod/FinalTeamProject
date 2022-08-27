@@ -55,8 +55,9 @@ const Dashboard = () => {
             <CurrencyPage />
           </Suspense>
         )}
+
+        <Footer />
       </div>
-      <Footer />
     </>
   );
 };
