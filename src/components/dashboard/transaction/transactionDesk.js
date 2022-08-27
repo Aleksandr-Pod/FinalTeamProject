@@ -48,12 +48,16 @@ export const TransactionDesk = () => {
     const { isIncome, category, amount, date, comment } = transactions.find(
       el => el._id === currentId,
     );
+    const dateInFormat = `${date.slice(6)}-${date.slice(3, 5)}-${date.slice(
+      0,
+      2,
+    )}`;
     dispatch(
       setModalInitials({
         isIncome,
         category,
         amount,
-        date,
+        date: dateInFormat,
         comment,
       }),
     );

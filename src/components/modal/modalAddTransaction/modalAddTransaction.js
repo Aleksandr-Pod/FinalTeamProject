@@ -102,7 +102,7 @@ export default function ModalAddTransaction({ operation }) {
             isIncome,
             category,
             amount,
-            date: transformDate(date),
+            date,
             comment,
           }}
           validateOnMount
