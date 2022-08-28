@@ -1,5 +1,5 @@
-.footer {
-  position: fixed;
+footer {
+  position: absolute;
   left: 0;
   top: calc(100vh - 60px);
   width: 100vw;
@@ -46,6 +46,10 @@
 }
 
 @media screen and (max-width: 767px) {
+  footer {
+    position: fixed;
+    top: calc(100% - 60px);
+  }
   .container {
     flex-direction: column;
     padding: 8px;
