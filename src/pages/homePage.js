@@ -47,7 +47,7 @@ const HomePage = () => {
               </>
             )}
             {matches.medium && (
-              <>
+              <div className={styles.container}>
                 <ToastContainer />
                 <div className={styles.currency}>
                   <div className={styles.nav_ballance}>
@@ -59,12 +59,12 @@ const HomePage = () => {
                 <div className={styles.containerTable}>
                   <TransactionDesk />
                 </div>
-              </>
+              </div>
             )}
             {matches.large && (
               <>
                 <ToastContainer />
-                <div className={styles.largeSize}>
+                <div className={styles.container}>
                   <div className={styles.leftSize}>
                     <NavMenu />
                     <Ballance />

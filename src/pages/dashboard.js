@@ -4,10 +4,10 @@ import { useSelector } from 'react-redux';
 import Header from '../components/dashboard/header/header';
 import PurpleEllipse from '../images/Ellipse1.svg';
 import PeachEllipse from '../images/Ellipse2.svg';
-import styles from './styles.module.css';
 import Modal from '../components/modal/modal';
 import Footer from '../components/footer/footer';
 import { Spinner } from '../components/spinner/spinner';
+import styles from './styles.module.css';
 
 const HomePage = lazy(() => import('./homePage'));
 const CurrencyPage = lazy(() => import('./currencyPage'));
@@ -35,12 +35,12 @@ const Dashboard = () => {
       <div className={`${styles.dash}  ${showModal ? styles.offScroll : ''}`}>
         <Header />
         {activeBtn === 'home' && (
-          <div className="container">
+          <>
             <Suspense fallback={<Spinner />}>
               <HomePage />
             </Suspense>
             <Modal />
-          </div>
+          </>
         )}
         {activeBtn === 'diagram' && (
           <>
