@@ -11,6 +11,7 @@ import { logOut } from '../redux/auth/authSlice';
 import transactionsOperations from '../redux/transactions/transactionOperations';
 import { resetTransactions } from '../redux/transactions/transactionSlice';
 import { fetchStatistics } from '../redux/statistics/statisticsOperations';
+import { resetStats } from '../redux/statistics/statisticsSlice';
 
 const RegisterPage = lazy(() => import('../pages/registerPage'));
 const LoginPage = lazy(() => import('../pages/loginPage'));
@@ -19,24 +20,41 @@ const PageNotFound = lazy(() => import('../pages/pageNotFound'));
 const RuPage = lazy(() => import('../pages/ru'));
 
 export const App = () => {
-  const { isLogged } = useSelector(state => state.auth);
-  const { error } = useSelector(state => state.transactions);
+  const { user, isLogged, token, isLoading, error } = useSelector(
+    state => state.auth,
+  );
+  const { transactions, error: transactionsError } = useSelector(
+    state => state.transactions,
+  );
+  const { statData } = useSelector(state => state.statistics);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (isLogged & (error === 'jwt expired')) {
+    if (
+      isLogged &
+      (error === 'jwt expired' || transactionsError === 'jwt expired')
+    ) {
       dispatch(logOut());
       dispatch(resetTransactions());
+      dispatch(resetStats());
     }
-    dispatch(authOperations.getCurrentUser());
-  }, [dispatch, error, isLogged]);
+  }, [dispatch, error, isLogged, transactionsError]);
 
   useEffect(() => {
-    if (isLogged) {
+    if (token && !user.name && !isLoading)
+      dispatch(authOperations.getCurrentUser());
+  }, [dispatch, isLoading, user.name, token]);
+
+  useEffect(() => {
+    if (isLogged && user.name && !transactions.length) {
+      console.log('App - Getting Transactions ...');
       dispatch(transactionsOperations.getTransactions());
+    }
+    if (isLogged && user.name && !statData) {
+      console.log('App - Getting Stats ...');
       dispatch(fetchStatistics({}));
     }
-  }, [dispatch, isLogged]);
+  }, [dispatch, isLogged, statData, user.name, transactions.length]);
 
   return (
     <>

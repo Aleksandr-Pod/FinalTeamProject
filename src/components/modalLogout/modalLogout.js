@@ -2,9 +2,11 @@ import { useSelector } from 'react-redux';
 import { createPortal } from 'react-dom';
 import { useEffect } from 'react';
 import { useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
 import authOperations from '../../redux/auth/authOperations';
 import { Spinner } from '../spinner/spinner';
-import { useTranslation } from 'react-i18next';
+import { resetStats } from '../../redux/statistics/statisticsSlice';
+import { resetTransactions } from '../../redux/transactions/transactionSlice';
 import styles from './modalLogout.module.css';
 
 const modalRoot = document.getElementById('modal-root');
@@ -14,8 +16,14 @@ export default function ModalLogout({ closeModalLogout }) {
   const dispatch = useDispatch();
   const { isLoading } = useSelector(state => state.auth);
 
-  const logOut = () => {
-    dispatch(authOperations.logOut());
+  const logOut = async () => {
+    try {
+      await dispatch(authOperations.logOut());
+      dispatch(resetTransactions());
+      dispatch(resetStats());
+    } catch (error) {
+      console.log('logOut error');
+    }
   };
 
   const onBackdropClick = e => {

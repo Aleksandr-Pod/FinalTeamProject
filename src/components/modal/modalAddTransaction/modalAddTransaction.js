@@ -2,15 +2,21 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Form, Formik, Field } from 'formik';
 import * as Yup from 'yup';
 import { useTranslation } from 'react-i18next';
-
+import {
+  setShowModal,
+  resetModalInitials,
+  setOperation,
+  setCurrentId,
+} from '../../../redux/transactions/transactionSlice';
 import transactionOperations from '../../../redux/transactions/transactionOperations';
 import { fetchStatistics } from '../../../redux/statistics/statisticsOperations';
 import { Spinner } from '../../spinner/spinner';
 import sprite from '../../../images/sprite.svg';
-import styles from './modalAddTransaction.module.css';
 import { categoriesType } from '../../categories';
+import styles from './modalAddTransaction.module.css';
+// import authOperations from '../../../redux/auth/authOperations';
 
-export default function ModalAddTransaction({ showModal, setShowModal }) {
+export default function ModalAddTransaction({ operation }) {
   const { t } = useTranslation();
   const transactionSchema = Yup.object().shape({
     type: Yup.boolean(),
@@ -29,34 +35,48 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
   });
 
   const dispatch = useDispatch();
-  const { isLoading } = useSelector(state => state.transactions);
+  const { isLoading, currentId, modalInitials } = useSelector(
+    state => state.transactions,
+  );
   const { income, expense } = categoriesType;
 
   const layOutClick = e => {
-    if (e.currentTarget === e.target) setShowModal(false);
+    if (e.currentTarget === e.target) {
+      console.log('layOut click');
+      handleCloseModal();
+    }
   };
 
   const handleSubmit = async (values, { resetForm }) => {
     const amountNum = Number(values.amount).toFixed(2);
     const data = {
       amount: amountNum,
-      isIncome: values.income,
+      isIncome: values.isIncome,
       date: transformDate(values.date),
       category: values.category,
       comment: values.comment,
     };
-    await dispatch(transactionOperations.addTransaction(data));
+    if (operation === 'editTransaction') {
+      data.transactionId = currentId;
+    }
+    await dispatch(transactionOperations[operation](data));
     await dispatch(fetchStatistics({}));
-    setShowModal(false);
-    resetForm();
   };
-
+  const handleCloseModal = () => {
+    dispatch(setShowModal(false));
+    dispatch(resetModalInitials());
+    dispatch(setCurrentId(''));
+    dispatch(setOperation('addTransaction'));
+  };
   function transformDate(date) {
     return `${date.slice(8)}.${date.slice(5, 7)}.${date.slice(0, 4)}`;
   }
   const todayDate = new Date().toISOString().slice(0, 10);
   const currentMonth = new Date().toISOString().slice(5, 7);
   const currentStart = `2022-${currentMonth}-01`;
+
+  const { isIncome, category, amount, date, comment } = modalInitials;
+
   return (
     <div className={styles.modalWrapper} onClick={layOutClick}>
       <div className={styles.content}>
@@ -64,22 +84,26 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
           aria-label="Checkbox type transaction"
           className={styles.closeBtn}
           type="button"
-          onClick={() => setShowModal(false)}
+          onClick={handleCloseModal}
         >
           <svg className={styles.iconClose} width="16" height="16">
             <use href={`${sprite}#icon-Group-56`}></use>
           </svg>
         </button>
 
-        <p className={styles.title}>{t('addTransactions.text')}</p>
+        <p className={styles.title}>
+          {operation === 'addTransaction'
+            ? t('addTransactions.text')
+            : 'EDIT transaction'}
+        </p>
 
         <Formik
           initialValues={{
-            income: false,
-            category: '',
-            amount: '',
-            date: todayDate,
-            comment: ' ',
+            isIncome,
+            category,
+            amount,
+            date,
+            comment,
           }}
           validateOnMount
           onSubmit={handleSubmit}
@@ -101,7 +125,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                   </span>
                   <span className={styles.toggleSpan}>
                     <Field
-                      name="income"
+                      name="isIncome"
                       type="checkbox"
                       className={styles.checkboxInput}
                       id="checkbox"
@@ -127,7 +151,7 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                     <option className={styles.placeholder}>
                       {t('addTransactions.select')}
                     </option>
-                    {values.income
+                    {values.isIncome
                       ? income.map((el, id) => (
                           <option key={id} value={el}>
                             {el}
@@ -202,12 +226,14 @@ export default function ModalAddTransaction({ showModal, setShowModal }) {
                     type="submit"
                     disabled={isValid ? false : true}
                   >
-                    {t('addTransactions.add')}
+                    {operation === 'addTransaction'
+                      ? t('addTransactions.text')
+                      : 'EDIT transaction'}
                   </button>
                   <button
                     className={styles.cancelBtn}
                     type="button"
-                    onClick={() => setShowModal(false)}
+                    onClick={handleCloseModal}
                   >
                     {t('addTransactions.cancel')}
                   </button>

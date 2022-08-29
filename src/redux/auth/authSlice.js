@@ -20,7 +20,7 @@ const authSlice = createSlice({
     },
     logOut(state) {
       state.isLogged = false;
-      state.token = '';
+      state.token = null;
       state.user = initialState.user;
     },
   },
@@ -29,14 +29,14 @@ const authSlice = createSlice({
       state.error = null;
       state.isLoading = true;
     },
-    [authOperation.register.fulfilled]: (state, action) => {
+    [authOperation.register.fulfilled]: state => {
       state.error = null;
       state.isLoading = false;
     },
-    [authOperation.register.rejected]: (state, action) => {
-      state.error = !action.payload.message
+    [authOperation.register.rejected]: (state, { payload }) => {
+      state.error = !payload.message
         ? 'User registration failed'
-        : action.payload.message;
+        : payload.message;
       state.isLoading = false;
     },
     [authOperation.login.pending]: state => {
@@ -44,12 +44,14 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperation.login.fulfilled]: (state, { payload }) => {
+      console.log('login reducer in slice');
       state.user = payload.user;
       state.token = payload.token;
       state.isLogged = true;
       state.isLoading = false;
     },
     [authOperation.login.rejected]: (state, { payload }) => {
+      console.log('payload login rejected', payload);
       state.error = payload.message
         ? payload.message
         : 'Authorization failed. Please check you email and password.';
@@ -60,16 +62,16 @@ const authSlice = createSlice({
       state.isLoading = true;
       state.isAuthGoogle = true;
     },
-    [authOperation.loginGoogle.fulfilled]: (state, action) => {
-      state.user = action.payload.user;
-      state.token = action.payload.token;
+    [authOperation.loginGoogle.fulfilled]: (state, { payload }) => {
+      state.user = payload.user;
+      state.token = payload.token;
       state.isLogged = true;
       state.isLoading = false;
     },
-    [authOperation.loginGoogle.rejected]: (state, action) => {
-      state.error = !action.payload.message
+    [authOperation.loginGoogle.rejected]: (state, { payload }) => {
+      state.error = !payload.message
         ? 'Authorization failed.'
-        : action.payload.message;
+        : payload.message;
       state.isLoading = false;
       state.isAuthGoogle = false;
     },
@@ -77,13 +79,16 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperation.logOut.fulfilled]: state => {
+      console.log('logOut fulfilled');
       state.user = initialState.user;
       state.token = initialState.token;
       state.isLogged = false;
       state.isLoading = false;
     },
-    [authOperation.logOut.rejected]: state => {
+    [authOperation.logOut.rejected]: (state, { payload }) => {
       state.isLoading = false;
+      console.log('logOut rejected payload', payload);
+      state.error = payload.message;
     },
     [authOperation.getCurrentUser.pending]: state => {
       state.isLoading = true;
@@ -96,7 +101,7 @@ const authSlice = createSlice({
     [authOperation.getCurrentUser.rejected]: state => {
       state.isLoading = false;
       state.isLogged = false;
-      state.token = '';
+      state.token = null;
     },
   },
 });

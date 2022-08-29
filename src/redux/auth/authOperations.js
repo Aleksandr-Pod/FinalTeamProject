@@ -2,9 +2,10 @@ import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
 import { setTransactions } from '../transactions/transactionSlice';
+import { prepareIncomeData } from '../../helpers/prepareIncomeData';
 
 // axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
-axios.defaults.baseURL = 'http://wallet-01.herokuapp.com/';
+axios.defaults.baseURL = 'https://wallet-01.herokuapp.com/';
 // axios.defaults.baseURL = 'http://localhost:3030/';
 
 const token = {
@@ -34,12 +35,12 @@ const loginGoogle = createAsyncThunk(
 
 const login = createAsyncThunk(
   'auth/login',
-  async (credentials, { rejectWithValue, dispatch }) => {
-    console.log('credentials:', credentials);
+  async (credentials, { getState, rejectWithValue, dispatch }) => {
     try {
       const response = await axios.post(`/api/users/login`, credentials);
       token.set(response.data.token);
-      console.log('dispatch allTransactions - response.data:', response.data);
+      // sorting data by date
+      response.data = prepareIncomeData(response.data);
       dispatch(setTransactions(response.data));
       toast(response.data.message);
       return response.data;
@@ -70,10 +71,12 @@ const register = createAsyncThunk(
 
 const logOut = createAsyncThunk(
   'auth/logout',
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { getState, dispatch, rejectWithValue }) => {
     try {
       await axios.get(`/api/users/logout`);
       token.unset();
+      // dispatch(resetTransactions());
+      // dispatch(resetStats());
     } catch (err) {
       return rejectWithValue(err.response.data);
     }

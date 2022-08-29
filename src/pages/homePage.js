@@ -37,8 +37,10 @@ const HomePage = () => {
             {matches.small && (
               <>
                 <ToastContainer />
-                <NavMenuMobile />
-                <Ballance />
+                <div className={styles.nav_ballance}>
+                  <NavMenuMobile />
+                  <Ballance />
+                </div>
                 <div className={styles.containerTable}>
                   <TransactionTableMobile />
                 </div>

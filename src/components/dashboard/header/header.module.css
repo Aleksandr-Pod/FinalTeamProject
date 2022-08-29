@@ -54,11 +54,6 @@
   fill: var(--grey);
 }
 
-/* .exit:hover,
-.exit:focus {
-  fill: var(--blue);
-} */
-
 .button {
   color: var(--grey);
   border: none;
@@ -72,11 +67,6 @@
   line-height: 27px;
   text-align: right;
 }
-
-/* .button:hover,
-.button:focus {
-  color: var(--blue);
-} */
 
 .exitButton {
   border: none;
@@ -117,7 +107,7 @@
 @media screen and (max-width: 767px) {
   .header {
     height: 60px;
-    position: fixed;
+    position: sticky;
     top: 0;
     left: 0;
   }
