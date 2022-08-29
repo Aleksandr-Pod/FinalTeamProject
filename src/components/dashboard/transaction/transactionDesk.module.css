@@ -117,7 +117,7 @@
 @media screen and (min-width: 1280px) {
   .tableWrapper {
     width: 715px;
-    max-height: 640px;
+    max-height: 500px;
     overflow-y: scroll;
   }
   .transactionTable {

@@ -34,29 +34,28 @@
   .largeSize {
     display: flex;
     flex-direction: row;
-    width: 100vw;
+    width: 100%;
   }
 
   .leftSize {
     display: flex;
     flex-direction: column;
     height: 100%;
-    margin-right: 69px;
+    padding-right: 69px;
   }
 
   .rightSize {
-    width: 100vw;
-    padding-left: 53px;
+    width: 800px;
+    padding: 46px 16px 0 69px;
     margin-left: 1px;
     margin-top: 0px;
 
-    max-width: 44rem;
+    /* max-width: 44rem; */
     border-left: 1px solid rgba(231, 229, 242, 1);
     box-shadow: -1px 0px 0px rgba(0, 0, 0, 0.05);
   }
   .containerTable {
     width: 100%;
-    margin-top: 46px;
-    margin-left: 0px;
+    margin-top: 0;
   }
 }

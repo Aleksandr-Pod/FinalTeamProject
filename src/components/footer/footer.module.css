@@ -1,7 +1,7 @@
 footer {
   position: absolute;
   left: 0;
-  top: calc(100vh - 60px);
+  bottom: calc(0 - 50px);
   width: 100vw;
   height: 60px;
   background-color: rgb(211, 211, 211);
@@ -48,7 +48,7 @@ footer {
 @media screen and (max-width: 767px) {
   footer {
     position: fixed;
-    top: calc(100% - 60px);
+    top: calc(100% - 50px);
   }
   .container {
     flex-direction: column;

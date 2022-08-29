@@ -1,7 +1,9 @@
 body {
   height: 100vh;
 }
-
+.container {
+  margin: 0 auto;
+}
 .dash {
   position: relative;
   width: 100%;

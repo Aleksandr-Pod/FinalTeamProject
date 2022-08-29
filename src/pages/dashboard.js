@@ -35,12 +35,12 @@ const Dashboard = () => {
       <div className={`${styles.dash}  ${showModal ? styles.offScroll : ''}`}>
         <Header />
         {activeBtn === 'home' && (
-          <>
+          <div className="container">
             <Suspense fallback={<Spinner />}>
               <HomePage />
             </Suspense>
             <Modal />
-          </>
+          </div>
         )}
         {activeBtn === 'diagram' && (
           <>
