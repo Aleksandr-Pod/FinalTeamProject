@@ -5,7 +5,7 @@ import { setTransactions } from '../transactions/transactionSlice';
 import { prepareIncomeData } from '../../helpers/prepareIncomeData';
 
 // axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
-axios.defaults.baseURL = 'https://wallet-01.herokuapp.com/';
+axios.defaults.baseURL = 'https://wallet-backend.up.railway.app';
 // axios.defaults.baseURL = 'http://localhost:3030/';
 
 const token = {
