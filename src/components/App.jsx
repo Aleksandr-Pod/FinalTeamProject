@@ -12,6 +12,7 @@ import transactionsOperations from '../redux/transactions/transactionOperations'
 import { resetTransactions } from '../redux/transactions/transactionSlice';
 import { fetchStatistics } from '../redux/statistics/statisticsOperations';
 import { resetStats } from '../redux/statistics/statisticsSlice';
+import { getCurrency } from '../redux/currency/currencyOperations';
 
 const RegisterPage = lazy(() => import('../pages/registerPage'));
 const LoginPage = lazy(() => import('../pages/loginPage'));
@@ -27,6 +28,7 @@ export const App = () => {
     state => state.transactions,
   );
   const { statData } = useSelector(state => state.statistics);
+  const { currencies } = useSelector(state => state.currency);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -54,7 +56,18 @@ export const App = () => {
       console.log('App - Getting Stats ...');
       dispatch(fetchStatistics({}));
     }
-  }, [dispatch, isLogged, statData, user.name, transactions.length]);
+    if (isLogged && user.name && !currencies.length) {
+      console.log('App - Getting Currencies ...');
+      dispatch(getCurrency());
+    }
+  }, [
+    dispatch,
+    isLogged,
+    statData,
+    user.name,
+    transactions.length,
+    currencies.length,
+  ]);
 
   return (
     <>

@@ -16,14 +16,14 @@ const statisticsSlice = createSlice({
     },
   },
   extraReducers: {
-    [fetchStatistics.pending]: (state, action) => {
+    [fetchStatistics.pending]: state => {
       state.isLoading = true;
     },
     [fetchStatistics.fulfilled]: (state, { payload }) => {
       state.statData = payload;
       state.isLoading = false;
     },
-    [fetchStatistics.rejected]: (state, action) => {
+    [fetchStatistics.rejected]: state => {
       state.isLoading = false;
     },
   },

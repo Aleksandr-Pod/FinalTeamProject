@@ -11,7 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
-import currencyReducer from './curerncySlice';
+import currencyReducer from './currency/currencySlice';
 import statisticsReducer from './statistics/statisticsSlice';
 
 import { transactionsSlice } from './transactions/transactionSlice';
