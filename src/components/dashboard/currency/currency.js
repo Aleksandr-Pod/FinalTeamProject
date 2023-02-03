@@ -1,16 +1,17 @@
 import { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 // import { ThreeDots } from 'react-loader-spinner';
 import { getCurrency } from '../../../redux/currency/currencyOperations';
-import { useSelector, useDispatch } from 'react-redux';
+
 import css from './currency.module.css';
 
 export const Currency = () => {
   const { t } = useTranslation();
   const { currencies, queryDate } = useSelector(state => state.currency);
   const currentDate = Date.now();
-  const dispatch = useDispatch;
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if ((currencies.length !== 0) & (currentDate - queryDate < 60 * 60 * 3000))

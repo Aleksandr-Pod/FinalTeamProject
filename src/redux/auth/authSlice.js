@@ -44,14 +44,12 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperation.login.fulfilled]: (state, { payload }) => {
-      console.log('login reducer in slice');
       state.user = payload.user;
       state.token = payload.token;
       state.isLogged = true;
       state.isLoading = false;
     },
     [authOperation.login.rejected]: (state, { payload }) => {
-      console.log('payload login rejected', payload);
       state.error = payload.message
         ? payload.message
         : 'Authorization failed. Please check you email and password.';
@@ -79,7 +77,6 @@ const authSlice = createSlice({
       state.isLoading = true;
     },
     [authOperation.logOut.fulfilled]: state => {
-      console.log('logOut fulfilled');
       state.user = initialState.user;
       state.token = initialState.token;
       state.isLogged = false;
@@ -87,7 +84,6 @@ const authSlice = createSlice({
     },
     [authOperation.logOut.rejected]: (state, { payload }) => {
       state.isLoading = false;
-      console.log('logOut rejected payload', payload);
       state.error = payload.message;
     },
     [authOperation.getCurrentUser.pending]: state => {

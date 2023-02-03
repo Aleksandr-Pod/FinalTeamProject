@@ -53,15 +53,16 @@ const login = createAsyncThunk(
 
 const register = createAsyncThunk(
   'auth/register',
-  async (credentials, { rejectWithValue, dispatch }) => {
+  async ({ email, password }, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.post(`/api/users/register`, credentials);
-      token.set(response.data.data.token);
-      toast(response.data.message);
-      dispatch(
-        login({ email: credentials.email, password: credentials.password }),
-      );
-      return response.data;
+      const { data } = await axios.post(`/api/users/register`, {
+        email,
+        password,
+      });
+      token.set(data.data.token);
+      toast(data.message);
+      dispatch(login({ email, password }));
+      return data;
     } catch (err) {
       toast(err.response.data.message);
       return rejectWithValue(err.response.data);
