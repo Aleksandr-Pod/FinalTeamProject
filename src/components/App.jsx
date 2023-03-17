@@ -19,6 +19,7 @@ const RuPage = lazy(() => import('../pages/ru'));
 export const App = () => {
   const { isLogged } = useSelector(state => state.auth);
   const dispatch = useDispatch();
+
   useEffect(() => {
     dispatch(authOperations.getCurrentUser());
   }, [dispatch]);

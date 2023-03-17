@@ -68,7 +68,7 @@ const register = createAsyncThunk(
 
 const logOut = createAsyncThunk(
   'auth/logout',
-  async (_, { dispatch, rejectWithValue }) => {
+  async (_, { rejectWithValue }) => {
     try {
       await axios.get('/api/users/logout');
       token.unset();
@@ -80,7 +80,7 @@ const logOut = createAsyncThunk(
 
 const getCurrentUser = createAsyncThunk(
   'auth/refreshUser',
-  async (_, { getState, rejectWithValue, dispatch }) => {
+  async (_, { getState, rejectWithValue }) => {
     const { auth } = getState();
     if (!auth.token) return rejectWithValue();
     token.set(auth.token);

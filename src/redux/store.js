@@ -39,11 +39,11 @@ const store = configureStore({
   middleware: getDefaultMiddleware => [
     ...getDefaultMiddleware({
       serializableCheck: {
-        ignoreActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
       },
     }),
   ],
-  devToolsls: process.env.NODE_ENV !== 'production',
+  devTools: process.env.NODE_ENV !== 'production',
 });
 
 const persistor = persistStore(store);
