@@ -43,9 +43,8 @@ export const App = () => {
   }, [dispatch, error, isLogged, transactionsError]);
 
   useEffect(() => {
-    if (token && !user.name && !isLoading)
-      dispatch(authOperations.getCurrentUser());
-  }, [dispatch, isLoading, user.name, token]);
+    if (token && !user.name) dispatch(authOperations.getCurrentUser());
+  }, [dispatch, user.name, token]);
 
   useEffect(() => {
     if (isLogged && user.name && !transactions.length) {
