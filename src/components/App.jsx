@@ -43,21 +43,23 @@ export const App = () => {
   }, [dispatch, error, isLogged, transactionsError]);
 
   useEffect(() => {
-    if (token && !user.name) dispatch(authOperations.getCurrentUser());
-  }, [dispatch, user.name, token]);
+    if (token) dispatch(authOperations.getCurrentUser());
+  }, [dispatch, token]);
 
   useEffect(() => {
-    if (isLogged && user.name && !transactions.length) {
-      console.log('App - Getting Transactions ...');
-      dispatch(transactionsOperations.getTransactions());
-    }
-    if (isLogged && user.name && !statData) {
-      console.log('App - Getting Stats ...');
-      dispatch(fetchStatistics({}));
-    }
-    if (isLogged && user.name && !currencies.length) {
-      console.log('App - Getting Currencies ...');
-      dispatch(getCurrency());
+    if (isLogged && user.name) {
+      if (!transactions.length) {
+        console.log('App - Getting Transactions ...');
+        dispatch(transactionsOperations.getTransactions());
+      }
+      if (!statData) {
+        console.log('App - Getting Stats ...');
+        dispatch(fetchStatistics({}));
+      }
+      if (!currencies.length) {
+        console.log('App - Getting Currencies ...');
+        dispatch(getCurrency());
+      }
     }
   }, [
     dispatch,
