@@ -21,9 +21,7 @@ const PageNotFound = lazy(() => import('../pages/pageNotFound'));
 const RuPage = lazy(() => import('../pages/ru'));
 
 export const App = () => {
-  const { user, isLogged, token, isLoading, error } = useSelector(
-    state => state.auth,
-  );
+  const { user, isLogged, token, error } = useSelector(state => state.auth);
   const { transactions, error: transactionsError } = useSelector(
     state => state.transactions,
   );
