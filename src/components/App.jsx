@@ -72,62 +72,26 @@ export const App = () => {
   return (
     <>
       <Routes>
-        <Route
-          path="/"
-          element={
-            <RedirectRoute>
-              <Suspense>
-                <LoginPage />
-              </Suspense>
-            </RedirectRoute>
+        <Route path="/" element={
+            <RedirectRoute><Suspense><LoginPage /></Suspense></RedirectRoute>
+            }
+        />
+        <Route path="/home/google-user" element={<Suspense><GoogleAuth /></Suspense>}
+        />
+        <Route path="/register" element={
+            <RedirectRoute><Suspense><RegisterPage /></Suspense></RedirectRoute>
           }
         />
-        <Route
-          path="/home/google-user"
-          element={
-            <Suspense>
-              <GoogleAuth />
-            </Suspense>
+        <Route path="/login" element={
+            <RedirectRoute><Suspense><LoginPage /></Suspense></RedirectRoute>
           }
         />
-        <Route
-          path="/register"
-          element={
-            <RedirectRoute>
-              <Suspense>
-                <RegisterPage />
-              </Suspense>
-            </RedirectRoute>
+        <Route path="/:activeBtn" element={
+            <PrivateRoute><Suspense><Dashboard /></Suspense></PrivateRoute>
           }
         />
-        <Route
-          path="/login"
-          element={
-            <RedirectRoute>
-              <Suspense>
-                <LoginPage />
-              </Suspense>
-            </RedirectRoute>
-          }
-        />
-        <Route
-          path="/:activeBtn"
-          element={
-            <PrivateRoute>
-              <Suspense>
-                <Dashboard />
-              </Suspense>
-            </PrivateRoute>
-          }
-        />
-        <Route
-          path="/home/ru"
-          element={
-            <PrivateRoute>
-              <Suspense>
-                <RuPage />
-              </Suspense>
-            </PrivateRoute>
+        <Route path="/home/ru" element={
+            <PrivateRoute><Suspense><RuPage /></Suspense></PrivateRoute>
           }
         />
         <Route path="*" element={<PageNotFound path="/login" />} />;
