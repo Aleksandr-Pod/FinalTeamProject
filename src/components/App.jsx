@@ -21,9 +21,7 @@ const PageNotFound = lazy(() => import('../pages/pageNotFound'));
 const RuPage = lazy(() => import('../pages/ru'));
 
 export const App = () => {
-  const { user, isLogged, token, isLoading, error } = useSelector(
-    state => state.auth,
-  );
+  const { user, isLogged, token, error } = useSelector(state => state.auth);
   const { transactions, error: transactionsError } = useSelector(
     state => state.transactions,
   );
@@ -43,22 +41,23 @@ export const App = () => {
   }, [dispatch, error, isLogged, transactionsError]);
 
   useEffect(() => {
-    if (token && !user.name && !isLoading)
-      dispatch(authOperations.getCurrentUser());
-  }, [dispatch, isLoading, user.name, token]);
+    if (token) dispatch(authOperations.getCurrentUser());
+  }, [dispatch, token]);
 
   useEffect(() => {
-    if (isLogged && user.name && !transactions.length) {
-      console.log('App - Getting Transactions ...');
-      dispatch(transactionsOperations.getTransactions());
-    }
-    if (isLogged && user.name && !statData) {
-      console.log('App - Getting Stats ...');
-      dispatch(fetchStatistics({}));
-    }
-    if (isLogged && user.name && !currencies.length) {
-      console.log('App - Getting Currencies ...');
-      dispatch(getCurrency());
+    if (isLogged && user.name) {
+      if (!transactions.length) {
+        console.log('App - Getting Transactions ...');
+        dispatch(transactionsOperations.getTransactions());
+      }
+      if (!statData) {
+        console.log('App - Getting Stats ...');
+        dispatch(fetchStatistics({}));
+      }
+      if (!currencies.length) {
+        console.log('App - Getting Currencies ...');
+        dispatch(getCurrency());
+      }
     }
   }, [
     dispatch,
