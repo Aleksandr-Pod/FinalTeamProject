@@ -4,7 +4,6 @@ import { toast } from 'react-toastify';
 import { setTransactions } from '../transactions/transactionSlice';
 import { prepareIncomeData } from '../../helpers/prepareIncomeData';
 
-// axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
 axios.defaults.baseURL = 'https://wallet-backend.up.railway.app';
 // axios.defaults.baseURL = 'http://localhost:3030/';
 
@@ -21,14 +20,15 @@ const loginGoogle = createAsyncThunk(
   'auth/loginGoogle',
   async (credentials, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.post('/api/users/google-user', credentials);
-      token.set(response.data.token);
-      dispatch(setTransactions(response.data));
-      toast(response.data.message);
-      return response.data;
+      const { data } = await axios.post('/api/users/google-user', credentials);
+      console.log('data:', data);
+      token.set(data.data.token);
+      toast(data.message);
+      return data.data;
     } catch (err) {
       toast(err.response.data.message);
       return rejectWithValue(err.message);
+      // return err.message;
     }
   },
 );

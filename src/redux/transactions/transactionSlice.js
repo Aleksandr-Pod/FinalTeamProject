@@ -26,9 +26,10 @@ export const transactionsSlice = createSlice({
       state.transactions = [];
       state.error = null;
     },
-    setTransactions(state, action) {
-      state.transactions = action.payload.allTransactions;
-      state.totalBalance = action.payload.user.balance;
+    setTransactions(state, { payload }) {
+      console.log('payload in set transactions', payload);
+      state.transactions = payload;
+      state.totalBalance = payload.user.balance;
       state.error = null;
       state.isLoading = false;
     },

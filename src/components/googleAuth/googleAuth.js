@@ -11,7 +11,7 @@ const GoogleAuth = () => {
   let navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const email = searchParams.get('email');
-
+  console.log('email: ', email);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -22,6 +22,7 @@ const GoogleAuth = () => {
 
   useEffect(() => {
     if (!isAuthGoogle) {
+      console.log('useEffect in GoogleAuth - dispatch loginGoogle');
       dispatch(authOperations.loginGoogle({ email }));
     }
   }, [dispatch, email, isAuthGoogle]);

@@ -67,6 +67,7 @@ const authSlice = createSlice({
       state.isLoading = false;
     },
     [authOperation.loginGoogle.rejected]: (state, { payload }) => {
+      console.log('payload in slice rejected:', payload);
       state.error = !payload.message
         ? 'Authorization failed.'
         : payload.message;
