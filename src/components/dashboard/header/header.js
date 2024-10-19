@@ -1,24 +1,25 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
-
+import { setShowModal } from '../../../redux/transactions/transactionSlice';
 import sprite from '../../../images/sprite.svg';
 import ModalLogout from '../../modalLogout/modalLogout';
 import { LangSwitcher } from '../../langSwitcher/langSwitcher';
 import styles from './header.module.css';
 
-export default function Header({ setShowTransactionModal }) {
-  const [showModal, setShowModal] = useState(false);
+export default function Header() {
+  const [showConfirm, setShowConfirm] = useState(false);
   const { user } = useSelector(state => state.auth);
+  const dispatch = useDispatch();
   const navigate = useNavigate();
   const { t } = useTranslation();
 
   const toggleLogin = () => {
-    setShowModal(!showModal);
+    setShowConfirm(!showConfirm);
   };
   const toHome = () => {
-    setShowTransactionModal(false);
+    dispatch(setShowModal(false));
     navigate('/home');
   };
   return (
@@ -46,7 +47,7 @@ export default function Header({ setShowTransactionModal }) {
             <button type="button" className={styles.button}>
               {t('exit')}
             </button>
-            {showModal && <ModalLogout closeModalLogout={toggleLogin} />}
+            {showConfirm && <ModalLogout closeModalLogout={toggleLogin} />}
           </div>
         </div>
       </header>

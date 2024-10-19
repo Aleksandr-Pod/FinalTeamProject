@@ -5,15 +5,15 @@ import { useTranslation } from 'react-i18next';
 export const StatTable = () => {
   const { t } = useTranslation();
 
-  const { statistics, isLoading } = useSelector(state => state.statistics);
+  const { statData, isLoading } = useSelector(state => state.statistics);
   const { totalBalance } = useSelector(state => state.transactions);
 
-  const data = statistics.result.map(el => ({
+  const data = statData.result.map(el => ({
     ...el,
-    id: el._id.category,
+    id: el.category,
     sum: el.totalSum,
-    backgroundColor: el._id.colorCategory,
-    category: el._id.category,
+    backgroundColor: el.catColor,
+    category: el.category,
   }));
 
   return (
@@ -46,7 +46,7 @@ export const StatTable = () => {
             <tr className={styles.data}>
               <td className={styles.title}>{t('expense')}:</td>
               <td className={styles.expenses}>
-                {statistics?.totalExpense
+                {statData?.totalExpense
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
               </td>
@@ -54,7 +54,7 @@ export const StatTable = () => {
             <tr className={`${styles.data} ${styles.rowIncome}`}>
               <td className={styles.title}>{t('income')}:</td>
               <td className={styles.income}>
-                {statistics?.totalIncome
+                {statData?.totalIncome
                   .toString()
                   .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
               </td>

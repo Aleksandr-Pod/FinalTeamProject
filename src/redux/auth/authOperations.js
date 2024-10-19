@@ -1,9 +1,11 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { toast } from 'react-toastify';
-import { setTransactions, setBalance } from '../transactions/transactionSlice';
+import { setTransactions } from '../transactions/transactionSlice';
+import { prepareIncomeData } from '../../helpers/prepareIncomeData';
 
-axios.defaults.baseURL = 'https://wallet-gls.herokuapp.com/';
+axios.defaults.baseURL = 'https://wallet-backend.up.railway.app';
+// axios.defaults.baseURL = 'http://localhost:3030/';
 
 const token = {
   set(token) {
@@ -16,14 +18,12 @@ const token = {
 
 const loginGoogle = createAsyncThunk(
   'auth/loginGoogle',
-  async (credentials, { rejectWithValue, dispatch }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
-      const response = await axios.post('/api/users/google-user', credentials);
-      token.set(response.data.data.token);
-      dispatch(setTransactions(response.data.data));
-      dispatch(setBalance(response.data.data.user.balance));
-      toast(response.data.message);
-      return response.data.data;
+      const { data } = await axios.post('/api/users/google-user', credentials);
+      token.set(data.data.token);
+      toast(data.message);
+      return data.data;
     } catch (err) {
       toast(err.response.data.message);
       return rejectWithValue(err.message);
@@ -33,14 +33,15 @@ const loginGoogle = createAsyncThunk(
 
 const login = createAsyncThunk(
   'auth/login',
-  async (credentials, { rejectWithValue, dispatch }) => {
+  async (credentials, { getState, rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.post('/api/users/login', credentials);
-      token.set(response.data.data.token);
-      dispatch(setTransactions(response.data.data));
-      dispatch(setBalance(response.data.data.user.balance));
+      const response = await axios.post(`/api/users/login`, credentials);
+      token.set(response.data.token);
+      // sorting data by date
+      response.data = prepareIncomeData(response.data);
+      dispatch(setTransactions(response.data));
       toast(response.data.message);
-      return response.data.data;
+      return response.data;
     } catch (err) {
       toast(err.response.data.message);
       return rejectWithValue(err.message);
@@ -50,15 +51,16 @@ const login = createAsyncThunk(
 
 const register = createAsyncThunk(
   'auth/register',
-  async (credentials, { rejectWithValue, dispatch }) => {
+  async ({ email, password }, { rejectWithValue, dispatch }) => {
     try {
-      const response = await axios.post('/api/users/register', credentials);
-      token.set(response.data.data.token);
-      toast(response.data.message);
-      dispatch(
-        login({ email: credentials.email, password: credentials.password }),
-      );
-      return response.data;
+      const { data } = await axios.post(`/api/users/register`, {
+        email,
+        password,
+      });
+      token.set(data.data.token);
+      toast(data.message);
+      dispatch(login({ email, password }));
+      return data;
     } catch (err) {
       toast(err.response.data.message);
       return rejectWithValue(err.response.data);
@@ -68,10 +70,12 @@ const register = createAsyncThunk(
 
 const logOut = createAsyncThunk(
   'auth/logout',
-  async (_, { rejectWithValue }) => {
+  async (_, { getState, dispatch, rejectWithValue }) => {
     try {
-      await axios.get('/api/users/logout');
+      await axios.get(`/api/users/logout`);
       token.unset();
+      // dispatch(resetTransactions());
+      // dispatch(resetStats());
     } catch (err) {
       return rejectWithValue(err.response.data);
     }
@@ -85,7 +89,7 @@ const getCurrentUser = createAsyncThunk(
     if (!auth.token) return rejectWithValue();
     token.set(auth.token);
     try {
-      const { data } = await axios.get('/api/users/current');
+      const { data } = await axios.get(`/api/users/current`);
       return data;
     } catch (err) {
       return rejectWithValue(err.response.data);

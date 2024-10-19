@@ -4,27 +4,30 @@ import { fetchStatistics } from './statisticsOperations';
 const statisticsSlice = createSlice({
   name: 'statistics',
   initialState: {
-    statistics: [],
+    statData: null,
     isLoading: false,
   },
   reducers: {
     addStatistics(state, { payload }) {
-      state.statistics = payload;
+      state.statData = payload;
+    },
+    resetStats(state) {
+      state.statData = null;
     },
   },
   extraReducers: {
-    [fetchStatistics.pending]: (state, action) => {
+    [fetchStatistics.pending]: state => {
       state.isLoading = true;
     },
-    [fetchStatistics.fulfilled]: (state, action) => {
-      state.statistics = action.payload;
+    [fetchStatistics.fulfilled]: (state, { payload }) => {
+      state.statData = payload;
       state.isLoading = false;
     },
-    [fetchStatistics.rejected]: (state, action) => {
+    [fetchStatistics.rejected]: state => {
       state.isLoading = false;
     },
   },
 });
 
-export const { addStatistics } = statisticsSlice.actions;
+export const { addStatistics, resetStats } = statisticsSlice.actions;
 export default statisticsSlice.reducer;

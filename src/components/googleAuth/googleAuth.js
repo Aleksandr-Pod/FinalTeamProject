@@ -11,7 +11,6 @@ const GoogleAuth = () => {
   let navigate = useNavigate();
   const [searchParams] = useSearchParams();
   const email = searchParams.get('email');
-
   const dispatch = useDispatch();
 
   useEffect(() => {
