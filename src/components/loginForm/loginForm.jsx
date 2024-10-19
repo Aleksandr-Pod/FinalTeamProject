@@ -84,7 +84,7 @@ export default function LoginForm() {
               </NavLink>
 
               <a
-                href="https://wallet-gls.herokuapp.com/api/users/google"
+                href="http://localhost:3030/api/users/google"
                 className={styles.link}
                 type="submit"
               >

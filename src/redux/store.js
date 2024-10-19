@@ -11,8 +11,7 @@ import {
 } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import authReducer from './auth/authSlice';
-import currencyReducer from './curerncySlice';
-import categoriesReducer from './categories/categoriesSlice';
+import currencyReducer from './currency/currencySlice';
 import statisticsReducer from './statistics/statisticsSlice';
 
 import { transactionsSlice } from './transactions/transactionSlice';
@@ -32,7 +31,6 @@ const store = configureStore({
   reducer: {
     auth: persistedAuthReducer,
     currency: persistedCurrencyReducer,
-    categories: categoriesReducer,
     statistics: statisticsReducer,
     transactions: transactionsSlice.reducer,
   },

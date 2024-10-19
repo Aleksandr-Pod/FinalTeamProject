@@ -9,7 +9,7 @@ Chart.register(Tooltip, Title, ArcElement);
 
 export const Diagram = () => {
   const { t } = useTranslation();
-  const { statistics, isLoading } = useSelector(state => state.statistics);
+  const { statData, isLoading } = useSelector(state => state.statistics);
 
   const data = {
     datasets: [
@@ -23,22 +23,22 @@ export const Diagram = () => {
     labels: [],
   };
 
-  statistics.result.forEach(el => {
-    data.labels.push(el._id.category);
+  statData?.result.forEach(el => {
+    data.labels.push(el.category);
     data.datasets[0].data.push(el.totalSum);
-    data.datasets[0].borderColor.push(el._id.colorCategory);
-    data.datasets[0].backgroundColor.push(el._id.colorCategory);
+    data.datasets[0].borderColor.push(el.catColor);
+    data.datasets[0].backgroundColor.push(el.catColor);
   });
   return (
     <div className={styles.wrapper}>
-      {statistics?.result?.length > 0 ? (
+      {statData?.result?.length > 0 ? (
         isLoading ? (
           <Spinner />
         ) : (
           <div>
             <p className={styles.balance}>
               ₴{' '}
-              {statistics?.totalExpense
+              {statData?.totalExpense
                 .toString()
                 .replace(/\B(?=(\d{3})+(?!\d))/g, ' ')}
             </p>
