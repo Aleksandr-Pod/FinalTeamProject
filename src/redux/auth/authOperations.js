@@ -18,17 +18,15 @@ const token = {
 
 const loginGoogle = createAsyncThunk(
   'auth/loginGoogle',
-  async (credentials, { rejectWithValue, dispatch }) => {
+  async (credentials, { rejectWithValue }) => {
     try {
       const { data } = await axios.post('/api/users/google-user', credentials);
-      console.log('data:', data);
       token.set(data.data.token);
       toast(data.message);
       return data.data;
     } catch (err) {
       toast(err.response.data.message);
       return rejectWithValue(err.message);
-      // return err.message;
     }
   },
 );
